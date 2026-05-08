@@ -159,26 +159,39 @@
   letter-spacing: 0.24em;
 }
 
-/* ---------- Header polish: tighter logo, refined nav ---------- */
-.header__menu .header__menu-item .heading,
-.header__menu .header__menu-item {
+/* ---------- Header polish ---------- */
+
+/* Refined typography on the primary nav. Uses Prestige's actual classes. */
+.header__primary-nav-item,
+.header__primary-nav-item [data-title] {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 0.75rem;
 }
-.header__menu .header__menu-item .heading::after {
-  content: '';
-  display: block;
-  height: 1px;
-  background: var(--aw-gold);
-  width: 0;
-  transition: width 0.25s ease;
-  margin-top: 4px;
+
+/* Tint Prestige's built-in hover underline gold */
+.header__primary-nav-item [data-title]:before {
+  background: var(--aw-gold) !important;
+  height: 1px !important;
 }
-.header__menu .header__menu-item:hover .heading::after,
-.header__menu .header__menu-item .heading[aria-current='page']::after {
-  width: 100%;
+
+/* Make sure the sticky header never clips the second nav row of the
+   logo_center_navigation_below layout, and that mega-menu dropdowns
+   can render outside its bounds. */
+.shopify-section--header {
+  overflow: visible;
+}
+.header,
+.header__primary-nav,
+.header__secondary-nav {
+  overflow: visible;
+}
+
+/* Ensure the sticky header sits above adjacent sections so dropdowns
+   don't render behind featured imagery on scroll */
+.shopify-section--header {
+  z-index: 5;
 }
 
 /* ---------- Section dividers: elegant hairline rather than solid borders ---------- */
