@@ -159,12 +159,37 @@
   letter-spacing: 0.24em;
 }
 
-/* ---------- Header polish ---------- */
+/* ---------- Header: thin Gymshark-style single-row layout ---------- */
+
+/* Force a single-row grid on desktop: nav-left | logo-center | icons-right.
+   Prestige scopes its --header-grid variable to the section ID, so we
+   override the resolved `grid` property directly with !important. */
+@media screen and (min-width: 1000px) {
+  .header {
+    grid:
+      "primary-nav logo secondary-nav"
+      / minmax(0, 1fr) auto minmax(0, 1fr) !important;
+    column-gap: 2rem !important;
+    padding-block: 0.75rem !important;
+  }
+
+  /* Logo lives in the centered column — pull it to the column centre
+     instead of Prestige's default justify-self: start */
+  .header__logo {
+    justify-self: center !important;
+  }
+
+  /* Nav items align to the start of the left column */
+  .header__primary-nav {
+    justify-content: flex-start !important;
+    column-gap: 1.75rem !important;
+  }
+}
 
 /* Refined typography on the primary nav. Uses Prestige's actual classes. */
 .header__primary-nav-item,
 .header__primary-nav-item [data-title] {
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 0.75rem;
@@ -176,22 +201,27 @@
   height: 1px !important;
 }
 
-/* Make sure the sticky header never clips the second nav row of the
-   logo_center_navigation_below layout, and that mega-menu dropdowns
-   can render outside its bounds. */
+/* Trim the icon group on the right to feel tighter, more luxury */
+.header__secondary-nav {
+  column-gap: 1.1rem !important;
+}
+.header__secondary-nav .tap-area svg,
+.header__secondary-nav button svg,
+.header__secondary-nav a svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* The sticky header must allow dropdowns to escape its bounds and
+   sit above adjacent sections on scroll. */
 .shopify-section--header {
   overflow: visible;
+  z-index: 5;
 }
 .header,
 .header__primary-nav,
 .header__secondary-nav {
   overflow: visible;
-}
-
-/* Ensure the sticky header sits above adjacent sections so dropdowns
-   don't render behind featured imagery on scroll */
-.shopify-section--header {
-  z-index: 5;
 }
 
 /* ---------- Section dividers: elegant hairline rather than solid borders ---------- */
