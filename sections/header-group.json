@@ -48,8 +48,8 @@
         "enable_sticky": true,
         "aria_label": "Brand switcher",
         "background_color": "#000000",
-        "text_color": "#FFFFFF",
-        "active_color": "#FFFFFF"
+        "text_color": "#ffffff",
+        "active_color": "#ffffff"
       }
     },
     "countdown-timer": {
@@ -107,8 +107,9 @@
         "logo": "{{shop.brand.logo}}",
         "logo_max_width": 240,
         "logo_mobile_max_width": 80,
-        "menu": "main-menu-2",
+        "menu": "main-menu",
         "sidebar_menu": "",
+        "customer_account_menu": "customer-account-main-menu",
         "menu_open_trigger": "hover",
         "menu_text_font": "heading",
         "enable_search": true,
