@@ -11,6 +11,47 @@
   "type": "header",
   "name": "Header group",
   "sections": {
+    "brand-switcher": {
+      "type": "brand-switcher",
+      "blocks": {
+        "brand-al-wissam": {
+          "type": "brand",
+          "settings": {
+            "label": "AL WISSAM",
+            "link": "",
+            "is_active": true
+          }
+        },
+        "brand-retail-store": {
+          "type": "brand",
+          "settings": {
+            "label": "RETAIL STORE",
+            "link": "",
+            "is_active": false
+          }
+        },
+        "brand-lil-woo": {
+          "type": "brand",
+          "settings": {
+            "label": "LIL WOO",
+            "link": "",
+            "is_active": false
+          }
+        }
+      },
+      "block_order": [
+        "brand-al-wissam",
+        "brand-retail-store",
+        "brand-lil-woo"
+      ],
+      "settings": {
+        "enable_sticky": true,
+        "aria_label": "Brand switcher",
+        "background_color": "#000000",
+        "text_color": "#FFFFFF",
+        "active_color": "#FFFFFF"
+      }
+    },
     "countdown-timer": {
       "type": "countdown-condensed",
       "settings": {
@@ -86,6 +127,7 @@
     }
   },
   "order": [
+    "brand-switcher",
     "countdown-timer",
     "header"
   ]

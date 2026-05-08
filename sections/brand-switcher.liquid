@@ -1,0 +1,281 @@
+{%- comment -%}
+  Global brand switcher displayed above the header. Allows visitors to jump
+  between sister stores (AL WISSAM, Retail Store, Lil Woo). Designed to sit
+  cleanly above the existing Prestige header group without altering its
+  built-in sticky behaviour.
+{%- endcomment -%}
+
+{%- if section.blocks.size > 0 -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      --brand-switcher-bg: {{ section.settings.background_color }};
+      --brand-switcher-fg: {{ section.settings.text_color }};
+      --brand-switcher-accent: {{ section.settings.active_color }};
+      --brand-switcher-divider: {{ section.settings.text_color }};
+      --brand-switcher-is-sticky: {% if section.settings.enable_sticky %}1{% else %}0{% endif %};
+
+      position: relative;
+      z-index: 6;
+    }
+
+    {%- if section.settings.enable_sticky -%}
+      #shopify-section-{{ section.id }} {
+        position: sticky;
+        top: 0;
+      }
+
+      {%- comment -%}
+        Push the announcement bar and header below us when we are sticky.
+        Scoped to siblings of our section so the original Prestige rules
+        keep working when this section is removed.
+      {%- endcomment -%}
+      .shopify-section--brand-switcher ~ .shopify-section--announcement-bar {
+        top: calc(var(--brand-switcher-is-sticky, 0) * var(--brand-switcher-height, 0px)) !important;
+      }
+
+      .shopify-section--brand-switcher ~ .shopify-section--header {
+        top: calc(
+          var(--brand-switcher-is-sticky, 0) * var(--brand-switcher-height, 0px)
+          + var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px)
+        ) !important;
+      }
+    {%- endif -%}
+
+    .brand-switcher {
+      background: var(--brand-switcher-bg);
+      color: var(--brand-switcher-fg);
+      padding-block: 0.625rem;
+      padding-inline: 1.25rem;
+      font-family: var(--heading-font-family, inherit);
+      font-size: 0.6875rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .brand-switcher__list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .brand-switcher__list::-webkit-scrollbar { display: none; }
+
+    .brand-switcher__item {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .brand-switcher__item:not(:last-child)::after {
+      content: '';
+      display: inline-block;
+      width: 1px;
+      height: 0.75rem;
+      margin-inline-start: 1.25rem;
+      background: var(--brand-switcher-divider);
+      opacity: 0.35;
+    }
+
+    .brand-switcher__link {
+      position: relative;
+      display: inline-block;
+      padding-block: 0.25rem;
+      color: inherit;
+      letter-spacing: inherit;
+      text-decoration: none;
+      opacity: 0.65;
+      transition: opacity 0.2s ease;
+    }
+
+    .brand-switcher__link:hover,
+    .brand-switcher__link:focus-visible {
+      opacity: 1;
+    }
+
+    .brand-switcher__link:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    .brand-switcher__link--active {
+      color: var(--brand-switcher-accent);
+      opacity: 1;
+      font-weight: 600;
+    }
+
+    .brand-switcher__link--active::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.25rem;
+      height: 1px;
+      background: currentColor;
+    }
+
+    @media screen and (max-width: 699px) {
+      .brand-switcher {
+        padding-block: 0.5rem;
+        padding-inline: 0.75rem;
+        font-size: 0.625rem;
+        letter-spacing: 0.16em;
+      }
+      .brand-switcher__list { gap: 0.75rem; }
+      .brand-switcher__item:not(:last-child)::after {
+        margin-inline-start: 0.75rem;
+        height: 0.6875rem;
+      }
+    }
+  </style>
+
+  <nav class="brand-switcher" aria-label="{{ section.settings.aria_label | default: 'Brand switcher' | escape }}">
+    <ul class="brand-switcher__list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign label = block.settings.label
+          assign link_url = block.settings.link
+          assign is_active = block.settings.is_active
+        -%}
+
+        {%- if label != blank -%}
+          <li class="brand-switcher__item" {{ block.shopify_attributes }}>
+            {%- if is_active or link_url == blank -%}
+              <span class="brand-switcher__link brand-switcher__link--active" aria-current="page">{{ label }}</span>
+            {%- else -%}
+              <a href="{{ link_url }}" class="brand-switcher__link">{{ label }}</a>
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </nav>
+
+  <script>
+    (function () {
+      var section = document.getElementById('shopify-section-{{ section.id }}');
+      if (!section) return;
+      var setHeight = function () {
+        document.documentElement.style.setProperty(
+          '--brand-switcher-height',
+          section.clientHeight.toFixed(2) + 'px'
+        );
+      };
+      setHeight();
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(setHeight).observe(section);
+      } else {
+        window.addEventListener('resize', setHeight);
+      }
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Brand switcher",
+  "class": "shopify-section--brand-switcher",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "tag": "aside",
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "AL WISSAM"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_active",
+          "label": "Mark as active (current store)",
+          "info": "Highlights this entry and renders it as plain text instead of a link.",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Stick to top of page on scroll",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Brand switcher"
+    },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active text",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand switcher",
+      "blocks": [
+        {
+          "type": "brand",
+          "settings": {
+            "label": "AL WISSAM",
+            "is_active": true
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "label": "RETAIL STORE"
+          }
+        },
+        {
+          "type": "brand",
+          "settings": {
+            "label": "LIL WOO"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
