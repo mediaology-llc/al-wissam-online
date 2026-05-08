@@ -211,16 +211,33 @@
   height: 2px !important;
 }
 
-/* Force the header to keep its solid dark background even if a slideshow
-   below it tries to enable a transparent treatment. */
-.header,
-.shopify-section--header .header {
+/* ---------- Hard guard: header is ALWAYS a solid dark surface ----------
+   Whatever Prestige's transparent-header / sticky-state machine does, we
+   pin background and text colour so the sticky header never collapses to
+   a thin invisible strip. Highest-specificity selector available without
+   a section ID, plus !important to win the cascade. */
+.shopify-section--header .header,
+body .shopify-section--header .header {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
   --header-show-transparent-logo: 0 !important;
+  --background: 10 10 10 !important;
+  --text-color: 255 255 255 !important;
+  min-height: 50px;
 }
-:has(.shopify-section:first-child [allow-transparent-header]) .header {
-  --header-show-transparent-logo: 0 !important;
-  --background: var(--color-scheme-background, 10 10 10) !important;
-  --text-color: var(--color-scheme-text, 255 255 255) !important;
+.shopify-section--header .header *:not(svg):not(path):not(use):not(symbol) {
+  color: inherit;
+}
+
+/* Make the brand logo readable on a dark header.
+   The shop's logo image is a dark cursive script designed for a white
+   background. Inverting the colour channels turns the dark strokes white
+   while leaving transparency intact, so the existing logo asset works
+   against the dark header without a re-upload.
+   To override: upload a true white logo in the theme editor's
+   Header → Logo field and remove this rule (or set it to filter: none). */
+.shopify-section--header .header__logo-image {
+  filter: invert(1) brightness(1.05);
 }
 
 /* Trim the icon group on the right to feel tighter, more luxury */
@@ -231,8 +248,8 @@
 .header__secondary-nav button svg,
 .header__secondary-nav a svg,
 .header__secondary-nav shopify-account svg {
-  width: 18px !important;
-  height: 18px !important;
+  width: 22px !important;
+  height: 22px !important;
 }
 
 /* Strip the <shopify-account> web component down to match the bare-icon
