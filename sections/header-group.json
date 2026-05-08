@@ -99,7 +99,7 @@
         "mega_menu_YjDUiD"
       ],
       "settings": {
-        "color_scheme": "schema-2",
+        "color_scheme": "scheme-2",
         "enable_sticky": true,
         "hide_on_scroll": false,
         "show_separation_border": true,
@@ -113,7 +113,7 @@
         "menu_open_trigger": "hover",
         "menu_text_font": "heading",
         "enable_search": true,
-        "sidebar_color_scheme": "schema-2",
+        "sidebar_color_scheme": "scheme-2",
         "sidebar_text_font": "heading",
         "sidebar_show_dividers": false,
         "sidebar_open_second_level_menus": false,
