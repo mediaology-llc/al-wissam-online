@@ -47,9 +47,9 @@
       "settings": {
         "enable_sticky": true,
         "aria_label": "Brand switcher",
-        "background_color": "#ffffff",
-        "text_color": "#000000",
-        "active_color": "#000000"
+        "background_color": "#000000",
+        "text_color": "#FFFFFF",
+        "active_color": "#c9a96a"
       }
     },
     "countdown-timer": {
@@ -117,7 +117,7 @@
         "sidebar_text_font": "heading",
         "sidebar_show_dividers": false,
         "sidebar_open_second_level_menus": false,
-        "layout": "logo_left_navigation_inline",
+        "layout": "logo_center_navigation_below",
         "show_icons": true,
         "show_country_selector": true,
         "show_country_name": false,

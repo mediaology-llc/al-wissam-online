@@ -1,0 +1,197 @@
+/*
+ * Al Wissam — Luxury homepage polish.
+ * Loaded after theme.css. Scoped narrowly so Prestige's defaults stay intact
+ * everywhere else.
+ */
+
+:root {
+  --aw-gold: var(--accent-gold, #c9a96a);
+  --aw-beige: var(--accent-beige, #efe7d7);
+  --aw-ink: var(--accent-ink, #0a0a0a);
+  --aw-hairline: rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- Brand switcher: gold-tinted active state ---------- */
+.brand-switcher__link--active {
+  color: var(--aw-gold);
+}
+.brand-switcher__link--active::after {
+  background: var(--aw-gold);
+}
+
+/* ---------- Headings: editorial, tracked, refined ---------- */
+.shopify-section--slideshow .h0,
+.shopify-section--slideshow .h1,
+.shopify-section--slideshow .h2 {
+  letter-spacing: 0.01em;
+  line-height: 1.02;
+  font-weight: 600;
+}
+
+/* Section subheadings get a thin rule + uppercase tracking */
+.shopify-section--featured-collections .subheading,
+.shopify-section--multiple-media-with-text .subheading,
+.shopify-section--multi-column .subheading,
+.shopify-section--text-with-icons .subheading,
+.shopify-section--newsletter .subheading,
+.shopify-section--media-grid .subheading {
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--aw-gold);
+}
+
+/* ---------- Buttons: tighter, bolder, gold hover treatment ---------- */
+.button {
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.button--solid:hover,
+.button--fill:hover {
+  background-color: var(--aw-gold);
+  color: var(--aw-ink);
+  border-color: var(--aw-gold);
+}
+
+.button--outline:hover {
+  border-color: var(--aw-gold);
+  color: var(--aw-gold);
+}
+
+/* ---------- Hero slideshow: cinematic gradient + centered crisp type ---------- */
+.shopify-section--slideshow .slideshow__slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.65) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.shopify-section--slideshow .slideshow__slide > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Media grid: luxury category card hover ---------- */
+.shopify-section--media-grid .media-grid__item-image {
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+}
+.shopify-section--media-grid .media-grid__item:hover .media-grid__item-image {
+  transform: scale(1.04);
+}
+.shopify-section--media-grid .media-grid__item-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.shopify-section--media-grid .media-grid__item-text {
+  position: relative;
+  z-index: 2;
+}
+.shopify-section--media-grid .media-grid__item-text .h3,
+.shopify-section--media-grid .media-grid__item-text .h4 {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ---------- Featured collections / product cards: white card surface ---------- */
+.shopify-section--featured-collections .product-card,
+.shopify-section--featured-product .product-card,
+.product-card__figure {
+  background-color: #ffffff;
+}
+.shopify-section--featured-collections .product-card .product-card__figure,
+.product-card__figure-inner {
+  background-color: #ffffff;
+}
+
+/* ---------- Text-with-icons: gold icons, generous spacing, hairline divider on mobile ---------- */
+.shopify-section--text-with-icons {
+  --icon-color-default: var(--aw-gold);
+}
+.shopify-section--text-with-icons .text-with-icons__item-icon svg,
+.shopify-section--text-with-icons .text-with-icons__item-icon img {
+  color: var(--aw-gold);
+}
+.shopify-section--text-with-icons .text-with-icons__item .h6,
+.shopify-section--text-with-icons .text-with-icons__item .heading {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+@media screen and (max-width: 699px) {
+  .shopify-section--text-with-icons .text-with-icons__item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* ---------- Editorial split (multiple-media-with-text): finer spacing ---------- */
+.shopify-section--multiple-media-with-text .h2,
+.shopify-section--multiple-media-with-text .h1 {
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  font-weight: 600;
+}
+
+/* ---------- Newsletter: luxury beige band, gold underline focus ---------- */
+.shopify-section--newsletter .newsletter__form input[type='email'] {
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  background: transparent;
+  letter-spacing: 0.06em;
+}
+.shopify-section--newsletter .newsletter__form input[type='email']:focus {
+  border-bottom-color: var(--aw-gold);
+  outline: none;
+}
+.shopify-section--newsletter .button {
+  letter-spacing: 0.24em;
+}
+
+/* ---------- Header polish: tighter logo, refined nav ---------- */
+.header__menu .header__menu-item .heading,
+.header__menu .header__menu-item {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+.header__menu .header__menu-item .heading::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--aw-gold);
+  width: 0;
+  transition: width 0.25s ease;
+  margin-top: 4px;
+}
+.header__menu .header__menu-item:hover .heading::after,
+.header__menu .header__menu-item .heading[aria-current='page']::after {
+  width: 100%;
+}
+
+/* ---------- Section dividers: elegant hairline rather than solid borders ---------- */
+.section--separated::before,
+.section--separated::after {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ---------- Footer: refined hairlines, gold link hover ---------- */
+.shopify-section--footer a:hover {
+  color: var(--aw-gold);
+}
+.shopify-section--footer .footer__divider,
+.shopify-section--footer .footer__bottom {
+  border-color: rgba(255, 255, 255, 0.12);
+}

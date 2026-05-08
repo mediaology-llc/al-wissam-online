@@ -62,6 +62,15 @@
     {{ content_for_header }}
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+    {{- 'al-wissam-luxury.css' | asset_url | stylesheet_tag -}}
+
+    <style>
+      :root {
+        --accent-gold: {{ settings.accent_gold | default: '#c9a96a' }};
+        --accent-beige: {{ settings.accent_beige | default: '#efe7d7' }};
+        --accent-ink: {{ settings.accent_ink | default: '#0a0a0a' }};
+      }
+    </style>
   </head>
 
   {% liquid

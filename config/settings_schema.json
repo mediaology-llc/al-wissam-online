@@ -8,6 +8,33 @@
     "theme_support_url": "https://support.maestrooo.com/article/203-contact-us"
   },
   {
+    "name": "Al Wissam brand",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Brand-level colours used by the Al Wissam luxury homepage. Adjust these to retune the gold and beige accents site-wide."
+      },
+      {
+        "type": "color",
+        "id": "accent_gold",
+        "label": "Gold accent",
+        "default": "#c9a96a"
+      },
+      {
+        "type": "color",
+        "id": "accent_beige",
+        "label": "Soft beige",
+        "default": "#efe7d7"
+      },
+      {
+        "type": "color",
+        "id": "accent_ink",
+        "label": "Ink (deep black)",
+        "default": "#0a0a0a"
+      }
+    ]
+  },
+  {
     "name": "t:theme_settings.appearance.name",
     "settings": [
       {
