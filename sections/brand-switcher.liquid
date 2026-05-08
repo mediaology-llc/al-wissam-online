@@ -7,12 +7,23 @@
 
 {%- if section.blocks.size > 0 -%}
   <style>
+    {%- comment -%}
+      Publish sticky-related variables on :root so siblings (header,
+      announcement-bar) can inherit them — CSS variables only flow down
+      the ancestor chain, not across siblings. --brand-switcher-height
+      is set in JS below; the fallback here keeps things sane during
+      first paint before the script runs.
+    {%- endcomment -%}
+    :root {
+      --brand-switcher-is-sticky: {% if section.settings.enable_sticky %}1{% else %}0{% endif %};
+      --brand-switcher-height: 36px;
+    }
+
     #shopify-section-{{ section.id }} {
       --brand-switcher-bg: {{ section.settings.background_color }};
       --brand-switcher-fg: {{ section.settings.text_color }};
       --brand-switcher-accent: {{ section.settings.active_color }};
       --brand-switcher-divider: {{ section.settings.text_color }};
-      --brand-switcher-is-sticky: {% if section.settings.enable_sticky %}1{% else %}0{% endif %};
 
       position: relative;
       z-index: 6;
@@ -30,12 +41,12 @@
         keep working when this section is removed.
       {%- endcomment -%}
       .shopify-section--brand-switcher ~ .shopify-section--announcement-bar {
-        top: calc(var(--brand-switcher-is-sticky, 0) * var(--brand-switcher-height, 0px)) !important;
+        top: calc(var(--brand-switcher-height, 36px)) !important;
       }
 
       .shopify-section--brand-switcher ~ .shopify-section--header {
         top: calc(
-          var(--brand-switcher-is-sticky, 0) * var(--brand-switcher-height, 0px)
+          var(--brand-switcher-height, 36px)
           + var(--announcement-bar-is-sticky, 0) * var(--announcement-bar-height, 0px)
         ) !important;
       }
