@@ -229,9 +229,50 @@
 }
 .header__secondary-nav .tap-area svg,
 .header__secondary-nav button svg,
-.header__secondary-nav a svg {
-  width: 18px;
-  height: 18px;
+.header__secondary-nav a svg,
+.header__secondary-nav shopify-account svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Strip the <shopify-account> web component down to match the bare-icon
+   weight of search and cart. Removes its built-in button padding,
+   background, border, and any avatar circle. */
+.header__account-link shopify-account {
+  --shopify-account-color-background: transparent;
+  --shopify-account-color-border: transparent;
+  --shopify-account-radius-button: 0;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  line-height: 0;
+}
+.header__account-link shopify-account [slot='signed-out-avatar'],
+.header__account-link shopify-account [slot='signed-in-avatar'] {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+}
+.header__account-link shopify-account button,
+.header__account-link shopify-account [part='button'],
+.header__account-link shopify-account [part='avatar'] {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+}
+.header__account-link shopify-account svg {
+  stroke-width: var(--icon-stroke-width, 1.5) !important;
 }
 
 /* The sticky header must allow dropdowns to escape its bounds and
