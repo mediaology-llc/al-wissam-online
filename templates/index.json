@@ -42,7 +42,7 @@
         "slide-1"
       ],
       "settings": {
-        "allow_transparent_header": true,
+        "allow_transparent_header": false,
         "show_next_section_button": true,
         "media_size": "fill",
         "show_initial_transition": true,

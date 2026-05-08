@@ -193,12 +193,34 @@
   text-transform: uppercase;
   font-weight: 500;
   font-size: 0.75rem;
+  transition: color 0.2s ease, font-weight 0.2s ease;
 }
 
-/* Tint Prestige's built-in hover underline gold */
+/* Bold gold on hover — colour swap, weight bump, gold underline. The data-title
+   :before pseudo is a transform-scaled clone of the text Prestige uses for the
+   hover underline; we recolour and thicken it. */
+.header__primary-nav-item:hover,
+.header__primary-nav-item:focus-within,
+.header__primary-nav-item [data-title]:hover {
+  color: var(--aw-gold) !important;
+  font-weight: 700 !important;
+}
+
 .header__primary-nav-item [data-title]:before {
   background: var(--aw-gold) !important;
-  height: 1px !important;
+  height: 2px !important;
+}
+
+/* Force the header to keep its solid dark background even if a slideshow
+   below it tries to enable a transparent treatment. */
+.header,
+.shopify-section--header .header {
+  --header-show-transparent-logo: 0 !important;
+}
+:has(.shopify-section:first-child [allow-transparent-header]) .header {
+  --header-show-transparent-logo: 0 !important;
+  --background: var(--color-scheme-background, 10 10 10) !important;
+  --text-color: var(--color-scheme-text, 255 255 255) !important;
 }
 
 /* Trim the icon group on the right to feel tighter, more luxury */
