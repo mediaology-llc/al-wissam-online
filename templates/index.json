@@ -15,6 +15,7 @@
         "slide-1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/47566f95815c44de7be78756a19142013c29630744c513d7431d57487ba343b5.jpg",
             "subheading": "Built In Detroit. Worn Everywhere.",
             "title": "Design. Craft. Legacy.",
             "mobile_text_position": "place-self-center-start text-start",
@@ -34,7 +35,7 @@
             "background_opacity": 0,
             "text_color": "#ffffff",
             "border_color": "#ffffff",
-            "gradient_overlay": "linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.20) 50%, rgba(0,0,0,0.70) 100%)"
+            "gradient_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.7) 100%)"
           }
         }
       },
@@ -62,6 +63,7 @@
             "color_scheme": "scheme-4",
             "column_count": "8",
             "row_count": 2,
+            "add_padding": false,
             "title": "Leather Jackets",
             "heading_tag": "h3",
             "content": "",
@@ -79,6 +81,7 @@
             "color_scheme": "scheme-4",
             "column_count": "4",
             "row_count": 1,
+            "add_padding": false,
             "title": "Varsity Jackets",
             "heading_tag": "h3",
             "content": "",
@@ -96,6 +99,7 @@
             "color_scheme": "scheme-4",
             "column_count": "4",
             "row_count": 1,
+            "add_padding": false,
             "title": "Tracksuits",
             "heading_tag": "h3",
             "content": "",
@@ -113,6 +117,7 @@
             "color_scheme": "scheme-4",
             "column_count": "6",
             "row_count": 1,
+            "add_padding": false,
             "title": "Signature Embroidery",
             "heading_tag": "h3",
             "content": "",
@@ -130,6 +135,7 @@
             "color_scheme": "scheme-4",
             "column_count": "6",
             "row_count": 1,
+            "add_padding": false,
             "title": "New Arrivals",
             "heading_tag": "h3",
             "content": "",
@@ -168,6 +174,8 @@
           "type": "item",
           "settings": {
             "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Premium Craftsmanship",
             "content": "<p>Quality that lasts. Details that matter.</p>"
           }
@@ -176,6 +184,8 @@
           "type": "item",
           "settings": {
             "icon": "picto-star",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Signature Embroidery",
             "content": "<p>Our identity. Worn with pride.</p>"
           }
@@ -184,6 +194,8 @@
           "type": "item",
           "settings": {
             "icon": "picto-earth",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Worldwide Shipping",
             "content": "<p>Delivering to you, wherever you are.</p>"
           }
@@ -192,6 +204,8 @@
           "type": "item",
           "settings": {
             "icon": "picto-lock",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Secure Payments",
             "content": "<p>Safe checkout. Always protected.</p>"
           }
@@ -200,6 +214,8 @@
           "type": "item",
           "settings": {
             "icon": "picto-return",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Easy Returns",
             "content": "<p>Hassle-free returns. No stress.</p>"
           }
@@ -217,6 +233,7 @@
         "separate_section_with_border": false,
         "stack_on_mobile": false,
         "icon_color": "#c9a96a",
+        "text_color": "",
         "text_alignment": "center"
       }
     },
@@ -371,7 +388,7 @@
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
         "subheading": "Most loved",
-        "title": "Best Sellers"
+        "hide_collection_title": false
       }
     },
     "newsletter": {
