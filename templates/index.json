@@ -22,7 +22,7 @@
             "content_max_width": 720,
             "button_1_text": "Shop New Arrivals",
             "button_1_link": "shopify://collections/all",
-            "button_1_style": "fill",
+            "button_1_style": "solid",
             "button_1_background": "#c9a96a",
             "button_1_text_color": "#0a0a0a",
             "button_2_text": "Explore Collections",
@@ -60,7 +60,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "column_count": "5",
+            "column_count": "8",
             "row_count": 2,
             "title": "Leather Jackets",
             "heading_tag": "h3",
@@ -94,7 +94,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "column_count": "3",
+            "column_count": "4",
             "row_count": 1,
             "title": "Tracksuits",
             "heading_tag": "h3",
@@ -111,7 +111,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "column_count": "4",
+            "column_count": "6",
             "row_count": 1,
             "title": "Signature Embroidery",
             "heading_tag": "h3",
@@ -128,7 +128,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "column_count": "3",
+            "column_count": "6",
             "row_count": 1,
             "title": "New Arrivals",
             "heading_tag": "h3",
@@ -239,7 +239,7 @@
         "separate_section_with_border": false,
         "media_position_desktop": "after_text",
         "media_position_mobile": "before_text",
-        "media_layout": "default",
+        "media_layout": "separated",
         "media_alignment": "center",
         "media_alignment_offset": 0,
         "media_mobile_alignment_offset": 0,
@@ -256,46 +256,70 @@
       }
     },
     "featured-collections": {
-      "type": "featured-collections",
+      "type": "collection-list",
       "blocks": {
         "col-legacy": {
           "type": "collection",
           "settings": {
+            "color_scheme": "scheme-4",
             "collection": "",
-            "products_count": 1,
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
             "title": "The Legacy Collection",
-            "link_url": "shopify://collections/all",
-            "link_text": "Shop now"
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
           }
         },
         "col-tracksuits": {
           "type": "collection",
           "settings": {
+            "color_scheme": "scheme-4",
             "collection": "",
-            "products_count": 1,
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
             "title": "Signature Tracksuits",
-            "link_url": "shopify://collections/all",
-            "link_text": "Shop now"
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
           }
         },
         "col-varsity": {
           "type": "collection",
           "settings": {
+            "color_scheme": "scheme-4",
             "collection": "",
-            "products_count": 1,
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
             "title": "Detroit Varsity",
-            "link_url": "shopify://collections/all",
-            "link_text": "Shop now"
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
           }
         },
         "col-essentials": {
           "type": "collection",
           "settings": {
+            "color_scheme": "scheme-4",
             "collection": "",
-            "products_count": 1,
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
             "title": "Essentials",
-            "link_url": "shopify://collections/all",
-            "link_text": "Shop now"
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
           }
         }
       },
@@ -308,14 +332,16 @@
       "settings": {
         "color_scheme": "scheme-1",
         "separate_section_with_border": false,
-        "hide_product_information": true,
-        "stack_products": false,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": true,
+        "stack_collections": false,
+        "collections_per_row_desktop": 4,
+        "stack_collections_mobile": false,
+        "collections_per_row_mobile": "2",
         "subheading": "Featured",
-        "title": "Featured Collections"
+        "title": "Featured Collections",
+        "content": ""
       }
     },
     "best-sellers": {
