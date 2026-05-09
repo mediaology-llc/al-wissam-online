@@ -614,6 +614,21 @@ body .shopify-section--header .header {
   color: var(--aw-gold);
 }
 
+/* Mega-menu column headings (Outerwear, Tops, Bottoms, Accessories,
+   etc.) — these are the top-level links inside .mega-menu__linklist.
+   Recolour to gold so the column groups read distinctly from their
+   faded sub-items. Hover slightly brighter. */
+.mega-menu .mega-menu__linklist > li > a.h6,
+.mega-menu .mega-menu__linklist > li > a {
+  color: var(--aw-gold) !important;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.mega-menu .mega-menu__linklist > li > a.h6:hover,
+.mega-menu .mega-menu__linklist > li > a:hover {
+  color: #e0c084 !important;
+}
+
 /* Search panel: keep input legible and add a gold focus underline */
 .header-search,
 .header-search .container {
