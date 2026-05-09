@@ -52,6 +52,19 @@
   font-weight: 600;
 }
 
+/* Inline-richtext only reliably preserves a small whitelist of tags.
+   <em> is the chosen marker for gold accent words inside hero copy
+   — recoloured gold without the italic, kept on the same baseline. */
+.shopify-section--slideshow .h0 em,
+.shopify-section--slideshow .h1 em,
+.shopify-section--slideshow .h2 em,
+.shopify-section--slideshow .h6 em,
+.shopify-section--slideshow .prose em {
+  color: var(--aw-gold);
+  font-style: normal;
+  font-weight: inherit;
+}
+
 /* Section subheadings get a thin rule + uppercase tracking */
 .shopify-section--featured-collections .subheading,
 .shopify-section--multiple-media-with-text .subheading,
