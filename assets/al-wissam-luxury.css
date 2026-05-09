@@ -99,6 +99,26 @@
   z-index: 2;
 }
 
+/* Frosted-glass overlay inside the bordered hero box: light-mid blur of
+   the leather hero behind, with a dark rgba tint so headline + buttons
+   pop. Applies to both boxed and bordered variants since either class
+   can be active depending on the slide's background/border settings. */
+.shopify-section--slideshow .slideshow__slide-content--boxed,
+.shopify-section--slideshow .slideshow__slide-content--with-border {
+  background-color: rgba(0, 0, 0, 0.32) !important;
+  backdrop-filter: blur(6px) saturate(115%);
+  -webkit-backdrop-filter: blur(6px) saturate(115%);
+}
+
+/* Safari/older-browser fallback: heavier dark tint when blur isn't
+   supported, so the text-on-image contrast still reads. */
+@supports not (backdrop-filter: blur(6px)) {
+  .shopify-section--slideshow .slideshow__slide-content--boxed,
+  .shopify-section--slideshow .slideshow__slide-content--with-border {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
+}
+
 /* ---------- Media grid: force 5-up single row for category section ----------
    Prestige's media-grid normally uses a 12-column grid where each block
    declares column_count from {3, 4, 6, 8, 12} — five equal columns aren't
