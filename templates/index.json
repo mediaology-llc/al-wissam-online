@@ -279,89 +279,94 @@
       }
     },
     "featured-collections": {
-      "type": "collection-list",
+      "type": "media-grid",
       "blocks": {
-        "col-legacy": {
-          "type": "collection",
+        "fc-legacy": {
+          "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
             "title": "The Legacy Collection",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
             "overlay_color": "#000000",
-            "overlay_opacity": 25
+            "overlay_opacity": 30
           }
         },
-        "col-tracksuits": {
-          "type": "collection",
+        "fc-tracksuits": {
+          "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
             "title": "Signature Tracksuits",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
             "overlay_color": "#000000",
-            "overlay_opacity": 25
+            "overlay_opacity": 30
           }
         },
-        "col-varsity": {
-          "type": "collection",
+        "fc-varsity": {
+          "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
             "title": "Detroit Varsity",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
             "overlay_color": "#000000",
-            "overlay_opacity": 25
+            "overlay_opacity": 30
           }
         },
-        "col-essentials": {
-          "type": "collection",
+        "fc-essentials": {
+          "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
             "title": "Essentials",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
             "overlay_color": "#000000",
-            "overlay_opacity": 25
+            "overlay_opacity": 30
           }
         }
       },
       "block_order": [
-        "col-legacy",
-        "col-tracksuits",
-        "col-varsity",
-        "col-essentials"
+        "fc-legacy",
+        "fc-tracksuits",
+        "fc-varsity",
+        "fc-essentials"
       ],
       "settings": {
         "color_scheme": "scheme-3",
         "separate_section_with_border": false,
-        "image_size": "auto",
-        "show_text_outside": true,
-        "space_items": false,
-        "stack_collections": false,
-        "collections_per_row_desktop": 4,
-        "stack_collections_mobile": false,
-        "collections_per_row_mobile": "2",
+        "desktop_row_height": 360,
+        "mobile_row_height": 220,
+        "section_width": "lg",
+        "spacing": "sm",
         "subheading": "Featured Collections",
         "title": "Curated. Timeless. Detroit.",
         "content": ""

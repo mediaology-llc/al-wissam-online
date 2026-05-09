@@ -119,13 +119,15 @@
   }
 }
 
-/* ---------- Media grid: force 5-up single row for category section ----------
+/* ---------- Media grid: force single-row layout for fixed N-up grids ----------
    Prestige's media-grid normally uses a 12-column grid where each block
    declares column_count from {3, 4, 6, 8, 12} — five equal columns aren't
-   reachable through the editor. When a media-grid contains exactly five
-   children we override the layout to a clean repeat(5, 1fr) row, with
-   each item spanning a single 1×1 cell. Two-column on phones, three-column
-   on tablets so the cards stay tappable. */
+   reachable through the editor. We override the layout when a media-grid
+   contains exactly four (Featured Collections) or exactly five (Category
+   grid) children, with mobile/tablet fallbacks. Layout rules are scoped
+   precisely to the child count; the styling rules below apply to either. */
+
+/* 5-up (Shop by Category) */
 @media screen and (min-width: 1000px) {
   .media-grid:has(> .media-grid__item:nth-child(5):last-child) {
     grid: auto-flow dense var(--media-grid-row-height) / repeat(5, minmax(0, 1fr)) !important;
@@ -151,13 +153,39 @@
   }
 }
 
+/* 4-up (Featured Collections) */
+@media screen and (min-width: 1000px) {
+  .media-grid:has(> .media-grid__item:nth-child(4):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(4, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(4):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 999px) {
+  .media-grid:has(> .media-grid__item:nth-child(4):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(2, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(4):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+@media screen and (max-width: 699px) {
+  .media-grid:has(> .media-grid__item:nth-child(4):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(2, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(4):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+
 /* ---------- 5-up category cards: gradient pop-up on hover ----------
    Card lifts ~10px, picks up a depth shadow with a soft gold halo, and
    reveals a gold-to-dark gradient overlay inside the card. Image inside
    the card scales up slightly. Pure CSS, opt-in via @media (hover) so
    touch devices don't get a stuck hover state. */
 @media (hover: hover) and (min-width: 700px) {
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item {
     transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
                 box-shadow 0.45s ease;
     position: relative;
@@ -165,7 +193,7 @@
     will-change: transform;
   }
 
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item:hover {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item:hover {
     transform: translateY(-10px);
     box-shadow:
       0 18px 42px rgba(0, 0, 0, 0.55),
@@ -174,7 +202,7 @@
   }
 
   /* Gold-to-dark gradient overlay layered above the image but below text */
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item > .content-over-media::after {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item > .content-over-media::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -186,22 +214,22 @@
     pointer-events: none;
     z-index: 1;
   }
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item:hover > .content-over-media::after {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item:hover > .content-over-media::after {
     opacity: 1;
   }
 
   /* Keep text above both overlays */
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item .prose {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item .prose {
     position: relative;
     z-index: 2;
   }
 
   /* Gentle image zoom inside the card */
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item img {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item img {
     transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
     will-change: transform;
   }
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item:hover img {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item:hover img {
     transform: scale(1.05);
   }
 }
@@ -211,7 +239,7 @@
    --section-vertical-spacing-block-start-compensation to padding-top in
    some adjacent-section configurations, making the visible top breathing
    room larger than the bottom. Pin both sides to the same value. */
-.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing {
   padding-block-start: var(--section-vertical-spacing) !important;
   padding-block-end: var(--section-vertical-spacing) !important;
 }
@@ -231,9 +259,9 @@
    should fit one line; two-word titles ("Signature Embroidery", "Varsity
    Jackets") may wrap to two lines, balanced and centered. */
 @media screen and (min-width: 1000px) {
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h2,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h3,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h4 {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h2,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h3,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h4 {
     font-size: 1rem !important;
     line-height: 1.2 !important;
     letter-spacing: 0.14em !important;
@@ -242,9 +270,9 @@
   }
 }
 @media screen and (min-width: 700px) and (max-width: 999px) {
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h2,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h3,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h4 {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h2,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h3,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h4 {
     font-size: 1rem !important;
     line-height: 1.2 !important;
     letter-spacing: 0.14em !important;
@@ -255,16 +283,16 @@
 /* Force the entire 5-up category section to a true black surface,
    regardless of which color_scheme the editor lands on. Belt-and-
    suspenders against accidental scheme reverts in the editor. */
-.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing,
-.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing * {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing,
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing * {
   --background: 0 0 0;
   --text-color: 255 255 255;
 }
-.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing {
   background-color: #000000 !important;
   color: #ffffff !important;
 }
-.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-stack > * {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-stack > * {
   color: #ffffff;
 }
 
