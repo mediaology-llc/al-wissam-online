@@ -21,13 +21,13 @@
    right-aligned link.
    ============================================================ */
 
-/* Beige page background and equal padding for both Lil Woo
+/* White page background and equal padding for both Lil Woo
    product/category sections */
 html.aw-brand-lil-woo .shopify-section--media-grid .section-spacing,
 html.aw-brand-lil-woo .shopify-section--featured-collections .section-spacing {
-  background-color: #efe7d7 !important;
+  background-color: #ffffff !important;
   color: #0a0a0a !important;
-  --background: 239 231 215;
+  --background: 255 255 255;
   --text-color: 10 10 10;
   padding-block-start: var(--section-vertical-spacing) !important;
   padding-block-end: var(--section-vertical-spacing) !important;
@@ -48,40 +48,46 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
   margin: 0;
 }
 
-/* Category card titles: left-aligned, simple uppercase under image,
-   no overlay on the photo */
+/* Category card titles: simple uppercase under image, single-line.
+   Tighter letter-spacing + nowrap so "ACCESSORIES" doesn't wrap
+   on a 6-up row. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
   font-size: 0.75rem !important;
-  letter-spacing: 0.18em !important;
+  letter-spacing: 0.12em !important;
   color: #0a0a0a !important;
   text-transform: uppercase;
   margin-block-start: 1rem;
   text-align: center;
+  white-space: nowrap !important;
 }
 
 /* Lil Woo: cards have transparent overlay (no dark gradient over
-   product photos), titles sit BELOW the image not over it. */
+   product photos), titles sit BELOW the image not over it. Card
+   surface is the brand beige tone for the photo plate; the section
+   surrounding chrome is white per the user request. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item {
-  background-color: #efe7d7;
+  background-color: transparent;
 }
 html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media {
   --content-over-media-overlay: 0 0 0 / 0;
+  background-color: #efe7d7;
 }
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media::before {
   background: #d8c8b3 !important;
 }
 
-/* New Drop section — product cards on white plates against
-   the beige section background, title + price below image */
+/* New Drop section — product cards on beige photo plates
+   against the white section background, title + price below
+   image. */
 html.aw-brand-lil-woo .shopify-section--featured-collections .product-card {
-  background-color: #efe7d7 !important;
+  background-color: transparent !important;
 }
 html.aw-brand-lil-woo .shopify-section--featured-collections .product-card__figure,
 html.aw-brand-lil-woo .shopify-section--featured-collections .product-card__figure-inner {
-  background-color: #d8c8b3 !important;
+  background-color: #efe7d7 !important;
 }
 html.aw-brand-lil-woo .shopify-section--featured-collections .product-card .product-title,
 html.aw-brand-lil-woo .shopify-section--featured-collections .product-card .price {
