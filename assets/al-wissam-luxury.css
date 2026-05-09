@@ -334,6 +334,16 @@
 .shopify-section--text-with-icons {
   --icon-color-default: var(--aw-gold);
 }
+
+/* Force equal top/bottom padding on the brand-values section, same fix
+   used elsewhere — Prestige adds an extra
+   --section-vertical-spacing-block-start-compensation to padding-top in
+   some adjacent-section configurations, leaving an oversized gap above
+   the icons. */
+.shopify-section--text-with-icons .section-spacing {
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
+}
 .shopify-section--text-with-icons .text-with-icons__item-icon svg,
 .shopify-section--text-with-icons .text-with-icons__item-icon img {
   color: var(--aw-gold);
