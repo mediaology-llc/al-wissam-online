@@ -19,7 +19,7 @@
         "reveal": true,
         "enable_parallax": true,
         "show_collection_title": true,
-        "show_collection_description": true,
+        "show_collection_description": false,
         "show_breadcrumb": true,
         "content_width": "xs",
         "overlay_color": "#000000",
