@@ -24,12 +24,19 @@
   var DEFAULT_BRAND = 'al-wissam';
   var KNOWN = ['al-wissam', 'lil-woo', 'retail'];
 
-  // path → brand. Order matters: longest prefix wins
+  // path → brand. Order matters: longest prefix wins, and the
+  // exact-match root entry MUST come last so it doesn't clobber
+  // the brand-prefixed paths.
   var PATH_MAP = [
     { prefix: '/lil-woo', brand: 'lil-woo' },
     { prefix: '/pages/lil-woo', brand: 'lil-woo' },
     { prefix: '/retail', brand: 'retail' },
-    { prefix: '/pages/retail', brand: 'retail' }
+    { prefix: '/pages/retail', brand: 'retail' },
+    // Root path is the AL WISSAM home — exact match only.
+    // Without this, visiting / from a Lil-Woo cookie would stay
+    // stuck in Lil-Woo skin because no path entry matched and
+    // the cookie won the fallback chain.
+    { prefix: '/', brand: 'al-wissam', exact: true }
   ];
 
   function getCookie(name) {
@@ -52,7 +59,14 @@
   var pathBrand = null;
   for (var i = 0; i < PATH_MAP.length; i++) {
     var entry = PATH_MAP[i];
-    if (path === entry.prefix || path.indexOf(entry.prefix + '/') === 0 || path === entry.prefix + '/') {
+    if (entry.exact) {
+      // Strict equality only — used for the root path so we don't
+      // accidentally claim every URL as al-wissam
+      if (path === entry.prefix) {
+        pathBrand = entry.brand;
+        break;
+      }
+    } else if (path === entry.prefix || path.indexOf(entry.prefix + '/') === 0 || path === entry.prefix + '/') {
       pathBrand = entry.brand;
       break;
     }
