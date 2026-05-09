@@ -48,20 +48,8 @@
         "enable_sticky": true,
         "aria_label": "Brand switcher",
         "background_color": "#000000",
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "active_color": "#c9a96a"
-      }
-    },
-    "countdown-timer": {
-      "type": "countdown-condensed",
-      "settings": {
-        "color_scheme": "scheme-0dc8746d-3483-4bb2-8948-e6d989548d12",
-        "content": "super Sale Up to 40% off",
-        "link_text": "shop now",
-        "link_url": "shopify://collections/all",
-        "expiration_date": "2025-11-25",
-        "expiration_behavior": "leave",
-        "desktop_justification": "center"
       }
     },
     "header": {
@@ -129,7 +117,6 @@
   },
   "order": [
     "brand-switcher",
-    "countdown-timer",
     "header"
   ]
 }
