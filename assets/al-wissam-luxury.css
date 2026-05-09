@@ -1968,3 +1968,138 @@ body .shopify-section--header .header {
   content: '';
 }
 
+/* ============================================================
+   AL WISSAM HOME — TRUST ICONS BAND (text-with-icons / brand-values)
+   Flips the default white panel to a deep black band with white
+   typography. Each icon sits inside a circular gold outline ring;
+   on hover the ring fills solid gold, the icon flips to ink, the
+   tile lifts, and a soft gold glow blooms under it. Title gains a
+   short gold underline accent for a subtle interactive cue.
+
+   Scoped to AL WISSAM skin only — Lil Woo / retail keep the
+   theme defaults untouched.
+   ============================================================ */
+html.aw-brand-al-wissam .shopify-section--text-with-icons,
+html.aw-brand-al-wissam .shopify-section--text-with-icons .section-spacing,
+html.aw-brand-al-wissam .shopify-section--text-with-icons .color-scheme {
+  background-color: #0a0a0a !important;
+  --background: 10 10 10 !important;
+  --text-color: 255 255 255 !important;
+  color: #ffffff !important;
+}
+
+/* Subtle gold seam top + bottom so the band reads as a deliberate
+   inserted strip, not just a chunk of darkness */
+html.aw-brand-al-wissam .shopify-section--text-with-icons {
+  position: relative;
+  background-image:
+    linear-gradient(180deg, rgba(201, 169, 106, 0.35) 0%, rgba(201, 169, 106, 0) 1px),
+    linear-gradient(0deg,   rgba(201, 169, 106, 0.35) 0%, rgba(201, 169, 106, 0) 1px);
+  background-repeat: no-repeat;
+  background-size: 100% 1px, 100% 1px;
+  background-position: top, bottom;
+}
+
+/* Title + body copy white */
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item .h6,
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item .prose,
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item .prose p {
+  color: #ffffff !important;
+}
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item .prose,
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item .prose p {
+  opacity: 0.78;
+  transition: opacity 0.35s ease;
+}
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item .h6 {
+  position: relative;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding-block-end: 0.5rem;
+}
+/* Tiny gold underline that grows from centre on hover */
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item .h6::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 28px;
+  height: 1.5px;
+  background-color: var(--aw-gold);
+  transform: translateX(-50%) scaleX(0.4);
+  transform-origin: center;
+  opacity: 0.6;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.35s ease;
+}
+
+/* Icon medallion — circular gold outline. The Liquid wraps the
+   <svg> in a single <div style="--text-color: #c9a96a">; that's
+   the first non-.v-stack child of the inner v-stack. */
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item > .v-stack > div:not(.v-stack):first-child {
+  width: 64px;
+  height: 64px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  border: 1.5px solid var(--aw-gold);
+  border-radius: 999px;
+  background-color: transparent;
+  position: relative;
+  /* Override the inline --text-color the surface helper set on this
+     wrapper so it stays gold on the black band even if the section's
+     icon_color is later changed in the editor. */
+  --text-color: 201 169 106 !important;
+  color: var(--aw-gold) !important;
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.45s ease,
+    color 0.4s ease;
+}
+
+/* The whole tile is the hover surface */
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item {
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  cursor: default;
+  padding-block: 0.5rem;
+}
+
+/* HOVER STATE — lift, flood the medallion gold, flip the icon to
+   ink, drop a warm gold glow, and slide the title underline out */
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item:hover {
+  transform: translateY(-6px);
+}
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item:hover > .v-stack > div:not(.v-stack):first-child {
+  background-color: var(--aw-gold);
+  border-color: var(--aw-gold);
+  /* Flip --text-color to ink so the SVG (which paints with
+     currentColor / fill: var(--text-color)) becomes black */
+  --text-color: 10 10 10 !important;
+  color: #0a0a0a !important;
+  box-shadow:
+    0 10px 28px rgba(201, 169, 106, 0.30),
+    0 2px 8px rgba(201, 169, 106, 0.18);
+  transform: rotate(-6deg) scale(1.06);
+}
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item:hover .h6::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item:hover .prose,
+html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item:hover .prose p {
+  opacity: 1;
+}
+
+/* Touch devices: skip the hover transforms (they get stuck) but
+   keep the band's static look. */
+@media (hover: none) {
+  html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item:hover,
+  html.aw-brand-al-wissam .shopify-section--text-with-icons .text-with-icons__item:hover > .v-stack > div:not(.v-stack):first-child {
+    transform: none;
+  }
+}
+
