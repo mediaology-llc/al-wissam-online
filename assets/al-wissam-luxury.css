@@ -235,13 +235,14 @@
   height: 2px !important;
 }
 
-/* SALE menu item is always red for prominence. Override the gold hover
-   so it stays red even when hovered, with a slightly brighter shade
-   for visual feedback. Underline ::before tracks the same red. */
+/* SALE menu item is always bold red for prominence. Override the gold
+   hover so it stays red even when hovered, with a slightly brighter
+   shade for visual feedback. Underline ::before tracks the same red. */
 .header__primary-nav-item [data-title='Sale' i],
 .header__primary-nav-item:hover [data-title='Sale' i],
 .header__primary-nav-item:focus-within [data-title='Sale' i] {
   color: #d92626 !important;
+  font-weight: 700 !important;
 }
 .header__primary-nav-item [data-title='Sale' i]:hover,
 .header__primary-nav-item:hover [data-title='Sale' i]:hover {
@@ -258,10 +259,10 @@
    a section ID, plus !important to win the cascade. */
 .shopify-section--header .header,
 body .shopify-section--header .header {
-  background-color: #0a0a0a !important;
+  background-color: #000000 !important;
   color: #ffffff !important;
   --header-show-transparent-logo: 0 !important;
-  --background: 10 10 10 !important;
+  --background: 0 0 0 !important;
   --text-color: 255 255 255 !important;
   min-height: 50px;
 }
