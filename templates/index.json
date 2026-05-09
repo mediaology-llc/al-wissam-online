@@ -169,6 +169,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
+            "image": "shopify://shop_images/tracksuits.png",
             "column_count": "4",
             "row_count": 1,
             "add_padding": false,
