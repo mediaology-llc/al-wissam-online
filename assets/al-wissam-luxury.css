@@ -752,6 +752,15 @@ body .shopify-section--header .header {
     radial-gradient(circle at 50% 40%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 75%);
 }
 
+/* Force a shorter card aspect ratio. The image_size: "lg" setting
+   produces tall portrait cards which the user found too long. Cards
+   keep their full grid-column width but the height is now driven by
+   a 4:5 aspect — slightly portrait but ~30% shorter than "lg". */
+.shopify-section--collection-list .content-over-media {
+  aspect-ratio: 4 / 5 !important;
+  height: auto !important;
+}
+
 /* Card title: large, white, plus an arrow indicator that follows */
 .shopify-section--collection-list .h2,
 .shopify-section--collection-list .h3,
