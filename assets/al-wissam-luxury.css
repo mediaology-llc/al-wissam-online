@@ -130,6 +130,23 @@
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
 }
 
+/* Default outline button on dark surfaces: white border + white text
+   so it reads against black backgrounds. Prestige's outline button
+   uses --button-background for both border and text colour, which
+   ends up gold under our scheme-3/4 — too low contrast. Force white
+   for explicit dark-section outline buttons. */
+.color-scheme--scheme-3 .button--outline,
+.color-scheme--scheme-4 .button--outline,
+.shopify-section--slideshow .button--outline,
+.shopify-section--image-with-text-overlay .button--outline,
+.shopify-section--multiple-media-with-text .button--outline,
+.shopify-section--newsletter .button--outline {
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
 /* Outline hover → solid gold fill with black text. Match Prestige's
    .features--button-transition selector specificity (0,4,1) so we
    beat the stock sliding-gradient animation, and explicitly null
@@ -487,7 +504,145 @@
   text-transform: uppercase;
 }
 
-/* ---------- Newsletter: black surface, white text, gold focus ----------
+/* ============================================================
+   AW SIGNUP — custom 2-column phone + email collector
+   Replaces the stock newsletter section. Both forms post to
+   Shopify's /contact endpoint with appropriate tags so Yotpo
+   Email + SMS pick up the new customers via Shopify customer
+   events.
+   ============================================================ */
+.shopify-section--custom-liquid:has(.aw-signup) .section-spacing {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  --background: 0 0 0;
+  --text-color: 255 255 255;
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
+}
+
+.aw-signup {
+  text-align: center;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.aw-signup__subhead {
+  color: var(--aw-gold);
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
+.aw-signup__title {
+  color: #ffffff;
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  margin: 0 0 0.75rem;
+  line-height: 1.1;
+}
+
+.aw-signup__lede {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9375rem;
+  margin: 0 auto 2.5rem;
+  max-width: 38rem;
+  line-height: 1.6;
+}
+
+.aw-signup__forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  text-align: left;
+}
+
+.aw-signup__col-title {
+  color: #ffffff;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.aw-signup__row {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+
+.aw-signup__row input[type='email'],
+.aw-signup__row input[type='tel'] {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-right: none;
+  color: #ffffff;
+  padding: 0.85rem 1rem;
+  font-size: 0.9375rem;
+  letter-spacing: 0.03em;
+  border-radius: 0;
+}
+.aw-signup__row input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.aw-signup__row input:focus {
+  outline: none;
+  border-color: var(--aw-gold);
+  border-right: 1px solid var(--aw-gold);
+}
+.aw-signup__row input:focus + .aw-signup__btn {
+  border-color: var(--aw-gold);
+}
+
+.aw-signup__btn {
+  background-color: var(--aw-gold);
+  color: #0a0a0a;
+  border: 1px solid var(--aw-gold);
+  padding: 0.85rem 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+.aw-signup__btn:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #0a0a0a;
+}
+
+.aw-signup__fineprint {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin: 0.75rem 0 0;
+}
+
+.aw-signup__msg {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+}
+.aw-signup__msg--ok {
+  color: var(--aw-gold);
+}
+
+@media screen and (max-width: 699px) {
+  .aw-signup__forms {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------- Newsletter (legacy): black surface, white text, gold focus ----------
    Force black bg / white text + equal top/bottom padding regardless of
    editor scheme drift. Same pattern used elsewhere on dark sections. */
 .shopify-section--newsletter .section-spacing,
