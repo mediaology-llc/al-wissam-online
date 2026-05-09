@@ -12,6 +12,105 @@
 }
 
 /* ============================================================
+   LIL WOO PAGE — beige category grid + product drop row
+   Both sections sit on a soft beige surface, with simple
+   uppercase labels under category cards and product cards left-
+   aligned with title + price beneath the image. Section title
+   ("SHOP BY CATEGORY", "NEW DROP") is small and aligned to the
+   left of the row, and the New Drop section gets a "VIEW ALL"
+   right-aligned link.
+   ============================================================ */
+
+/* Beige page background and equal padding for both Lil Woo
+   product/category sections */
+html.aw-brand-lil-woo .shopify-section--media-grid .section-spacing,
+html.aw-brand-lil-woo .shopify-section--featured-collections .section-spacing {
+  background-color: #efe7d7 !important;
+  color: #0a0a0a !important;
+  --background: 239 231 215;
+  --text-color: 10 10 10;
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
+}
+
+/* Section heading: small uppercase, left-aligned, no big title block */
+html.aw-brand-lil-woo .shopify-section--media-grid .section-header,
+html.aw-brand-lil-woo .shopify-section--featured-collections .section-header {
+  text-align: left;
+  align-items: flex-start;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid .section-header :where(.h2, .h3, .h4),
+html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :where(.h2, .h3, .h4) {
+  font-size: 1rem !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
+  color: #0a0a0a !important;
+  margin: 0;
+}
+
+/* Category card titles: left-aligned, simple uppercase under image,
+   no overlay on the photo */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
+  font-size: 0.75rem !important;
+  letter-spacing: 0.18em !important;
+  color: #0a0a0a !important;
+  text-transform: uppercase;
+  margin-block-start: 1rem;
+  text-align: center;
+}
+
+/* Lil Woo: cards have transparent overlay (no dark gradient over
+   product photos), titles sit BELOW the image not over it. */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item {
+  background-color: #efe7d7;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media {
+  --content-over-media-overlay: 0 0 0 / 0;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media::before {
+  background: #d8c8b3 !important;
+}
+
+/* New Drop section — product cards on white plates against
+   the beige section background, title + price below image */
+html.aw-brand-lil-woo .shopify-section--featured-collections .product-card {
+  background-color: #efe7d7 !important;
+}
+html.aw-brand-lil-woo .shopify-section--featured-collections .product-card__figure,
+html.aw-brand-lil-woo .shopify-section--featured-collections .product-card__figure-inner {
+  background-color: #d8c8b3 !important;
+}
+html.aw-brand-lil-woo .shopify-section--featured-collections .product-card .product-title,
+html.aw-brand-lil-woo .shopify-section--featured-collections .product-card .price {
+  color: #0a0a0a !important;
+}
+html.aw-brand-lil-woo .shopify-section--featured-collections .product-card .product-title {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* "View all" link: top-right of the section header */
+html.aw-brand-lil-woo .shopify-section--featured-collections .section-header {
+  position: relative;
+}
+html.aw-brand-lil-woo .shopify-section--featured-collections .section-header .button,
+html.aw-brand-lil-woo .shopify-section--featured-collections .section-header .link {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: 0;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0a0a0a;
+}
+
+/* ============================================================
    LIL WOO PAGE HERO (templates/page.lil-woo.json)
    Full-bleed slideshow with hero image + overlay text + CTA,
    same shape as the AL WISSAM home hero. The slideshow rules
@@ -448,6 +547,32 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
     grid: auto-flow dense var(--media-grid-row-height) / repeat(2, minmax(0, 1fr)) !important;
   }
   .media-grid:has(> .media-grid__item:nth-child(4):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+
+/* 6-up (Lil Woo Shop By Category) */
+@media screen and (min-width: 1000px) {
+  .media-grid:has(> .media-grid__item:nth-child(6):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(6, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(6):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 999px) {
+  .media-grid:has(> .media-grid__item:nth-child(6):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(3, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(6):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+@media screen and (max-width: 699px) {
+  .media-grid:has(> .media-grid__item:nth-child(6):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(2, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(6):last-child) > .media-grid__item {
     grid-area: span 1 / span 1 !important;
   }
 }
