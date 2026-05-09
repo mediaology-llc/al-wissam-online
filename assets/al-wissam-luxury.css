@@ -860,6 +860,24 @@ body .shopify-section--header .header {
   text-decoration: underline;
 }
 
+/* Bottom credit strip: full-width black band, centred copy, sits
+   under the payment icons as the very last element of the page. */
+.shopify-section--footer .footer__credit-strip {
+  background-color: #000000;
+  width: 100%;
+  padding-block: 0.875rem;
+  padding-inline: 1rem;
+  text-align: center;
+}
+.shopify-section--footer .footer__credit-strip-text {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.4;
+}
+
 /* ============================================================
    LUXURY PLACEHOLDER IMAGES
    Replace Prestige's stock line-art placeholders with cinematic

@@ -169,11 +169,6 @@
           </div>
         {%- endif -%}
 
-        <p class="heading text-subdued text-xxs">
-          © {{ 'now' | date: '%Y' }} Al Wissam Inc | Designed and Developed by <a href="https://www.mediaology.io" target="_blank" rel="noopener" class="footer__credit">Mediaology</a>
-          {%- if section.settings.show_powered_by_shopify -%}{{ powered_by_link }}{%- endif -%}
-        </p>
-
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
           <ul class="payment-methods unstyled-list">
             {%- for type in shop.enabled_payment_types -%}
@@ -183,6 +178,16 @@
         {%- endif -%}
       </div>
     </div>
+  </div>
+
+  {%- comment -%}
+    Bottom credit strip — full-width black band centred under the
+    payment icons. Replaces the inline "Powered by Shopify" link.
+  {%- endcomment -%}
+  <div class="footer__credit-strip">
+    <p class="footer__credit-strip-text">
+      © {{ 'now' | date: '%Y' }} Al Wissam Inc | Designed and Developed by <a href="https://www.mediaology.io" target="_blank" rel="noopener" class="footer__credit">Mediaology</a>
+    </p>
   </div>
 </div>
 
