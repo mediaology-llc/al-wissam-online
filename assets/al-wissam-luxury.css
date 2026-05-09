@@ -138,6 +138,24 @@
   -webkit-backdrop-filter: blur(6px) saturate(115%);
 }
 
+/* Force the hero box outline to gold regardless of the slide block's
+   border_color setting in the editor. Prestige paints the border
+   via outline:1px solid rgb(var(--border-color)), so we override the
+   token plus a hard outline-color fallback. */
+.shopify-section--slideshow .slideshow__slide-content--with-border {
+  --border-color: 201 169 106 !important;
+  outline-color: var(--aw-gold) !important;
+}
+
+/* Gold hairline separator at the bottom of the hero section,
+   mirroring the one between the header and hero. Placed as an
+   inset box-shadow so it travels with the section's bottom edge. */
+.shopify-section--slideshow {
+  box-shadow: 0 -1px var(--aw-gold) inset !important;
+  position: relative;
+  z-index: 1;
+}
+
 /* Safari/older-browser fallback: heavier dark tint when blur isn't
    supported, so the text-on-image contrast still reads. */
 @supports not (backdrop-filter: blur(6px)) {

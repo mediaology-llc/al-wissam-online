@@ -34,7 +34,7 @@
             "background": "#0a0a0a",
             "background_opacity": 0,
             "text_color": "#ffffff",
-            "border_color": "#ffffff",
+            "border_color": "#c9a96a",
             "gradient_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.7) 100%)"
           }
         }
