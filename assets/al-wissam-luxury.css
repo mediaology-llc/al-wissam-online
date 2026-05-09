@@ -11,6 +11,43 @@
   --aw-hairline: rgba(255, 255, 255, 0.18);
 }
 
+/* ============================================================
+   PER-BRAND SKIN COLORWAYS
+   The brand router (assets/al-wissam-brand-router.js) sets
+   .aw-brand-{name} on <html> based on URL path + cookie. Each
+   skin overrides --aw-gold so every gold accent on the page
+   (brand-switcher active pill, hover underlines, button hovers,
+   gradient accents, etc.) flips with the active brand without
+   any per-component edits.
+   ============================================================ */
+html.aw-brand-al-wissam {
+  --aw-gold: var(--accent-gold, #c9a96a);
+}
+html.aw-brand-lil-woo {
+  --aw-gold: var(--aw-lil-woo-accent, #e85a8c);
+}
+html.aw-brand-retail {
+  --aw-gold: var(--aw-retail-accent, #9c7a3e);
+}
+
+/* Hide nav/footer regions tagged for non-active brands. The
+   header.liquid renders nav variants wrapped in .aw-nav--{brand};
+   only the matching brand's variant is shown. The fallback rule
+   ensures something is visible if no brand class is present yet
+   (e.g. before the JS router runs). */
+.aw-only {
+  display: none !important;
+}
+html.aw-brand-al-wissam .aw-only--al-wissam,
+html.aw-brand-lil-woo .aw-only--lil-woo,
+html.aw-brand-retail .aw-only--retail {
+  display: revert !important;
+}
+/* Pre-router fallback — show al-wissam content until JS class lands */
+html:not([data-aw-brand]) .aw-only--al-wissam {
+  display: revert !important;
+}
+
 /* ---------- Brand switcher: left-aligned with nav, gold active ---------- */
 
 /* Push the row to the left so AL WISSAM lines up with the nav menu under it.

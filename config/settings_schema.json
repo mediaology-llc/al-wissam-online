@@ -31,6 +31,26 @@
         "id": "accent_ink",
         "label": "Ink (deep black)",
         "default": "#0a0a0a"
+      },
+      {
+        "type": "header",
+        "content": "Per-brand accent colours"
+      },
+      {
+        "type": "paragraph",
+        "content": "Each brand skin (AL WISSAM, LIL WOO, RETAIL STORE) can have its own primary accent colour. The router applies the matching skin based on the visitor's URL or saved cookie."
+      },
+      {
+        "type": "color",
+        "id": "lil_woo_accent",
+        "label": "Lil Woo accent",
+        "default": "#e85a8c"
+      },
+      {
+        "type": "color",
+        "id": "retail_accent",
+        "label": "Retail Store accent",
+        "default": "#9c7a3e"
       }
     ]
   },

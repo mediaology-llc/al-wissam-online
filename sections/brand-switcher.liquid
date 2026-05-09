@@ -155,18 +155,30 @@
           assign label = block.settings.label
           assign link_url = block.settings.link
           assign is_active = block.settings.is_active
+
+          # Infer which brand each entry maps to by matching its link URL.
+          # This lets the router script (al-wissam-brand-router.js) light up
+          # the active pill based on the visitor's current brand cookie,
+          # rather than the static is_active flag.
+          assign brand_target = 'al-wissam'
+          assign normalized_link = link_url | downcase
+          if normalized_link contains '/lil-woo'
+            assign brand_target = 'lil-woo'
+          elsif normalized_link contains '/retail'
+            assign brand_target = 'retail'
+          endif
         -%}
 
         {%- if label != blank -%}
           <li class="brand-switcher__item" {{ block.shopify_attributes }}>
             {%- if is_active and link_url != blank -%}
-              <a href="{{ link_url }}" class="brand-switcher__link brand-switcher__link--active" aria-current="page">{{ label }}</a>
+              <a href="{{ link_url }}" class="brand-switcher__link brand-switcher__link--active" data-aw-brand-target="{{ brand_target }}" aria-current="page">{{ label }}</a>
             {%- elsif is_active -%}
-              <span class="brand-switcher__link brand-switcher__link--active" aria-current="page">{{ label }}</span>
+              <span class="brand-switcher__link brand-switcher__link--active" data-aw-brand-target="{{ brand_target }}" aria-current="page">{{ label }}</span>
             {%- elsif link_url != blank -%}
-              <a href="{{ link_url }}" class="brand-switcher__link">{{ label }}</a>
+              <a href="{{ link_url }}" class="brand-switcher__link" data-aw-brand-target="{{ brand_target }}">{{ label }}</a>
             {%- else -%}
-              <span class="brand-switcher__link">{{ label }}</span>
+              <span class="brand-switcher__link" data-aw-brand-target="{{ brand_target }}">{{ label }}</span>
             {%- endif -%}
           </li>
         {%- endif -%}
