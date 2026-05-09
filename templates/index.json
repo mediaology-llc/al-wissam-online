@@ -54,76 +54,6 @@
         "controls_color": "#ffffff"
       }
     },
-    "brand-values": {
-      "type": "text-with-icons",
-      "blocks": {
-        "value-craftsmanship": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-award-gift",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Premium Craftsmanship",
-            "content": "<p>Quality that lasts. Details that matter.</p>"
-          }
-        },
-        "value-embroidery": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-star",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Signature Embroidery",
-            "content": "<p>Our identity. Worn with pride.</p>"
-          }
-        },
-        "value-shipping": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-earth",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Worldwide Shipping",
-            "content": "<p>Delivering to you, wherever you are.</p>"
-          }
-        },
-        "value-secure": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-lock",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Secure Payments",
-            "content": "<p>Safe checkout. Always protected.</p>"
-          }
-        },
-        "value-returns": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-return",
-            "icon_width": 24,
-            "mobile_icon_width": 24,
-            "title": "Easy Returns",
-            "content": "<p>Hassle-free returns. No stress.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "value-craftsmanship",
-        "value-embroidery",
-        "value-shipping",
-        "value-secure",
-        "value-returns"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "stack_on_mobile": false,
-        "icon_color": "#c9a96a",
-        "text_color": "",
-        "text_alignment": "center"
-      }
-    },
     "category-grid": {
       "type": "media-grid",
       "blocks": {
@@ -240,6 +170,76 @@
         "subheading": "The Collections",
         "title": "Shop by category",
         "content": ""
+      }
+    },
+    "brand-values": {
+      "type": "text-with-icons",
+      "blocks": {
+        "value-craftsmanship": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Premium Craftsmanship",
+            "content": "<p>Quality that lasts. Details that matter.</p>"
+          }
+        },
+        "value-embroidery": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-star",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Signature Embroidery",
+            "content": "<p>Our identity. Worn with pride.</p>"
+          }
+        },
+        "value-shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-earth",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Worldwide Shipping",
+            "content": "<p>Delivering to you, wherever you are.</p>"
+          }
+        },
+        "value-secure": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-lock",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Secure Payments",
+            "content": "<p>Safe checkout. Always protected.</p>"
+          }
+        },
+        "value-returns": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-return",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Easy Returns",
+            "content": "<p>Hassle-free returns. No stress.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "value-craftsmanship",
+        "value-embroidery",
+        "value-shipping",
+        "value-secure",
+        "value-returns"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "stack_on_mobile": false,
+        "icon_color": "#c9a96a",
+        "text_color": "",
+        "text_alignment": "center"
       }
     },
     "story": {
@@ -464,8 +464,8 @@
   },
   "order": [
     "hero",
-    "brand-values",
     "category-grid",
+    "brand-values",
     "story",
     "featured-collections",
     "craftsmanship",
