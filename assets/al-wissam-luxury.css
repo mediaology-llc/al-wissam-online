@@ -13,73 +13,12 @@
 
 /* ============================================================
    LIL WOO PAGE HERO (templates/page.lil-woo.json)
-   Split layout: COMFORT./CONFIDENCE./LIL WOO. headline on the
-   left, hero image on the right, beige surface, solid black CTA.
+   Full-bleed slideshow with hero image + overlay text + CTA,
+   same shape as the AL WISSAM home hero. The slideshow rules
+   from earlier (white-space: pre-line on .h0/.h1/.h2/.h6,
+   gold accent <em>, gold border outline, frosted box) all apply
+   automatically since this is a slideshow section.
    ============================================================ */
-
-/* Honour real \n newlines in the title so each word lands on
-   its own line, matching the reference exactly */
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text .h3,
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text .h2,
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text .h1 {
-  white-space: pre-line;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
-  font-weight: 700;
-  color: #0a0a0a !important;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-}
-
-/* Lil Woo's hero text block: keep narrower so the headline
-   stacks elegantly to the left, body copy reads tight, divider
-   between headline and body. */
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text
-  .multiple-media-with-text__content-wrapper {
-  max-width: 28rem;
-  padding-block: clamp(2rem, 5vw, 3rem);
-}
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text .prose > .h3 {
-  margin-block-end: 1.25rem;
-  position: relative;
-}
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text .prose > .h3::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 1px;
-  background: #0a0a0a;
-  margin-block-start: 1.5rem;
-}
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text .prose p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #0a0a0a;
-  margin: 0 0 1.5rem;
-  max-width: 22rem;
-}
-
-/* CTA: solid black with white text, gold/tan on hover */
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text .button {
-  background-color: #0a0a0a;
-  color: #ffffff;
-  border-color: #0a0a0a;
-  letter-spacing: 0.18em;
-  font-weight: 600;
-  padding: 1rem 2.25rem;
-}
-
-/* Hero section uses the cream beige (scheme-2) — but we want a
-   slightly warmer shade specific to Lil Woo. Override
-   --background locally so the section bg matches the reference. */
-html.aw-brand-lil-woo .shopify-section--multiple-media-with-text:first-of-type
-  .section-spacing {
-  background-color: #efe7d7 !important;
-  --background: 239 231 215;
-}
-
-/* Image side: keep the photo full and let the existing
-   .multiple-media-with-text__media-wrapper > div sizing handle
-   placeholder vs uploaded image (already configured globally) */
 
 /* ============================================================
    LIL WOO BRAND SWITCHER VARIANT
