@@ -33,14 +33,27 @@
   opacity: 1 !important;
 }
 
-/* Active entry: bold gold */
+/* Active entry: filled gold rectangle with black text.
+   Padding gives the box weight; the underline ::after from
+   brand-switcher.liquid is suppressed since we're using a fill
+   instead of an underline marker. Spacing between this box and
+   the "|" divider is widened so the box doesn't crowd it. */
 .brand-switcher__link--active {
-  color: var(--aw-gold) !important;
+  background-color: var(--aw-gold) !important;
+  color: #0a0a0a !important;
   font-weight: 700 !important;
   opacity: 1 !important;
+  padding: 0.3rem 0.75rem;
+  letter-spacing: inherit;
 }
 .brand-switcher__link--active::after {
-  background: var(--aw-gold);
+  display: none !important;
+}
+
+/* Widen the right-side gap on the divider that follows the active
+   item so the rectangle doesn't kiss the "|". */
+.brand-switcher__item:has(.brand-switcher__link--active):not(:last-child)::after {
+  margin-inline-start: 1.5rem;
 }
 
 /* ---------- Headings: editorial, tracked, refined ---------- */
