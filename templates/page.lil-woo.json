@@ -57,10 +57,30 @@
     "shop-by-category": {
       "type": "media-grid",
       "blocks": {
+        "cat-bags": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "image": "shopify://shop_images/image_460bd7d0-ac4f-4907-af41-add20c7b4b47.png",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
+            "title": "Fleece",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
         "cat-hoodies": {
           "type": "image",
           "settings": {
             "color_scheme": "scheme-2",
+            "image": "shopify://shop_images/Hoodie.png",
             "column_count": "3",
             "row_count": 1,
             "add_padding": false,
@@ -75,46 +95,11 @@
             "overlay_opacity": 0
           }
         },
-        "cat-sets": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-2",
-            "column_count": "3",
-            "row_count": 1,
-            "add_padding": false,
-            "title": "Sets",
-            "heading_tag": "h4",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-end-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "cat-sweats": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-2",
-            "column_count": "3",
-            "row_count": 1,
-            "add_padding": false,
-            "title": "Sweats",
-            "heading_tag": "h4",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-end-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
         "cat-tees": {
           "type": "image",
           "settings": {
             "color_scheme": "scheme-2",
+            "image": "shopify://shop_images/tees2.png",
             "column_count": "3",
             "row_count": 1,
             "add_padding": false,
@@ -129,10 +114,49 @@
             "overlay_opacity": 0
           }
         },
+        "cat-sweats": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "image": "shopify://shop_images/JOGGERS.png",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
+            "title": "Sweats",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "cat-sets": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "image": "shopify://shop_images/sets.png",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
+            "title": "Sets",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
         "cat-accessories": {
           "type": "image",
           "settings": {
             "color_scheme": "scheme-2",
+            "image": "shopify://shop_images/hat.png",
             "column_count": "3",
             "row_count": 1,
             "add_padding": false,
@@ -146,33 +170,15 @@
             "overlay_color": "#000000",
             "overlay_opacity": 0
           }
-        },
-        "cat-bags": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-2",
-            "column_count": "3",
-            "row_count": 1,
-            "add_padding": false,
-            "title": "Bags",
-            "heading_tag": "h4",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-end-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
         }
       },
       "block_order": [
+        "cat-bags",
         "cat-hoodies",
-        "cat-sets",
-        "cat-sweats",
         "cat-tees",
-        "cat-accessories",
-        "cat-bags"
+        "cat-sweats",
+        "cat-sets",
+        "cat-accessories"
       ],
       "settings": {
         "color_scheme": "scheme-2",
@@ -212,7 +218,8 @@
         "products_per_row_desktop": 6,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
-        "subheading": ""
+        "subheading": "",
+        "hide_collection_title": false
       }
     }
   },
