@@ -849,21 +849,36 @@ body .shopify-section--header .header {
   line-height: 1.5;
 }
 
-/* Empty image area (no image uploaded yet): dark gradient placeholder */
+/* Multi-column placeholder behaviour.
+   Prestige's multi-column.liquid wraps the media in a
+   .multi-column__media element ONLY when an image/video is uploaded.
+   When the block is empty, the entire wrapper is omitted and the
+   item collapses to bare text. Inject a placeholder block via
+   ::before on .multi-column__item when no .multi-column__media child
+   is present. The :has() check makes the rule turn itself off the
+   moment a real image lands. */
 .shopify-section--multi-column .placeholder {
   display: none !important;
 }
-.shopify-section--multi-column .multi-column__item .multi-column__item-image,
-.shopify-section--multi-column .multi-column__item figure,
-.shopify-section--multi-column .multi-column__item picture {
+.shopify-section--multi-column .multi-column__item:not(:has(.multi-column__media))::before {
+  content: '';
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   background:
     linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 100%),
     radial-gradient(ellipse at 30% 40%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
-  aspect-ratio: 1 / 1;
-  position: relative;
-  overflow: hidden;
+  margin-block-end: 1.25rem;
 }
-.shopify-section--multi-column .multi-column__item img {
+
+/* When a real image IS present, make the .multi-column__media slot
+   render with a square aspect and cover-fit image. */
+.shopify-section--multi-column .multi-column__media {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+}
+.shopify-section--multi-column .multi-column__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -355,8 +355,8 @@
       "settings": {
         "color_scheme": "scheme-3",
         "separate_section_with_border": false,
-        "image_size": "auto",
-        "show_text_outside": true,
+        "image_size": "lg",
+        "show_text_outside": false,
         "space_items": false,
         "stack_collections": false,
         "collections_per_row_desktop": 4,
