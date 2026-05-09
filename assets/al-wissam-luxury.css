@@ -99,6 +99,38 @@
   z-index: 2;
 }
 
+/* ---------- Media grid: force 5-up single row for category section ----------
+   Prestige's media-grid normally uses a 12-column grid where each block
+   declares column_count from {3, 4, 6, 8, 12} — five equal columns aren't
+   reachable through the editor. When a media-grid contains exactly five
+   children we override the layout to a clean repeat(5, 1fr) row, with
+   each item spanning a single 1×1 cell. Two-column on phones, three-column
+   on tablets so the cards stay tappable. */
+@media screen and (min-width: 1000px) {
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(5, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 999px) {
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(3, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+@media screen and (max-width: 699px) {
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) {
+    grid: auto-flow dense var(--media-grid-row-height) / repeat(2, minmax(0, 1fr)) !important;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item {
+    grid-area: span 1 / span 1 !important;
+  }
+}
+
 /* ---------- Media grid: luxury category card hover ---------- */
 .shopify-section--media-grid .media-grid__item-image {
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
