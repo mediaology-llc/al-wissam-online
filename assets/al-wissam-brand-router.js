@@ -103,6 +103,16 @@
   };
   var activeVendor = BRAND_VENDOR[brand] || null;
 
+  // Each brand's homepage URL — used to rewrite the header logo
+  // so clicking it returns to the *current skin's* home, not the
+  // generic AL WISSAM root.
+  var BRAND_HOME = {
+    'al-wissam': '/',
+    'lil-woo': '/lil-woo',
+    'retail': '/retail'
+  };
+  var activeHome = BRAND_HOME[brand] || '/';
+
   // Reconcile the brand switcher's active pill once the DOM is ready.
   // Each <a class=brand-switcher__link> is tagged with
   // data-aw-brand-target=al-wissam|lil-woo|retail; the entry whose
@@ -182,8 +192,23 @@
     }
   }
 
+  // ----------------------------------------------------------------
+  // Rewrite the header logo's link to the active brand's home.
+  // Default markup: <a href="/" class="header__logo"> or
+  //                 <h1 class="header__logo"><a href="/">…</a></h1>
+  // We don't know the cookie at server-render time, so we rewrite
+  // the href client-side after the router resolves the brand.
+  // ----------------------------------------------------------------
+  function rewriteLogoLinks() {
+    var logoAnchors = document.querySelectorAll('a.header__logo, .header__logo > a');
+    for (var i = 0; i < logoAnchors.length; i++) {
+      logoAnchors[i].setAttribute('href', activeHome);
+    }
+  }
+
   function init() {
     syncBrandSwitcher();
+    rewriteLogoLinks();
     applyVendorFilter();
     scopeSearchForms();
   }
@@ -194,10 +219,13 @@
     init();
   }
 
-  // Re-run vendor filter when Shopify's section/cart/predictive
-  // search events re-render markup
+  // Re-run vendor filter + logo rewrite when Shopify reloads
+  // sections (theme editor previews dispatch these events too).
   ['shopify:section:load', 'shopify:section:reorder', 'cart:refresh', 'predictive-search:results'].forEach(function (evt) {
-    document.addEventListener(evt, applyVendorFilter);
+    document.addEventListener(evt, function () {
+      applyVendorFilter();
+      rewriteLogoLinks();
+    });
   });
 
   // Also observe DOM mutations (predictive search injects results
