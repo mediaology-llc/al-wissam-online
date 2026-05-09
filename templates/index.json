@@ -17,7 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/47566f95815c44de7be78756a19142013c29630744c513d7431d57487ba343b5.jpg",
             "subheading": "BUILT FROM\n<em>DETROIT CULTURE</em>",
-            "title": "Design.\nCraft.\n<em>Legacy.</em>",
+            "title": "Design. Craft.\n<em>Legacy.</em>",
             "mobile_text_position": "place-self-center-start text-start",
             "desktop_text_position": "sm:place-self-center-start sm:text-start",
             "content_max_width": 720,
@@ -26,7 +26,7 @@
             "button_1_style": "solid",
             "button_1_background": "#c9a96a",
             "button_1_text_color": "#0a0a0a",
-            "button_2_text": "Explore Collections",
+            "button_2_text": "",
             "button_2_link": "shopify://collections/all",
             "button_2_style": "solid",
             "button_2_background": "#ffffff",
