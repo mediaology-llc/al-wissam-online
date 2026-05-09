@@ -106,10 +106,16 @@
   // Each brand's homepage URL — used to rewrite the header logo
   // so clicking it returns to the *current skin's* home, not the
   // generic AL WISSAM root.
+  // Each brand's canonical home URL. Use /pages/{handle} so the
+  // links work without URL redirects — Shopify pages live at this
+  // path natively. If you set up admin URL redirects later
+  // (/lil-woo → /pages/lil-woo, /retail → /pages/retail) the path
+  // matcher above still detects them, so visitor experience stays
+  // identical either way.
   var BRAND_HOME = {
     'al-wissam': '/',
-    'lil-woo': '/lil-woo',
-    'retail': '/retail'
+    'lil-woo': '/pages/lil-woo',
+    'retail': '/pages/retail'
   };
   var activeHome = BRAND_HOME[brand] || '/';
 
