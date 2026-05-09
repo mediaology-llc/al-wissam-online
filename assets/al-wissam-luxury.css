@@ -463,7 +463,7 @@
 
 .header__primary-nav-item [data-title]:before {
   background: var(--aw-gold) !important;
-  height: 2px !important;
+  height: 3px !important;
 }
 
 /* SALE menu item is always bold red for prominence. Override the gold
