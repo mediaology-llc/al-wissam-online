@@ -78,10 +78,26 @@
 
         <span class="sr-only">{{ shop.name }}</span>
         {%- assign alt_text = section.settings.logo.alt | default: shop.name -%}
-        {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, alt: alt_text, widths: widths, class: 'header__logo-image' -}}
+        {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, alt: alt_text, widths: widths, class: 'header__logo-image header__logo-image--al-wissam' -}}
 
         {%- if section.settings.transparent_logo -%}
           {{- section.settings.transparent_logo | image_url: width: section.settings.transparent_logo.width | image_tag: sizes: sizes, widths: widths, class: 'header__logo-image header__logo-image--transparent' -}}
+        {%- endif -%}
+
+        {%- comment -%}
+          Per-brand logo overrides. Each is rendered when uploaded and
+          shown only when the matching aw-brand-{name} class is on
+          <html> (handled in al-wissam-luxury.css). Falls back to the
+          default Al Wissam logo above when not uploaded.
+        {%- endcomment -%}
+        {%- if section.settings.lil_woo_logo -%}
+          {%- capture lw_widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.lil_woo_logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.lil_woo_logo.width }}{%- endcapture -%}
+          {{- section.settings.lil_woo_logo | image_url: width: section.settings.lil_woo_logo.width | image_tag: sizes: sizes, alt: alt_text, widths: lw_widths, class: 'header__logo-image header__logo-image--lil-woo' -}}
+        {%- endif -%}
+
+        {%- if section.settings.retail_logo -%}
+          {%- capture rt_widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.retail_logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.retail_logo.width }}{%- endcapture -%}
+          {{- section.settings.retail_logo | image_url: width: section.settings.retail_logo.width | image_tag: sizes: sizes, alt: alt_text, widths: rt_widths, class: 'header__logo-image header__logo-image--retail' -}}
         {%- endif -%}
       {%- else -%}
         <span class="header__logo-text h5">{{ shop.name }}</span>
@@ -381,6 +397,18 @@
       "id": "logo",
       "label": "t:global.image.image",
       "info": "t:sections.header.logo_size_recommendation"
+    },
+    {
+      "type": "image_picker",
+      "id": "lil_woo_logo",
+      "label": "Lil Woo logo",
+      "info": "Used only on the Lil Woo skin. Falls back to the main logo above if empty."
+    },
+    {
+      "type": "image_picker",
+      "id": "retail_logo",
+      "label": "Retail Store logo",
+      "info": "Used only on the Retail Store skin. Falls back to the main logo above if empty."
     },
     {
       "type": "range",

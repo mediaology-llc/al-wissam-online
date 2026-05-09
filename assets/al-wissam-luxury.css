@@ -97,6 +97,35 @@ html.aw-brand-lil-woo .shopify-section--header .header__logo-image {
   filter: none;
 }
 
+/* ============================================================
+   PER-BRAND LOGO SWAP
+   The header renders the AL WISSAM default logo plus, when
+   uploaded, brand-specific logos for Lil Woo and Retail. Show
+   only the logo matching the active brand; fall back to the
+   AL WISSAM default if no brand-specific logo has been uploaded.
+   ============================================================ */
+
+/* Hide brand-specific logos by default */
+.header__logo-image--lil-woo,
+.header__logo-image--retail {
+  display: none;
+}
+
+/* On the matching brand, reveal that brand's logo */
+html.aw-brand-lil-woo .header__logo-image--lil-woo,
+html.aw-brand-retail .header__logo-image--retail {
+  display: block;
+}
+
+/* And hide the AL WISSAM default whenever a brand-specific logo
+   is in the DOM AND that brand is active. If the brand-specific
+   logo hasn't been uploaded, the default stays visible and acts
+   as the fallback. */
+html.aw-brand-lil-woo .header__logo:has(.header__logo-image--lil-woo) .header__logo-image--al-wissam,
+html.aw-brand-retail .header__logo:has(.header__logo-image--retail) .header__logo-image--al-wissam {
+  display: none !important;
+}
+
 /* Gold separator under the header recolours via --aw-gold (already
    handled by the per-brand colorway block below — pink for lil-woo,
    bronze for retail). Nothing to override here. */
