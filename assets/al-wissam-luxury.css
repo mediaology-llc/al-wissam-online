@@ -1968,6 +1968,29 @@ body .shopify-section--header .header {
   content: '';
 }
 
+/* ============================================================
+   AL WISSAM HOME — UNIFIED CONTAINER WIDTH
+   Some sections (text-with-icons, multiple-media-with-text,
+   custom-liquid) don't expose a section_width control in the
+   theme editor and default to a 100% container, so they sat
+   visibly wider than the categories grid (which is locked to
+   "lg" → 1260px). Force every middle section on the home page
+   to the same lg max-width so the page reads as one column.
+   The hero slideshow is intentionally full-bleed and is
+   excluded.
+   ============================================================ */
+.template-index .shopify-section--text-with-icons > .section-spacing > .container,
+.template-index .shopify-section--text-with-icons .container,
+.template-index .shopify-section--multiple-media-with-text > .section-spacing > .container,
+.template-index .shopify-section--multiple-media-with-text .container,
+.template-index .shopify-section--featured-collections .container,
+.template-index .shopify-section--multi-column .container,
+.template-index .shopify-section--image-with-text-overlay .container,
+.template-index .shopify-section--custom-liquid .container,
+.template-index .shopify-section--newsletter .container {
+  --container-max-width: var(--container-lg-max-width);
+}
+
 /* AL WISSAM trust icons band — see block below. */
 /* ============================================================
    AL WISSAM HOME — TRUST ICONS BAND (text-with-icons / brand-values)
