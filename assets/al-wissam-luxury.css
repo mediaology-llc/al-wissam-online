@@ -163,29 +163,45 @@
   font-weight: 600;
 }
 
-/* In the 5-up category row, card titles like "Signature Embroidery"
-   would wrap onto two lines at the column width. Shrink the title and
-   tighten letter-spacing so each label fits a single line. Tablet
-   (3-up) gets a slightly larger size; mobile (2-up) wraps freely. */
+/* Card titles in the 5-up category row. Single-word titles ("Tracksuits")
+   should fit one line; two-word titles ("Signature Embroidery", "Varsity
+   Jackets") may wrap to two lines, balanced and centered. */
 @media screen and (min-width: 1000px) {
   .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h2,
   .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h3,
   .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h4 {
-    font-size: 0.8125rem !important;
-    letter-spacing: 0.1em !important;
-    white-space: nowrap !important;
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.14em !important;
     color: #ffffff !important;
+    text-wrap: balance;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 999px) {
   .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h2,
   .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h3,
   .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h4 {
-    font-size: 0.875rem !important;
-    letter-spacing: 0.12em !important;
-    white-space: nowrap !important;
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.14em !important;
     color: #ffffff !important;
   }
+}
+
+/* Force the entire 5-up category section to a true black surface,
+   regardless of which color_scheme the editor lands on. Belt-and-
+   suspenders against accidental scheme reverts in the editor. */
+.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing,
+.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing * {
+  --background: 0 0 0;
+  --text-color: 255 255 255;
+}
+.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-stack > * {
+  color: #ffffff;
 }
 
 /* ---------- Featured collections / product cards: white card surface ---------- */
