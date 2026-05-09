@@ -860,12 +860,29 @@ body .shopify-section--header .header {
   text-decoration: underline;
 }
 
+/* Drop the .footer's bottom padding to zero so the dark credit strip
+   below sits flush against the payment icons row — eliminates the
+   visible white gap that was showing between them. */
+.shopify-section--footer .footer {
+  padding-block-end: 0 !important;
+}
+
+/* Add explicit padding under the payment icons row so the icons
+   themselves have breathing room before the dark strip begins.
+   This space is white (footer surface) but tight, intentional. */
+.shopify-section--footer .footer__aside .payment-methods {
+  margin-block-end: 1.25rem;
+}
+
 /* Bottom credit strip: full-width black band, centred copy, sits
-   under the payment icons as the very last element of the page. */
+   under the payment icons as the very last element of the page.
+   Generous internal top padding so the text isn't kissing the
+   icons row above. */
 .shopify-section--footer .footer__credit-strip {
   background-color: #000000;
   width: 100%;
-  padding-block: 0.875rem;
+  padding-block-start: 1.5rem;
+  padding-block-end: 1rem;
   padding-inline: 1rem;
   text-align: center;
 }
