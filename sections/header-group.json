@@ -98,6 +98,8 @@
         "logo_max_width": 180,
         "logo_mobile_max_width": 80,
         "menu": "main-menu",
+        "menu_lil_woo": "lil-woo-nav-menu",
+        "menu_retail": "main-menu",
         "sidebar_menu": "",
         "customer_account_menu": "customer-account-main-menu",
         "menu_open_trigger": "hover",
