@@ -15,9 +15,9 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/47566f95815c44de7be78756a19142013c29630744c513d7431d57487ba343b5.jpg",
-            "subheading": "BUILT FROM\n<em>DETROIT CULTURE</em>",
-            "title": "Design. Craft.\n<em>Legacy.</em>",
+            "image": "shopify://shop_images/main_hero.jpg",
+            "subheading": "BUILT FROM<em>DETROIT CULTURE</em>",
+            "title": "Design. Craft.<em>Legacy.</em>",
             "mobile_text_position": "place-self-center-start text-start",
             "desktop_text_position": "sm:place-self-center-start sm:text-start",
             "content_max_width": 720,
