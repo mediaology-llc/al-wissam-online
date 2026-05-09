@@ -278,6 +278,170 @@
         "button_2_style": "solid"
       }
     },
+    "featured-collections": {
+      "type": "collection-list",
+      "blocks": {
+        "col-legacy": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "The Legacy Collection",
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
+          }
+        },
+        "col-tracksuits": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "Signature Tracksuits",
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
+          }
+        },
+        "col-varsity": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "Detroit Varsity",
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
+          }
+        },
+        "col-essentials": {
+          "type": "collection",
+          "settings": {
+            "color_scheme": "scheme-4",
+            "collection": "",
+            "expand_collection": false,
+            "content_position": "place-self-end-start text-start",
+            "subheading": "",
+            "title": "Essentials",
+            "button_text": "Shop now",
+            "button_link": "shopify://collections/all",
+            "button_style": "link",
+            "overlay_color": "#000000",
+            "overlay_opacity": 25
+          }
+        }
+      },
+      "block_order": [
+        "col-legacy",
+        "col-tracksuits",
+        "col-varsity",
+        "col-essentials"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image_size": "auto",
+        "show_text_outside": true,
+        "space_items": false,
+        "stack_collections": false,
+        "collections_per_row_desktop": 4,
+        "stack_collections_mobile": false,
+        "collections_per_row_mobile": "2",
+        "subheading": "Featured Collections",
+        "title": "Curated. Timeless. Detroit.",
+        "content": ""
+      }
+    },
+    "craftsmanship": {
+      "type": "multi-column",
+      "blocks": {
+        "detail-embroidery": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Signature Embroidery",
+            "heading_tag": "h4",
+            "content": "<p>Thoughtfully designed. Carefully stitched.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "detail-hardware": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Premium Hardware",
+            "heading_tag": "h4",
+            "content": "<p>Built for durability. Made to elevate.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "detail-chenille": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Chenille Details",
+            "heading_tag": "h4",
+            "content": "<p>Texture that stands out. Quality that lasts.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "detail-stitching": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Precise Stitching",
+            "heading_tag": "h4",
+            "content": "<p>Every line. Every seam. Every time.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "detail-finishing": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Premium Finishing",
+            "heading_tag": "h4",
+            "content": "<p>The subtle touches make the difference.</p>",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "detail-embroidery",
+        "detail-hardware",
+        "detail-chenille",
+        "detail-stitching",
+        "detail-finishing"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "columns_per_row": 5,
+        "stack_on_mobile": false,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "sm",
+        "subheading": "Craftsmanship",
+        "title": "Details define the piece.",
+        "content": "<p>Every stitch, every texture, every detail is intentional. Crafted with precision. Made to last.</p>"
+      }
+    },
     "newsletter": {
       "type": "newsletter",
       "settings": {
@@ -298,6 +462,8 @@
     "brand-values",
     "category-grid",
     "story",
+    "featured-collections",
+    "craftsmanship",
     "newsletter"
   ]
 }

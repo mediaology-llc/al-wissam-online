@@ -709,6 +709,191 @@ body .shopify-section--header .header {
     radial-gradient(circle at 50% 40%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 75%);
 }
 
+/* ============================================================
+   FEATURED COLLECTIONS section (collection-list) — luxury 4-up
+   row of portrait collection cards with arrow indicator. Black
+   surface, tight cards, hover lift like the category section.
+   ============================================================ */
+
+/* Force black surface, equal padding, white headings */
+.shopify-section--collection-list .section-spacing {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  --background: 0 0 0;
+  --text-color: 255 255 255;
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
+}
+
+/* Section header: gold tracked subheading, tighter title */
+.shopify-section--collection-list .section-header .h6,
+.shopify-section--collection-list .subheading {
+  color: var(--aw-gold) !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.shopify-section--collection-list .section-header .h2,
+.shopify-section--collection-list .section-header .h3 {
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+/* Card placeholders: dark gradient instead of stock line-art */
+.shopify-section--collection-list .placeholder {
+  display: none !important;
+}
+.shopify-section--collection-list a:has(.placeholder),
+.shopify-section--collection-list .collection-list__item:has(.placeholder) {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(circle at 50% 40%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 75%);
+}
+
+/* Card title: large, white, plus an arrow indicator that follows */
+.shopify-section--collection-list .h2,
+.shopify-section--collection-list .h3,
+.shopify-section--collection-list .h4 {
+  color: #ffffff !important;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+.shopify-section--collection-list .button--link::after {
+  content: ' →';
+  display: inline-block;
+  margin-inline-start: 0.4em;
+  transition: transform 0.3s ease;
+}
+.shopify-section--collection-list .button--link:hover::after {
+  transform: translateX(4px);
+}
+
+/* Hover treatment matching category cards: lift, gold halo, gradient */
+@media (hover: hover) and (min-width: 700px) {
+  .shopify-section--collection-list a {
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 0.45s ease;
+    will-change: transform;
+    position: relative;
+  }
+  .shopify-section--collection-list a:hover {
+    transform: translateY(-10px);
+    box-shadow:
+      0 18px 42px rgba(0, 0, 0, 0.55),
+      0 4px 14px rgba(201, 169, 106, 0.18);
+    z-index: 2;
+  }
+  .shopify-section--collection-list a img {
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+  }
+  .shopify-section--collection-list a:hover img {
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================================
+   CRAFTSMANSHIP section (multi-column) — five detail close-ups
+   with title + caption below each image. Black surface, gold
+   subheading, balanced typography.
+   ============================================================ */
+.shopify-section--multi-column .section-spacing {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  --background: 0 0 0;
+  --text-color: 255 255 255;
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
+}
+
+/* Gold subheading, white serif-feeling title, body copy white */
+.shopify-section--multi-column .section-header .h6,
+.shopify-section--multi-column .subheading {
+  color: var(--aw-gold) !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.shopify-section--multi-column .section-header .h2,
+.shopify-section--multi-column .section-header .h3 {
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+.shopify-section--multi-column .section-header p {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+/* Each detail block: small uppercase title, faded caption beneath */
+.shopify-section--multi-column .multi-column__item .h2,
+.shopify-section--multi-column .multi-column__item .h3,
+.shopify-section--multi-column .multi-column__item .h4,
+.shopify-section--multi-column .multi-column__item .h5,
+.shopify-section--multi-column .multi-column__item .h6 {
+  color: #ffffff !important;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8125rem !important;
+  font-weight: 600;
+  margin-block-end: 0.25rem;
+}
+.shopify-section--multi-column .multi-column__item p,
+.shopify-section--multi-column .multi-column__item .prose > p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Empty image area (no image uploaded yet): dark gradient placeholder */
+.shopify-section--multi-column .placeholder {
+  display: none !important;
+}
+.shopify-section--multi-column .multi-column__item .multi-column__item-image,
+.shopify-section--multi-column .multi-column__item figure,
+.shopify-section--multi-column .multi-column__item picture {
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 100%),
+    radial-gradient(ellipse at 30% 40%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+}
+.shopify-section--multi-column .multi-column__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover lift on craftsmanship cards */
+@media (hover: hover) and (min-width: 700px) {
+  .shopify-section--multi-column .multi-column__item {
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+  }
+  .shopify-section--multi-column .multi-column__item:hover {
+    transform: translateY(-6px);
+  }
+  .shopify-section--multi-column .multi-column__item img {
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .shopify-section--multi-column .multi-column__item:hover img {
+    transform: scale(1.05);
+  }
+}
+
+/* Mobile: stack to two columns rather than one for the detail row */
+@media screen and (max-width: 699px) {
+  .shopify-section--multi-column .multi-column {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
 /* ---------- Tiny 'Image placeholder' watermark (visible only when empty) ---------- */
 .shopify-section--slideshow .content-over-media:not(:has(picture)):not(:has(video)) .slideshow__slide-content::after,
 .shopify-section--media-grid .media-grid__item:not(:has(picture)) .media-grid__item-content::after {
