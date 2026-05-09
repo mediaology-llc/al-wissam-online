@@ -207,7 +207,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
-            "image": "shopify://shop_images/image2.png",
+            "image": "shopify://shop_images/image3_76861e77-9280-4cb9-96ae-1a9e180dc825.png",
             "column_count": "6",
             "row_count": 1,
             "add_padding": false,
@@ -355,8 +355,8 @@
       "settings": {
         "color_scheme": "scheme-3",
         "separate_section_with_border": false,
-        "image_size": "lg",
-        "show_text_outside": false,
+        "image_size": "auto",
+        "show_text_outside": true,
         "space_items": false,
         "stack_collections": false,
         "collections_per_row_desktop": 4,
