@@ -48,19 +48,33 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
   margin: 0;
 }
 
-/* Category card titles: simple uppercase under image, single-line.
-   Tighter letter-spacing + nowrap so "ACCESSORIES" doesn't wrap
-   on a 6-up row. */
+/* Category card titles: render as a beige pill with white text
+   sitting at the bottom of the card image, replacing the bare
+   dark label that clashed with the model photos. Single line,
+   tracked uppercase. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
+  display: inline-block;
   font-size: 0.75rem !important;
   letter-spacing: 0.12em !important;
-  color: #0a0a0a !important;
+  color: #ffffff !important;
   text-transform: uppercase;
-  margin-block-start: 1rem;
   text-align: center;
   white-space: nowrap !important;
+  background-color: var(--aw-gold);
+  padding: 0.5rem 1rem;
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* The .prose wrapper that holds the title needs to wrap its
+   content tightly around the inline-block pill, not stretch
+   across the whole card width. */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
+  width: auto;
+  max-width: calc(100% - 1.5rem);
+  margin-block-end: 1rem;
 }
 
 /* Lil Woo: cards have transparent overlay (no dark gradient over
