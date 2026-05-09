@@ -24,6 +24,7 @@
     "button_letter_spacing": 22,
     "product_image_aspect_ratio": "portrait",
     "show_vendor": false,
+    "product_color_display": "hide",
     "cart_type": "drawer",
     "cart_icon": "tote_bag",
     "accent_gold": "#c9a96a",
