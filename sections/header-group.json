@@ -18,22 +18,14 @@
           "type": "brand",
           "settings": {
             "label": "AL WISSAM",
-            "link": "",
+            "link": "/",
             "is_active": true
           }
         },
         "brand-retail-store": {
           "type": "brand",
           "settings": {
-            "label": "RETAIL STORE",
-            "link": "",
-            "is_active": false
-          }
-        },
-        "brand-lil-woo": {
-          "type": "brand",
-          "settings": {
-            "label": "LIL WOO",
+            "label": "OUR STORE",
             "link": "",
             "is_active": false
           }
@@ -41,8 +33,7 @@
       },
       "block_order": [
         "brand-al-wissam",
-        "brand-retail-store",
-        "brand-lil-woo"
+        "brand-retail-store"
       ],
       "settings": {
         "enable_sticky": true,

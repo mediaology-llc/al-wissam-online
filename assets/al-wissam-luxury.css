@@ -11,9 +11,33 @@
   --aw-hairline: rgba(255, 255, 255, 0.18);
 }
 
-/* ---------- Brand switcher: gold-tinted active state ---------- */
-.brand-switcher__link--active {
+/* ---------- Brand switcher: left-aligned with nav, gold active ---------- */
+
+/* Push the row to the left so AL WISSAM lines up with the nav menu under it.
+   Match the header's container gutter so the start edge is identical. */
+.brand-switcher {
+  padding-inline: var(--container-gutter, 1.25rem) !important;
+}
+.brand-switcher__list {
+  justify-content: flex-start !important;
+}
+
+/* Inactive entries: full-opacity white (no faded look), gold on hover */
+.brand-switcher__link {
+  opacity: 1 !important;
+  color: #ffffff;
+}
+.brand-switcher__link:hover,
+.brand-switcher__link:focus-visible {
   color: var(--aw-gold);
+  opacity: 1 !important;
+}
+
+/* Active entry: bold gold */
+.brand-switcher__link--active {
+  color: var(--aw-gold) !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
 }
 .brand-switcher__link--active::after {
   background: var(--aw-gold);
@@ -209,6 +233,22 @@
 .header__primary-nav-item [data-title]:before {
   background: var(--aw-gold) !important;
   height: 2px !important;
+}
+
+/* SALE menu item is always red for prominence. Override the gold hover
+   so it stays red even when hovered, with a slightly brighter shade
+   for visual feedback. Underline ::before tracks the same red. */
+.header__primary-nav-item [data-title='Sale' i],
+.header__primary-nav-item:hover [data-title='Sale' i],
+.header__primary-nav-item:focus-within [data-title='Sale' i] {
+  color: #d92626 !important;
+}
+.header__primary-nav-item [data-title='Sale' i]:hover,
+.header__primary-nav-item:hover [data-title='Sale' i]:hover {
+  color: #ff3838 !important;
+}
+.header__primary-nav-item [data-title='Sale' i]:before {
+  background: #d92626 !important;
 }
 
 /* ---------- Hard guard: header is ALWAYS a solid dark surface ----------

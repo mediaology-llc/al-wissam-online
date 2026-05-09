@@ -159,10 +159,14 @@
 
         {%- if label != blank -%}
           <li class="brand-switcher__item" {{ block.shopify_attributes }}>
-            {%- if is_active or link_url == blank -%}
+            {%- if is_active and link_url != blank -%}
+              <a href="{{ link_url }}" class="brand-switcher__link brand-switcher__link--active" aria-current="page">{{ label }}</a>
+            {%- elsif is_active -%}
               <span class="brand-switcher__link brand-switcher__link--active" aria-current="page">{{ label }}</span>
-            {%- else -%}
+            {%- elsif link_url != blank -%}
               <a href="{{ link_url }}" class="brand-switcher__link">{{ label }}</a>
+            {%- else -%}
+              <span class="brand-switcher__link">{{ label }}</span>
             {%- endif -%}
           </li>
         {%- endif -%}
