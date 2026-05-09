@@ -122,8 +122,9 @@
 }
 
 .button--outline:hover {
+  background-color: var(--aw-gold);
   border-color: var(--aw-gold);
-  color: var(--aw-gold);
+  color: var(--aw-ink);
 }
 
 /* ---------- Hero slideshow: cinematic gradient + centered crisp type ---------- */
