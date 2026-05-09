@@ -50,31 +50,44 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "newsletter": {
-          "type": "newsletter",
-          "settings": {}
+        "customer-service": {
+          "type": "text",
+          "settings": {
+            "title": "Customer Service",
+            "content": "<p>13354 Michigan Ave.<br>Dearborn, MI 48126</p><p>(313) 581-0011 (Retail Store)<br>customercare@alwissam.com</p>"
+          }
         },
-        "links": {
+        "information": {
           "type": "links",
           "settings": {
             "menu": "footer",
             "show_menu_title": true
           }
         },
-        "text": {
-          "type": "text",
+        "shop": {
+          "type": "links",
           "settings": {
-            "title": "About",
-            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>"
+            "menu": "main-menu",
+            "show_menu_title": true
           }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {}
         }
       },
       "block_order": [
-        "newsletter",
-        "links",
-        "text"
+        "customer-service",
+        "information",
+        "shop",
+        "newsletter"
       ],
-      "settings": {}
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_social_media": true,
+        "show_payment_icons": true,
+        "show_powered_by_shopify": false
+      }
     }
   },
   "order": [
