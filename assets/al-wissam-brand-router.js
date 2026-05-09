@@ -54,21 +54,36 @@
     document.cookie = name + '=' + encodeURIComponent(value) + expires + '; path=/; SameSite=Lax';
   }
 
-  // 1. URL path takes priority — explicit visit overrides any prior choice
-  var path = (window.location.pathname || '/').toLowerCase();
+  // 1a. ?view= query param wins above everything — used by the
+  // theme editor preview (and by the workaround we use when this
+  // theme is still a draft) to force a specific brand template.
   var pathBrand = null;
-  for (var i = 0; i < PATH_MAP.length; i++) {
-    var entry = PATH_MAP[i];
-    if (entry.exact) {
-      // Strict equality only — used for the root path so we don't
-      // accidentally claim every URL as al-wissam
-      if (path === entry.prefix) {
+  try {
+    var qs = new URLSearchParams(window.location.search || '');
+    var viewParam = (qs.get('view') || '').trim().toLowerCase();
+    if (viewParam && KNOWN.indexOf(viewParam) !== -1) {
+      pathBrand = viewParam;
+    }
+  } catch (e) {
+    // URLSearchParams not supported — ignore, fall through to path check
+  }
+
+  // 1b. URL path — explicit visit overrides any prior cookie choice
+  if (!pathBrand) {
+    var path = (window.location.pathname || '/').toLowerCase();
+    for (var i = 0; i < PATH_MAP.length; i++) {
+      var entry = PATH_MAP[i];
+      if (entry.exact) {
+        // Strict equality only — used for the root path so we don't
+        // accidentally claim every URL as al-wissam
+        if (path === entry.prefix) {
+          pathBrand = entry.brand;
+          break;
+        }
+      } else if (path === entry.prefix || path.indexOf(entry.prefix + '/') === 0 || path === entry.prefix + '/') {
         pathBrand = entry.brand;
         break;
       }
-    } else if (path === entry.prefix || path.indexOf(entry.prefix + '/') === 0 || path === entry.prefix + '/') {
-      pathBrand = entry.brand;
-      break;
     }
   }
 
