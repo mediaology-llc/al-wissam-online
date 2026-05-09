@@ -576,6 +576,15 @@ body .shopify-section--header .header {
   overflow: visible;
 }
 
+/* Gold hairline separator between the navigation row and the hero
+   image. Replace Prestige's default subtle text-coloured separator
+   with a 1px gold line — sits at the bottom inset of the sticky
+   header so it stays attached as the page scrolls. */
+.shopify-section--header .header {
+  --header-separation-border-color: 201 169 106 !important;
+  box-shadow: 0 -1px var(--aw-gold) inset !important;
+}
+
 /* ---------- Section dividers: elegant hairline rather than solid borders ---------- */
 .section--separated::before,
 .section--separated::after {
