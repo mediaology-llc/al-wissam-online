@@ -284,7 +284,7 @@
         "fp-leather": {
           "type": "collection",
           "settings": {
-            "collection": "leather-jackets",
+            "collection": "mens-leather-jackets",
             "products_count": 10,
             "title": "Leather Jackets",
             "link_url": "shopify://collections/leather-jackets",
@@ -304,7 +304,8 @@
         "products_per_row_desktop": 5,
         "horizontal_spacing_factor": 1,
         "vertical_spacing_factor": 1,
-        "subheading": "Featured Products"
+        "subheading": "Featured Products",
+        "hide_collection_title": false
       }
     },
     "featured-collections": {
