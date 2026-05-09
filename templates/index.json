@@ -477,6 +477,51 @@
         "content": "<p>Every stitch, every texture, every detail is intentional. Crafted with precision. Made to last.</p>"
       }
     },
+    "lookbook": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "subheading-1": {
+          "type": "subheading",
+          "settings": {
+            "text": "The Lookbook"
+          }
+        },
+        "heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Worn by the Culture.",
+            "heading_tag": "h2"
+          }
+        },
+        "button-1": {
+          "type": "button",
+          "settings": {
+            "style": "outline",
+            "text": "View the Lookbook",
+            "url": "shopify://collections/all",
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "subheading-1",
+        "heading-1",
+        "button-1"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "image_size": "lg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": false,
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 45
+      }
+    },
     "retail-store": {
       "type": "multiple-media-with-text",
       "blocks": {
@@ -516,7 +561,7 @@
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-3",
         "separate_section_with_border": false,
         "image_size": "auto",
         "subheading": "Join the Movement",
@@ -536,6 +581,7 @@
     "featured-products",
     "featured-collections",
     "craftsmanship",
+    "lookbook",
     "retail-store",
     "newsletter"
   ]

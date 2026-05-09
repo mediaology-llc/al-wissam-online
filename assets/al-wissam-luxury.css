@@ -460,19 +460,84 @@
   font-weight: 600;
 }
 
-/* ---------- Newsletter: luxury beige band, gold underline focus ---------- */
-.shopify-section--newsletter .newsletter__form input[type='email'] {
-  border-radius: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  background: transparent;
-  letter-spacing: 0.06em;
+/* ---------- Lookbook (image-with-text-overlay) ----------
+   Black-bg fallback when the merchant hasn't uploaded an image yet,
+   plus tightened typography on the overlay copy. Once an image is
+   uploaded, the image takes over via the .content-over-media's
+   <picture> child. */
+.shopify-section--image-with-text-overlay .placeholder {
+  display: none !important;
 }
-.shopify-section--newsletter .newsletter__form input[type='email']:focus {
-  border-bottom-color: var(--aw-gold);
+.shopify-section--image-with-text-overlay .content-over-media:not(:has(picture)):not(:has(video)) {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%),
+    radial-gradient(ellipse at 50% 50%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
+  min-height: 520px;
+}
+.shopify-section--image-with-text-overlay .h2,
+.shopify-section--image-with-text-overlay .h3 {
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+.shopify-section--image-with-text-overlay .h6,
+.shopify-section--image-with-text-overlay .subheading {
+  color: var(--aw-gold) !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase;
+}
+
+/* ---------- Newsletter: black surface, white text, gold focus ----------
+   Force black bg / white text + equal top/bottom padding regardless of
+   editor scheme drift. Same pattern used elsewhere on dark sections. */
+.shopify-section--newsletter .section-spacing,
+.shopify-section--newsletter .newsletter {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  --background: 0 0 0;
+  --text-color: 255 255 255;
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
+}
+.shopify-section--newsletter .section-spacing :where(p, span, label, .h2, .h3, .h4, .h6, .heading) {
+  color: #ffffff;
+}
+.shopify-section--newsletter .subheading,
+.shopify-section--newsletter .section-header .h6 {
+  color: var(--aw-gold) !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase;
+}
+
+/* Email input: transparent with white outline, gold focus underline */
+.shopify-section--newsletter .newsletter__form input[type='email'],
+.shopify-section--newsletter input[type='email'] {
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  letter-spacing: 0.06em;
+  padding: 0.85rem 1rem !important;
+}
+.shopify-section--newsletter input[type='email']::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+.shopify-section--newsletter .newsletter__form input[type='email']:focus,
+.shopify-section--newsletter input[type='email']:focus {
+  border-color: var(--aw-gold) !important;
   outline: none;
 }
-.shopify-section--newsletter .button {
-  letter-spacing: 0.24em;
+
+/* Submit button — gold filled with black text by default for max
+   contrast on the dark surface; hovers to white via the universal
+   solid hover rule (which is gold→ink) — explicitly invert here so
+   default state stands out. */
+.shopify-section--newsletter button[type='submit'],
+.shopify-section--newsletter .newsletter__form button {
+  background-color: var(--aw-gold) !important;
+  color: #0a0a0a !important;
+  border: 1px solid var(--aw-gold) !important;
+  letter-spacing: 0.24em !important;
 }
 
 /* ---------- Header: thin Gymshark-style single-row layout ---------- */
