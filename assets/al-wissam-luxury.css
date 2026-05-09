@@ -700,6 +700,16 @@ body .shopify-section--header .header {
   color: var(--aw-gold);
 }
 
+/* Un-bold the black sub-item text in mega menu and dropdown menus.
+   Gold .h6 column headings keep their own weight (handled by the
+   block below); everything else — link-faded sub-items, promo
+   captions, regular dropdown links — drops to weight 400 for a
+   lighter editorial read. */
+.mega-menu :where(.link-faded, .mega-menu__linklist ul a, .smallcaps, p, span),
+.header__dropdown-menu :where(a:not(.h6), summary, p, span) {
+  font-weight: 400 !important;
+}
+
 /* Mega-menu column headings (Outerwear, Tops, Bottoms, Accessories,
    etc.) — these are the top-level links inside .mega-menu__linklist.
    Recolour to gold so the column groups read distinctly from their
