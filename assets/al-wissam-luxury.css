@@ -114,17 +114,36 @@
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
+/* Solid hover → gold fill with black text, same anti-flicker
+   treatment as the outline variant (kill Prestige's slide
+   gradient and lock our own transition). */
 .button--solid:hover,
-.button--fill:hover {
-  background-color: var(--aw-gold);
-  color: var(--aw-ink);
-  border-color: var(--aw-gold);
+.button--fill:hover,
+.features--button-transition .button--solid:not([disabled]):hover,
+.features--button-transition .button--fill:not([disabled]):hover {
+  background-color: var(--aw-gold) !important;
+  background-image: none !important;
+  background-size: 100% 100% !important;
+  background-position: 0 0 !important;
+  border-color: var(--aw-gold) !important;
+  color: #0a0a0a !important;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
 }
 
-.button--outline:hover {
-  background-color: var(--aw-gold);
-  border-color: var(--aw-gold);
-  color: var(--aw-ink);
+/* Outline hover → solid gold fill with black text. Match Prestige's
+   .features--button-transition selector specificity (0,4,1) so we
+   beat the stock sliding-gradient animation, and explicitly null
+   the gradient + animation so there's no flash/flicker between
+   states. */
+.button--outline:hover,
+.features--button-transition .button--outline:not([disabled]):hover {
+  background-color: var(--aw-gold) !important;
+  background-image: none !important;
+  background-size: 100% 100% !important;
+  background-position: 0 0 !important;
+  border-color: var(--aw-gold) !important;
+  color: #0a0a0a !important;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease !important;
 }
 
 /* ---------- Hero slideshow: cinematic gradient + centered crisp type ---------- */
