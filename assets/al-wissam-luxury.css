@@ -1023,19 +1023,21 @@ body .shopify-section--header .header {
 
 /* Fill the right-side image slot. When no image is uploaded the area
    was left blank; now it gets the dark warm gradient with subtle gold
-   noise (same vocabulary as the category cards) and a 4:3-ish min
-   aspect so it eats the full right column. When the user uploads an
-   image, the <img> covers the gradient automatically. */
+   noise (same vocabulary as the category cards). The min-height that
+   gives the placeholder its 480px presence is scoped to the
+   :has(.placeholder) state — when a real image is uploaded, the
+   wrapper sizes to the image so hover gradients and box-shadows
+   don't bleed into empty space below it. */
 .shopify-section--multiple-media-with-text .multiple-media-with-text__media-wrapper > div {
   position: relative;
   width: 100%;
-  min-height: 480px;
   overflow: hidden;
 }
 .shopify-section--multiple-media-with-text .multiple-media-with-text__media-wrapper > div:has(.placeholder) {
   background:
     linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 100%),
     radial-gradient(ellipse at 30% 50%, #3a2f24 0%, var(--aw-placeholder-dark) 70%);
+  min-height: 480px;
 }
 .shopify-section--multiple-media-with-text .multiple-media-with-text__media-wrapper > div:has(.placeholder)::before {
   content: '';
