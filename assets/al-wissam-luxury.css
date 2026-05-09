@@ -1983,8 +1983,11 @@ body .shopify-section--header .header {
 html.aw-brand-al-wissam .shopify-section--text-with-icons,
 html.aw-brand-al-wissam .shopify-section--text-with-icons .section-spacing,
 html.aw-brand-al-wissam .shopify-section--text-with-icons .color-scheme {
-  background-color: #0a0a0a !important;
-  --background: 10 10 10 !important;
+  /* Match the site's active scheme-3 black (#000000) — using
+     #0a0a0a here created a visible seam against the neighbouring
+     dark sections. */
+  background-color: #000000 !important;
+  --background: 0 0 0 !important;
   --text-color: 255 255 255 !important;
   color: #ffffff !important;
 }
