@@ -25,7 +25,7 @@
         "brand-retail-store": {
           "type": "brand",
           "settings": {
-            "label": "OUR STORE",
+            "label": "SHOP OUR RETAIL STORE",
             "link": "",
             "is_active": false
           }
