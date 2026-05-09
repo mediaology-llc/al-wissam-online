@@ -151,8 +151,13 @@
   position: relative;
   z-index: 2;
 }
-.shopify-section--media-grid .media-grid__item-text .h3,
-.shopify-section--media-grid .media-grid__item-text .h4 {
+/* Prestige renders media-grid card titles as
+   <p class="h2|h3|h4"> inside <div class="prose prose--tight">. There
+   is no .media-grid__item-text wrapper — earlier rules that targeted
+   that selector were inert. */
+.shopify-section--media-grid .media-grid__item .prose .h2,
+.shopify-section--media-grid .media-grid__item .prose .h3,
+.shopify-section--media-grid .media-grid__item .prose .h4 {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
@@ -163,21 +168,23 @@
    tighten letter-spacing so each label fits a single line. Tablet
    (3-up) gets a slightly larger size; mobile (2-up) wraps freely. */
 @media screen and (min-width: 1000px) {
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item-text .h2,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item-text .h3,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item-text .h4 {
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h2,
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h3,
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h4 {
     font-size: 0.8125rem !important;
     letter-spacing: 0.1em !important;
     white-space: nowrap !important;
+    color: #ffffff !important;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 999px) {
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item-text .h2,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item-text .h3,
-  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item-text .h4 {
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h2,
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h3,
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h4 {
     font-size: 0.875rem !important;
     letter-spacing: 0.12em !important;
     white-space: nowrap !important;
+    color: #ffffff !important;
   }
 }
 
@@ -466,42 +473,45 @@ body .shopify-section--header .header {
   }
 }
 
-/* ---------- Media-grid (category cards) placeholders ---------- */
+/* ---------- Media-grid (category cards) placeholders ----------
+   Real DOM: <a class="media-grid__item"><div class="content-over-media">
+   <img|svg.placeholder> ... </div></a>. Earlier rules pointed at a
+   .media-grid__item-image-wrapper class that doesn't exist, so empty
+   cards rendered Prestige's stock line-art instead of our dark gradient. */
 .shopify-section--media-grid .placeholder {
   display: none !important;
 }
-.shopify-section--media-grid .media-grid__item-image-wrapper:has(.placeholder),
-.shopify-section--media-grid .media-grid__item:not(:has(picture)) .media-grid__item-image-wrapper {
+.shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.55) 100%),
     radial-gradient(circle at 50% 30%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
-  position: relative;
 }
-.shopify-section--media-grid .media-grid__item:not(:has(picture)) .media-grid__item-image-wrapper::after {
+.shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media::before {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--aw-placeholder-noise);
   pointer-events: none;
+  z-index: 0;
 }
 
-/* Each card gets a slightly rotated warm-spot accent for variety */
-.shopify-section--media-grid .media-grid__item:nth-child(2):not(:has(picture)) .media-grid__item-image-wrapper {
+/* Each empty card gets a slightly rotated warm-spot accent for variety */
+.shopify-section--media-grid .media-grid__item:nth-child(2):has(.placeholder) > .content-over-media {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.55) 100%),
     radial-gradient(circle at 30% 60%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
 }
-.shopify-section--media-grid .media-grid__item:nth-child(3):not(:has(picture)) .media-grid__item-image-wrapper {
+.shopify-section--media-grid .media-grid__item:nth-child(3):has(.placeholder) > .content-over-media {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.55) 100%),
     radial-gradient(circle at 70% 30%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
 }
-.shopify-section--media-grid .media-grid__item:nth-child(4):not(:has(picture)) .media-grid__item-image-wrapper {
+.shopify-section--media-grid .media-grid__item:nth-child(4):has(.placeholder) > .content-over-media {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.55) 100%),
     radial-gradient(circle at 50% 70%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
 }
-.shopify-section--media-grid .media-grid__item:nth-child(5):not(:has(picture)) .media-grid__item-image-wrapper {
+.shopify-section--media-grid .media-grid__item:nth-child(5):has(.placeholder) > .content-over-media {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.55) 100%),
     radial-gradient(circle at 25% 25%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
