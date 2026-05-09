@@ -151,25 +151,69 @@
   }
 }
 
-/* ---------- Media grid: luxury category card hover ---------- */
-.shopify-section--media-grid .media-grid__item-image {
-  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-  will-change: transform;
+/* ---------- 5-up category cards: gradient pop-up on hover ----------
+   Card lifts ~10px, picks up a depth shadow with a soft gold halo, and
+   reveals a gold-to-dark gradient overlay inside the card. Image inside
+   the card scales up slightly. Pure CSS, opt-in via @media (hover) so
+   touch devices don't get a stuck hover state. */
+@media (hover: hover) and (min-width: 700px) {
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item {
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 0.45s ease;
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+  }
+
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item:hover {
+    transform: translateY(-10px);
+    box-shadow:
+      0 18px 42px rgba(0, 0, 0, 0.55),
+      0 4px 14px rgba(201, 169, 106, 0.18);
+    z-index: 2;
+  }
+
+  /* Gold-to-dark gradient overlay layered above the image but below text */
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item > .content-over-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(201, 169, 106, 0) 0%, rgba(201, 169, 106, 0) 55%, rgba(201, 169, 106, 0.30) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item:hover > .content-over-media::after {
+    opacity: 1;
+  }
+
+  /* Keep text above both overlays */
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item .prose {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Gentle image zoom inside the card */
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item img {
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+  }
+  .media-grid:has(> .media-grid__item:nth-child(5):last-child) > .media-grid__item:hover img {
+    transform: scale(1.05);
+  }
 }
-.shopify-section--media-grid .media-grid__item:hover .media-grid__item-image {
-  transform: scale(1.04);
-}
-.shopify-section--media-grid .media-grid__item-content::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.55) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
-.shopify-section--media-grid .media-grid__item-text {
-  position: relative;
-  z-index: 2;
+
+/* Force equal top + bottom padding on the 5-up category section.
+   Prestige's .section-spacing adds an extra
+   --section-vertical-spacing-block-start-compensation to padding-top in
+   some adjacent-section configurations, making the visible top breathing
+   room larger than the bottom. Pin both sides to the same value. */
+.shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .section-spacing {
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
 }
 /* Prestige renders media-grid card titles as
    <p class="h2|h3|h4"> inside <div class="prose prose--tight">. There
