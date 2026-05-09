@@ -544,6 +544,51 @@ body .shopify-section--header .header {
 .header__secondary-nav {
   column-gap: 1.1rem !important;
 }
+
+/* Cart badge — bigger gold pill that shows the item count.
+   Prestige's stock cart-dot is a tiny solid dot with no number; we
+   inject <cart-count> inside it (header.liquid) so the count auto-
+   updates on cart:change / cart:refresh events, and restyle the
+   container as a gold circle/pill positioned over the cart icon. */
+.header__cart-link {
+  position: relative;
+}
+.header__cart-dot {
+  width: auto !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  padding: 0 5px !important;
+  background-color: var(--aw-gold) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 0 0 2px #000000 !important;
+  position: absolute !important;
+  inset-block-start: -6px !important;
+  inset-inline-end: -8px !important;
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+.header__cart-dot.is-visible {
+  transform: scale(1);
+}
+.header__cart-count {
+  color: #0a0a0a;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  font-family: var(--text-font-family, inherit);
+}
+/* Hide the badge entirely when the cart is empty (count is 0) so
+   no empty pill lingers — cart-dot's is-visible class also handles
+   this, but doubling up keeps it crisp during page-load. */
+.header__cart-dot:has(.header__cart-count:not(.is-visible)) {
+  /* fallback: cart-dot.is-visible already handles via JS */
+}
 .header__secondary-nav .tap-area svg,
 .header__secondary-nav button svg,
 .header__secondary-nav a svg,
