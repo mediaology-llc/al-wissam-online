@@ -837,13 +837,113 @@ body .shopify-section--header .header {
   border-color: rgba(0, 0, 0, 0.08) !important;
 }
 
-/* ---------- Footer: refined hairlines, gold link hover ---------- */
-.shopify-section--footer a:hover {
+/* ---------- Footer: white surface with black text ----------
+   Force the .footer container (everything ABOVE the dark credit
+   strip) to a white surface with black type, regardless of which
+   color_scheme is set in the theme editor. The credit strip below
+   stays black — it's a separate sibling element so this rule
+   doesn't reach it. */
+.shopify-section--footer .footer {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  --background: 255 255 255 !important;
+  --text-color: 10 10 10 !important;
+  --border-color: 10 10 10 !important;
+}
+.shopify-section--footer .footer :where(p, span, a, summary, .heading, .h6, label, legend, li, td) {
+  color: #0a0a0a;
+}
+.shopify-section--footer .footer .text-subdued {
+  color: rgba(10, 10, 10, 0.6) !important;
+}
+
+/* Column headings (Customer Service / Information / Shop /
+   Newsletter Sign Up): black, bold, uppercase, tracked. */
+.shopify-section--footer .footer__block-list .h6,
+.shopify-section--footer .footer__block-list p.h6 {
+  color: #0a0a0a !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.875rem;
+  margin-block-end: 0.5rem;
+}
+
+/* Footer link rows: black text, gold hover. */
+.shopify-section--footer .footer__block-list a {
+  color: #0a0a0a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.shopify-section--footer .footer__block-list a:hover {
   color: var(--aw-gold);
 }
+
+/* Newsletter input + submit on the white surface — outlined input,
+   solid black submit button. */
+.shopify-section--footer .newsletter-form,
+.shopify-section--footer .footer .newsletter-form {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+}
+.shopify-section--footer .footer input[type='email'] {
+  background: transparent !important;
+  color: #0a0a0a !important;
+  border: 1px solid rgba(10, 10, 10, 0.2) !important;
+  padding: 0.85rem 1rem !important;
+  border-radius: 0;
+  letter-spacing: 0.04em;
+  flex: 1;
+}
+.shopify-section--footer .footer input[type='email']::placeholder {
+  color: rgba(10, 10, 10, 0.45);
+}
+.shopify-section--footer .footer input[type='email']:focus {
+  border-color: var(--aw-gold) !important;
+  outline: none;
+}
+.shopify-section--footer .footer button[type='submit'],
+.shopify-section--footer .footer .button[type='submit'],
+.shopify-section--footer .footer .newsletter-form button {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  border: 1px solid #0a0a0a !important;
+  padding: 0.85rem 1.75rem !important;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.shopify-section--footer .footer button[type='submit']:hover,
+.shopify-section--footer .footer .newsletter-form button:hover {
+  background-color: var(--aw-gold) !important;
+  border-color: var(--aw-gold) !important;
+  color: #0a0a0a !important;
+}
+
+/* Social-media row: dark circular surfaces with light icons that
+   read on the new white background. */
+.shopify-section--footer .social-media a,
+.shopify-section--footer .social-media [class*='circle-button'] {
+  color: #0a0a0a !important;
+}
+.shopify-section--footer .social-media a:hover {
+  color: var(--aw-gold) !important;
+}
+
+/* Hairlines + dividers in the footer flip to a faint black ink. */
 .shopify-section--footer .footer__divider,
-.shopify-section--footer .footer__bottom {
-  border-color: rgba(255, 255, 255, 0.12);
+.shopify-section--footer .footer__bottom,
+.shopify-section--footer .footer .bordered-section {
+  border-color: rgba(10, 10, 10, 0.1) !important;
+}
+
+/* Localization selectors (country/currency picker) inherit the
+   light surface */
+.shopify-section--footer .localization-selectors button,
+.shopify-section--footer .localization-selectors [role='button'] {
+  color: #0a0a0a;
 }
 
 /* Mediaology credit link in the footer copyright row — bold gold,
