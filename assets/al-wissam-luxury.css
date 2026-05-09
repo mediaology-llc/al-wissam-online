@@ -61,63 +61,122 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
   margin: 0;
 }
 
-/* Category card titles: render as a beige pill wrapped in a
-   thin white frame, centred at the bottom of the card.
-   Font scales with viewport width so ACCESSORIES fits even on
-   narrower cards without overflowing or being clipped by the
-   card's overflow:hidden. */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
-  display: inline-block;
-  font-size: clamp(0.5rem, 0.85vw, 0.625rem) !important;
-  letter-spacing: 0.08em !important;
-  color: #ffffff !important;
-  text-transform: uppercase;
-  text-align: center;
-  white-space: nowrap !important;
-  background-color: var(--aw-gold);
-  padding: 0.45rem 0.7rem;
-  margin: 0;
-  max-width: calc(100% - 1rem);
-  min-width: 0;
-  box-sizing: border-box;
-  line-height: 1.2;
-  /* Thin white frame around the beige pill via box-shadow spread */
-  box-shadow:
-    0 0 0 1px #ffffff,
-    0 4px 12px rgba(0, 0, 0, 0.10);
+/* Lil Woo category cards: image on a beige plate, text label
+   sits BELOW the image as plain caption (no pill, no outline).
+   On hover the label fades to brand gold and a centred underline
+   sweeps out — the same eyebrow idiom as the header nav links.
+
+   Layout: content-over-media flips from grid (image+prose stacked
+   in same cell) to flex column (image row, then text row). The
+   image fills the top, the prose becomes a normal block below it
+   with the white card background. No overflow clipping issues. */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item {
+  background-color: #ffffff;
+  overflow: visible;
 }
 
-/* Prose wrapper: full-width flex container that centres its
-   inline-block pill horizontally, regardless of which card it
-   sits in (so ACCESSORIES is centred the same as HOODIES). */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media {
+  --content-over-media-overlay: 0 0 0 / 0;
   display: flex !important;
+  flex-direction: column !important;
+  background-color: transparent !important;
+  aspect-ratio: auto !important;
+}
+
+/* Image / placeholder occupies the top portion on a beige plate */
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > picture,
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > img,
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > svg,
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > .placeholder {
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #efe7d7;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > picture > img,
+html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > picture {
+  display: block;
+  width: 100%;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media > .placeholder,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media::before {
+  background: #d8c8b3 !important;
+}
+
+/* Prose shelf: solid white block under the image, centred caption */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
+  position: static !important;
+  display: flex !important;
+  flex: 0 0 auto !important;
   width: 100% !important;
   max-width: 100% !important;
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  justify-self: center !important;
+  background-color: #ffffff !important;
+  padding: 0.875rem 0.5rem 0.75rem !important;
   margin: 0 !important;
-  padding-block-end: 1.25rem;
+  transform: none !important;
 }
 
-/* Lil Woo: cards have transparent overlay (no dark gradient over
-   product photos), titles sit BELOW the image not over it. Card
-   surface is the brand beige tone for the photo plate; the section
-   surrounding chrome is white per the user request. */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item {
-  background-color: transparent;
+/* The label itself: no box, no outline. Plain caps caption.
+   Hover → brand gold + animated underline (eyebrow). */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
+  position: relative;
+  display: inline-block;
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #0a0a0a !important;
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.2;
+  transition: color 0.25s ease;
 }
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media {
-  --content-over-media-overlay: 0 0 0 / 0;
-  background-color: #efe7d7;
+
+/* Eyebrow underline: zero-width by default, scales to full on hover */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2::after,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3::after,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1.5px;
+  background: var(--aw-gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media::before {
-  background: #d8c8b3 !important;
+
+/* Hover state: card link OR direct hover on the label */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h2,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h3,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h4,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:focus-visible .prose .h4 {
+  color: var(--aw-gold) !important;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h2::after,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h3::after,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h4::after,
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:focus-visible .prose .h4::after {
+  transform: scaleX(1);
+}
+
+/* Defeat the global Al Wissam 6-up gold gradient overlay so it
+   doesn't darken the Lil Woo image area. The Lil Woo skin is a
+   clean retail look, no luxury gradient sweep. */
+html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item > .content-over-media::after {
+  display: none !important;
 }
 
 /* New Drop section — product cards on beige photo plates
