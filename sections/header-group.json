@@ -26,7 +26,7 @@
           "type": "brand",
           "settings": {
             "label": "LIL WOO",
-            "link": "/pages/lil-woo",
+            "link": "/pages/lil-woo?view=lil-woo",
             "is_active": false
           }
         },

@@ -112,9 +112,16 @@
   // (/lil-woo → /pages/lil-woo, /retail → /pages/retail) the path
   // matcher above still detects them, so visitor experience stays
   // identical either way.
+  // Each brand's canonical home URL. Use /pages/{handle} so the
+  // links work without URL redirects. The ?view=<template> query
+  // param forces Shopify to render the page with the named
+  // template — required while this theme is still a draft (the
+  // admin Theme template dropdown only lists templates from the
+  // published theme). Once this theme is published, the ?view
+  // param becomes redundant but harmless.
   var BRAND_HOME = {
     'al-wissam': '/',
-    'lil-woo': '/pages/lil-woo',
+    'lil-woo': '/pages/lil-woo?view=lil-woo',
     'retail': '/pages/retail'
   };
   var activeHome = BRAND_HOME[brand] || '/';
