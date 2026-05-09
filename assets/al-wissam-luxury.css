@@ -585,6 +585,67 @@ body .shopify-section--header .header {
   box-shadow: 0 -1px var(--aw-gold) inset !important;
 }
 
+/* ---------- Header dropdowns: mega menu + plain dropdown + search ----------
+   These open against the dark sticky header but should themselves be
+   bright white panels with dark text — easier to scan products and
+   searched results. Override the inherited color-scheme tokens locally
+   so the mega menu, simple dropdown menu, and predictive search panel
+   all flip to white/dark while the header bar stays black/white. */
+.mega-menu,
+.header__dropdown-menu,
+.header-search {
+  --background: 255 255 255 !important;
+  --text-color: 10 10 10 !important;
+  --border-color: 201 169 106 !important;
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+
+/* Make links and headings inside the dropdowns/mega-menu read crisp on
+   the new white surface */
+.mega-menu a,
+.mega-menu :where(p, span, summary, .heading),
+.header__dropdown-menu a,
+.header__dropdown-menu :where(p, span, summary, .heading) {
+  color: #0a0a0a;
+}
+.mega-menu a:hover,
+.header__dropdown-menu a:hover {
+  color: var(--aw-gold);
+}
+
+/* Search panel: keep input legible and add a gold focus underline */
+.header-search,
+.header-search .container {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+.header-search__input {
+  color: #0a0a0a !important;
+  background: transparent !important;
+}
+.header-search__input::placeholder {
+  color: rgba(10, 10, 10, 0.45);
+}
+.header-search__form-control {
+  border-bottom-color: rgba(10, 10, 10, 0.15) !important;
+}
+.header-search__form-control:focus-within {
+  border-bottom-color: var(--aw-gold) !important;
+}
+
+/* Predictive search results inherit the dark scheme from the header —
+   force them onto the same white surface as the search input. */
+.predictive-search,
+.predictive-search__content,
+.predictive-search :where(a, p, span, .heading) {
+  color: #0a0a0a;
+  background-color: transparent;
+}
+.predictive-search a:hover {
+  color: var(--aw-gold);
+}
+
 /* ---------- Section dividers: elegant hairline rather than solid borders ---------- */
 .section--separated::before,
 .section--separated::after {
