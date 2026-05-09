@@ -63,23 +63,26 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
 
 /* Category card titles: render as a beige pill wrapped in a
    thin white frame, centred at the bottom of the card.
-   Smaller font/letter-spacing so longer labels (ACCESSORIES)
-   never overflow the card width. */
+   Font scales with viewport width so ACCESSORIES fits even on
+   narrower cards without overflowing or being clipped by the
+   card's overflow:hidden. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
   display: inline-block;
-  font-size: 0.6875rem !important;
-  letter-spacing: 0.10em !important;
+  font-size: clamp(0.5rem, 0.85vw, 0.625rem) !important;
+  letter-spacing: 0.08em !important;
   color: #ffffff !important;
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap !important;
   background-color: var(--aw-gold);
-  padding: 0.5rem 0.875rem;
+  padding: 0.45rem 0.7rem;
   margin: 0;
   max-width: calc(100% - 1rem);
+  min-width: 0;
   box-sizing: border-box;
+  line-height: 1.2;
   /* Thin white frame around the beige pill via box-shadow spread */
   box-shadow:
     0 0 0 1px #ffffff,
