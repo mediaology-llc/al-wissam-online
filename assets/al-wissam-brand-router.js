@@ -77,6 +77,18 @@
   // Expose for any later scripts that need to read the active brand
   window.__awBrand = brand;
 
+  // ----------------------------------------------------------------
+  // Brand → product vendor mapping.
+  // The al-wissam and lil-woo skins only show products whose vendor
+  // matches; the retail skin shows everything (vendor === null).
+  // ----------------------------------------------------------------
+  var BRAND_VENDOR = {
+    'al-wissam': 'Al Wissam',
+    'lil-woo': 'Lil Woo',
+    'retail': null
+  };
+  var activeVendor = BRAND_VENDOR[brand] || null;
+
   // Reconcile the brand switcher's active pill once the DOM is ready.
   // Each <a class=brand-switcher__link> is tagged with
   // data-aw-brand-target=al-wissam|lil-woo|retail; the entry whose
@@ -96,9 +108,94 @@
       }
     }
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', syncBrandSwitcher);
-  } else {
+
+  // ----------------------------------------------------------------
+  // Hide product cards whose vendor doesn't match the active brand.
+  // Each product-card carries data-vendor="…" (set in product-card.
+  // liquid). Retail skin sees everything; the others filter to the
+  // matching vendor only. Runs on DOM ready and again on the
+  // dynamic events Shopify dispatches when collections / facets /
+  // pagination re-render product grids.
+  // ----------------------------------------------------------------
+  function vendorsMatch(a, b) {
+    if (!a || !b) return false;
+    return String(a).trim().toLowerCase() === String(b).trim().toLowerCase();
+  }
+
+  function applyVendorFilter() {
+    if (!activeVendor) return; // retail skin — no filter
+    var cards = document.querySelectorAll('product-card[data-vendor], .product-card[data-vendor]');
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      var vendor = card.getAttribute('data-vendor');
+      var matches = vendorsMatch(vendor, activeVendor);
+      // Hide non-matching cards. Use a class so CSS can override
+      // for special contexts if needed later.
+      card.classList.toggle('aw-hidden-by-brand', !matches);
+      if (!matches) {
+        card.style.display = 'none';
+      } else {
+        card.style.display = '';
+      }
+    }
+  }
+
+  // ----------------------------------------------------------------
+  // Scope every search submission to the active brand's vendor.
+  // Shopify's search supports field-prefix syntax: `vendor:"Al
+  // Wissam"`. We append it to the user's query if not already there.
+  // Applies to: header search form, predictive search, any /search
+  // form on the page.
+  // ----------------------------------------------------------------
+  function scopeSearchForms() {
+    if (!activeVendor) return;
+    var forms = document.querySelectorAll('form[action*="/search"], form[action="' + (window.Shopify && window.Shopify.routes && window.Shopify.routes.search_url || '/search') + '"]');
+    for (var i = 0; i < forms.length; i++) {
+      var form = forms[i];
+      // Avoid double-binding
+      if (form.dataset.awVendorScoped === '1') continue;
+      form.dataset.awVendorScoped = '1';
+      form.addEventListener('submit', function (event) {
+        var f = event.currentTarget;
+        var qInput = f.querySelector('input[name="q"]');
+        if (!qInput) return;
+        var raw = (qInput.value || '').trim();
+        var vendorClause = 'vendor:"' + activeVendor + '"';
+        // Skip if user already typed a vendor: clause
+        if (/\bvendor:/i.test(raw)) return;
+        qInput.value = raw ? raw + ' ' + vendorClause : vendorClause;
+      });
+    }
+  }
+
+  function init() {
     syncBrandSwitcher();
+    applyVendorFilter();
+    scopeSearchForms();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Re-run vendor filter when Shopify's section/cart/predictive
+  // search events re-render markup
+  ['shopify:section:load', 'shopify:section:reorder', 'cart:refresh', 'predictive-search:results'].forEach(function (evt) {
+    document.addEventListener(evt, applyVendorFilter);
+  });
+
+  // Also observe DOM mutations (predictive search injects results
+  // dynamically without a custom event)
+  if ('MutationObserver' in window) {
+    var mo = new MutationObserver(function () { applyVendorFilter(); });
+    if (document.body) {
+      mo.observe(document.body, { childList: true, subtree: true });
+    } else {
+      document.addEventListener('DOMContentLoaded', function () {
+        mo.observe(document.body, { childList: true, subtree: true });
+      });
+    }
   }
 })();
