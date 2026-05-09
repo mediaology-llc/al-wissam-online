@@ -12,6 +12,30 @@
 }
 
 /* ============================================================
+   LIL WOO BRAND SWITCHER VARIANT
+   Flip the top brand-switcher bar from black-bg/white-text to
+   white-bg/black-text when in Lil Woo skin. The active LIL WOO
+   pill stays pink (driven by --aw-gold which is already pink
+   for this brand) with black text.
+   ============================================================ */
+html.aw-brand-lil-woo .brand-switcher {
+  background: #ffffff !important;
+  color: #0a0a0a !important;
+}
+html.aw-brand-lil-woo .brand-switcher__link {
+  color: #0a0a0a !important;
+}
+html.aw-brand-lil-woo .brand-switcher__link:hover,
+html.aw-brand-lil-woo .brand-switcher__link:focus-visible {
+  color: var(--aw-gold) !important;
+}
+/* Divider line between brand entries inherits currentColor — flip
+   to black ink for the white surface */
+html.aw-brand-lil-woo .brand-switcher__item:not(:last-child)::after {
+  background: #0a0a0a !important;
+}
+
+/* ============================================================
    LIL WOO HEADER VARIANT
    White surface with black text, logo left + nav centered + icons
    right (instead of AL WISSAM's nav-left/logo-center/icons-right
