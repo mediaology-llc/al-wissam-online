@@ -278,125 +278,6 @@
         "button_2_style": "solid"
       }
     },
-    "featured-collections": {
-      "type": "collection-list",
-      "blocks": {
-        "col-legacy": {
-          "type": "collection",
-          "settings": {
-            "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
-            "title": "The Legacy Collection",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
-            "overlay_color": "#000000",
-            "overlay_opacity": 25
-          }
-        },
-        "col-tracksuits": {
-          "type": "collection",
-          "settings": {
-            "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
-            "title": "Signature Tracksuits",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
-            "overlay_color": "#000000",
-            "overlay_opacity": 25
-          }
-        },
-        "col-varsity": {
-          "type": "collection",
-          "settings": {
-            "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
-            "title": "Detroit Varsity",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
-            "overlay_color": "#000000",
-            "overlay_opacity": 25
-          }
-        },
-        "col-essentials": {
-          "type": "collection",
-          "settings": {
-            "color_scheme": "scheme-4",
-            "collection": "",
-            "expand_collection": false,
-            "content_position": "place-self-end-start text-start",
-            "subheading": "",
-            "title": "Essentials",
-            "button_text": "Shop now",
-            "button_link": "shopify://collections/all",
-            "button_style": "link",
-            "overlay_color": "#000000",
-            "overlay_opacity": 25
-          }
-        }
-      },
-      "block_order": [
-        "col-legacy",
-        "col-tracksuits",
-        "col-varsity",
-        "col-essentials"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "image_size": "auto",
-        "show_text_outside": false,
-        "space_items": true,
-        "stack_collections": false,
-        "collections_per_row_desktop": 4,
-        "stack_collections_mobile": false,
-        "collections_per_row_mobile": "2",
-        "subheading": "Featured",
-        "title": "Featured Collections",
-        "content": ""
-      }
-    },
-    "best-sellers": {
-      "type": "featured-collections",
-      "blocks": {
-        "col-bestsellers": {
-          "type": "collection",
-          "settings": {
-            "collection": "",
-            "products_count": 8,
-            "title": "Best Sellers",
-            "link_url": "shopify://collections/all",
-            "link_text": "View all"
-          }
-        }
-      },
-      "block_order": [
-        "col-bestsellers"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "hide_product_information": false,
-        "stack_products": false,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 1,
-        "subheading": "Most loved",
-        "hide_collection_title": false
-      }
-    },
     "newsletter": {
       "type": "newsletter",
       "settings": {
@@ -417,8 +298,6 @@
     "brand-values",
     "category-grid",
     "story",
-    "featured-collections",
-    "best-sellers",
     "newsletter"
   ]
 }
