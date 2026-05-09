@@ -629,6 +629,80 @@ body .shopify-section--header .header {
   color: #e0c084 !important;
 }
 
+/* Left-align the mega menu and reserve a slot for a hero image.
+   Default Prestige uses justify-content: safe center, which centers
+   the link columns and pushes the promo image off to one side. We
+   want the link columns aligned to the LEFT and the image slot
+   sitting to their RIGHT. */
+.mega-menu {
+  justify-content: flex-start !important;
+  gap: 4rem !important;
+  padding-inline-start: max(var(--container-gutter), 2.5rem) !important;
+  padding-inline-end: max(var(--container-gutter), 2.5rem) !important;
+}
+.mega-menu__linklist {
+  flex-shrink: 0;
+}
+
+/* Push the promo image (when uploaded) to the right end of the panel
+   so it sits opposite the link columns instead of crowding them. */
+.mega-menu__promo {
+  margin-inline-start: auto;
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+  width: 320px;
+  flex-shrink: 0;
+}
+.mega-menu__promo > * {
+  width: 100%;
+}
+.mega-menu__promo img,
+.mega-menu__promo picture,
+.mega-menu__promo .overflow-hidden {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 4 / 5;
+}
+
+/* When no image has been uploaded yet, show a placeholder slot on the
+   right so the mega menu always has a clear "image goes here" area
+   for the merchant to fill from the theme editor. The :has() check
+   makes this rule turn itself off the moment the merchant uploads
+   an image (since .mega-menu__promo will then exist). */
+.mega-menu:not(:has(.mega-menu__promo))::after {
+  content: '';
+  display: block;
+  width: 320px;
+  aspect-ratio: 4 / 5;
+  flex-shrink: 0;
+  margin-inline-start: auto;
+  align-self: start;
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%),
+    radial-gradient(ellipse at 30% 40%, var(--aw-placeholder-warm) 0%, var(--aw-placeholder-dark) 70%);
+  border: 1px dashed rgba(201, 169, 106, 0.35);
+  position: relative;
+}
+
+/* Reverse-direction mega menus (block setting "images_position: left")
+   put the image first, so flip the auto-margin so the image sits on
+   the LEFT instead of the right. */
+.mega-menu--reverse {
+  flex-direction: row-reverse;
+}
+.mega-menu--reverse .mega-menu__promo {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+.mega-menu--reverse:not(:has(.mega-menu__promo))::after {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+  order: -1;
+}
+
 /* Search panel: keep input legible and add a gold focus underline */
 .header-search,
 .header-search .container {
