@@ -62,9 +62,12 @@
   white-space: pre-line;
 }
 
-/* Inline-richtext only reliably preserves a small whitelist of tags.
-   <em> is the chosen marker for gold accent words inside hero copy
-   — recoloured gold without the italic, kept on the same baseline. */
+/* Inline-richtext only reliably preserves a small whitelist of tags
+   AND the Shopify editor strips \n newlines on save. <em> is the
+   chosen marker for gold accent words inside hero copy — recoloured
+   gold without the italic, AND forced to display: block so the
+   accent word always starts on a new line, regardless of whether
+   the editor has stripped surrounding whitespace. */
 .shopify-section--slideshow .h0 em,
 .shopify-section--slideshow .h1 em,
 .shopify-section--slideshow .h2 em,
@@ -73,6 +76,8 @@
   color: var(--aw-gold);
   font-style: normal;
   font-weight: inherit;
+  display: block;
+  margin-block-start: 0.05em;
 }
 
 /* Section subheadings get a thin rule + uppercase tracking */
