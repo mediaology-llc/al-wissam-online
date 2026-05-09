@@ -48,8 +48,18 @@
 .shopify-section--slideshow .h1,
 .shopify-section--slideshow .h2 {
   letter-spacing: 0.01em;
-  line-height: 1.02;
+  line-height: 1.05;
   font-weight: 600;
+}
+
+/* Render real \n newlines in the inline_richtext as visual line breaks.
+   Shopify's inline_richtext sanitizer strips <br>, so the JSON uses
+   actual \n characters and we ask the browser to honour them. */
+.shopify-section--slideshow .h0,
+.shopify-section--slideshow .h1,
+.shopify-section--slideshow .h2,
+.shopify-section--slideshow .h6 {
+  white-space: pre-line;
 }
 
 /* Inline-richtext only reliably preserves a small whitelist of tags.
