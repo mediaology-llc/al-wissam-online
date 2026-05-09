@@ -22,15 +22,28 @@
    ============================================================ */
 
 /* White page background and equal padding for both Lil Woo
-   product/category sections */
-html.aw-brand-lil-woo .shopify-section--media-grid .section-spacing,
+   product/category sections. Selector specificity matches the
+   global black-bg rule below so Lil Woo wins (the :has() in the
+   global rule adds (0,3,0) of specificity which the plain class
+   chain otherwise loses to). */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing,
 html.aw-brand-lil-woo .shopify-section--featured-collections .section-spacing {
   background-color: #ffffff !important;
   color: #0a0a0a !important;
-  --background: 255 255 255;
-  --text-color: 10 10 10;
+  --background: 255 255 255 !important;
+  --text-color: 10 10 10 !important;
   padding-block-start: var(--section-vertical-spacing) !important;
   padding-block-end: var(--section-vertical-spacing) !important;
+}
+/* Belt-and-suspenders: also force on the inner div that color-scheme--bg-* sets */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing * {
+  --background: 255 255 255 !important;
+  --text-color: 10 10 10 !important;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-stack > * {
+  color: #0a0a0a !important;
 }
 
 /* Section heading: small uppercase, left-aligned, no big title block */
@@ -49,41 +62,43 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
 }
 
 /* Category card titles: render as a beige pill wrapped in a
-   thin white frame, sitting centered at the bottom of the card
-   image. Replaces the bare dark label that clashed with the
-   model photos. Single line, tracked uppercase. */
+   thin white frame, centred at the bottom of the card.
+   Smaller font/letter-spacing so longer labels (ACCESSORIES)
+   never overflow the card width. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
   display: inline-block;
-  font-size: 0.75rem !important;
-  letter-spacing: 0.12em !important;
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.10em !important;
   color: #ffffff !important;
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap !important;
   background-color: var(--aw-gold);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.875rem;
   margin: 0;
-  /* Thin white frame around the beige pill via box-shadow spread —
-     no extra layout cost, sits flush around the pill */
+  max-width: calc(100% - 1rem);
+  box-sizing: border-box;
+  /* Thin white frame around the beige pill via box-shadow spread */
   box-shadow:
     0 0 0 1px #ffffff,
     0 4px 12px rgba(0, 0, 0, 0.10);
 }
 
-/* Prose wrapper: full-width centred container so the inline-
-   block pill above can be horizontally centred via text-align.
-   Force these with !important and override the text_position
-   class's place-self to keep the pill centered horizontally
-   even on cards (like Accessories) where the underlying image
-   isn't perfectly square. */
+/* Prose wrapper: full-width flex container that centres its
+   inline-block pill horizontally, regardless of which card it
+   sits in (so ACCESSORIES is centred the same as HOODIES). */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
+  display: flex !important;
   width: 100% !important;
   max-width: 100% !important;
+  justify-content: center !important;
+  align-items: center !important;
   text-align: center !important;
   justify-self: center !important;
-  margin-block-end: 1.25rem;
+  margin: 0 !important;
+  padding-block-end: 1.25rem;
 }
 
 /* Lil Woo: cards have transparent overlay (no dark gradient over
