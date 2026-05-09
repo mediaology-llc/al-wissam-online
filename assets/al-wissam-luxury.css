@@ -49,9 +49,9 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
 }
 
 /* Category card titles: render as a beige pill wrapped in a
-   white frame, sitting centered at the bottom of the card image.
-   Replaces the bare dark label that clashed with the model
-   photos. Single line, tracked uppercase. */
+   thin white frame, sitting centered at the bottom of the card
+   image. Replaces the bare dark label that clashed with the
+   model photos. Single line, tracked uppercase. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
@@ -65,18 +65,24 @@ html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 
   background-color: var(--aw-gold);
   padding: 0.5rem 1rem;
   margin: 0;
-  /* White frame around the beige pill via box-shadow spread —
+  /* Thin white frame around the beige pill via box-shadow spread —
      no extra layout cost, sits flush around the pill */
   box-shadow:
-    0 0 0 4px #ffffff,
+    0 0 0 1px #ffffff,
     0 4px 12px rgba(0, 0, 0, 0.10);
 }
 
 /* Prose wrapper: full-width centred container so the inline-
-   block pill above can be horizontally centred via text-align */
+   block pill above can be horizontally centred via text-align.
+   Force these with !important and override the text_position
+   class's place-self to keep the pill centered horizontally
+   even on cards (like Accessories) where the underlying image
+   isn't perfectly square. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
-  width: 100%;
-  text-align: center;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+  justify-self: center !important;
   margin-block-end: 1.25rem;
 }
 
@@ -606,7 +612,7 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
    the card scales up slightly. Pure CSS, opt-in via @media (hover) so
    touch devices don't get a stuck hover state. */
 @media (hover: hover) and (min-width: 700px) {
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) > .media-grid__item {
     transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
                 box-shadow 0.45s ease;
     position: relative;
@@ -614,7 +620,7 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
     will-change: transform;
   }
 
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item:hover {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) > .media-grid__item:hover {
     transform: translateY(-10px);
     box-shadow:
       0 18px 42px rgba(0, 0, 0, 0.55),
@@ -623,7 +629,7 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
   }
 
   /* Gold-to-dark gradient overlay layered above the image but below text */
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item > .content-over-media::after {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) > .media-grid__item > .content-over-media::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -635,22 +641,22 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
     pointer-events: none;
     z-index: 1;
   }
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item:hover > .content-over-media::after {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) > .media-grid__item:hover > .content-over-media::after {
     opacity: 1;
   }
 
   /* Keep text above both overlays */
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item .prose {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) > .media-grid__item .prose {
     position: relative;
     z-index: 2;
   }
 
   /* Gentle image zoom inside the card */
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item img {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) > .media-grid__item img {
     transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
     will-change: transform;
   }
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) > .media-grid__item:hover img {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) > .media-grid__item:hover img {
     transform: scale(1.05);
   }
 }
@@ -660,7 +666,7 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
    --section-vertical-spacing-block-start-compensation to padding-top in
    some adjacent-section configurations, making the visible top breathing
    room larger than the bottom. Pin both sides to the same value. */
-.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing {
   padding-block-start: var(--section-vertical-spacing) !important;
   padding-block-end: var(--section-vertical-spacing) !important;
 }
@@ -680,9 +686,9 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
    should fit one line; two-word titles ("Signature Embroidery", "Varsity
    Jackets") may wrap to two lines, balanced and centered. */
 @media screen and (min-width: 1000px) {
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h2,
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h3,
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h4 {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .media-grid__item .prose .h2,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .media-grid__item .prose .h3,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .media-grid__item .prose .h4 {
     font-size: 1rem !important;
     line-height: 1.2 !important;
     letter-spacing: 0.14em !important;
@@ -691,9 +697,9 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
   }
 }
 @media screen and (min-width: 700px) and (max-width: 999px) {
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h2,
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h3,
-  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .media-grid__item .prose .h4 {
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .media-grid__item .prose .h2,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .media-grid__item .prose .h3,
+  .media-grid:has(> .media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .media-grid__item .prose .h4 {
     font-size: 1rem !important;
     line-height: 1.2 !important;
     letter-spacing: 0.14em !important;
@@ -704,16 +710,16 @@ html:not([data-aw-brand]) .aw-only--al-wissam {
 /* Force the entire 5-up category section to a true black surface,
    regardless of which color_scheme the editor lands on. Belt-and-
    suspenders against accidental scheme reverts in the editor. */
-.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing,
-.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing * {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing,
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing * {
   --background: 0 0 0;
   --text-color: 255 255 255;
 }
-.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-spacing {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-spacing {
   background-color: #000000 !important;
   color: #ffffff !important;
 }
-.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child)) .section-stack > * {
+.shopify-section--media-grid:has(.media-grid__item:is(:nth-child(4):last-child, :nth-child(5):last-child, :nth-child(6):last-child)) .section-stack > * {
   color: #ffffff;
 }
 
