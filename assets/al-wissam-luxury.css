@@ -335,6 +335,29 @@
   background-color: #ffffff;
 }
 
+/* Featured Products row (Leather Jackets, 10 products in 5 x 2 grid).
+   Force white surface + black text + equal padding regardless of any
+   editor scheme drift. Keeps the section visually distinct from the
+   black hero/category/story stack above and below. */
+.shopify-section--featured-collections .section-spacing {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  --background: 255 255 255;
+  --text-color: 10 10 10;
+  padding-block-start: var(--section-vertical-spacing) !important;
+  padding-block-end: var(--section-vertical-spacing) !important;
+}
+.shopify-section--featured-collections .section-header .h6,
+.shopify-section--featured-collections .subheading {
+  color: var(--aw-gold) !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase;
+}
+.shopify-section--featured-collections .section-header .h2,
+.shopify-section--featured-collections .section-header .h3 {
+  color: #0a0a0a;
+}
+
 /* ---------- Text-with-icons: gold icons, generous spacing, hairline divider on mobile ---------- */
 .shopify-section--text-with-icons {
   --icon-color-default: var(--aw-gold);

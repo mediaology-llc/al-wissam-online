@@ -278,6 +278,35 @@
         "button_2_style": "solid"
       }
     },
+    "featured-products": {
+      "type": "featured-collections",
+      "blocks": {
+        "fp-leather": {
+          "type": "collection",
+          "settings": {
+            "collection": "leather-jackets",
+            "products_count": 10,
+            "title": "Leather Jackets",
+            "link_url": "shopify://collections/leather-jackets",
+            "link_text": "Shop all leather jackets"
+          }
+        }
+      },
+      "block_order": [
+        "fp-leather"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 5,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "Featured Products"
+      }
+    },
     "featured-collections": {
       "type": "media-grid",
       "blocks": {
@@ -467,6 +496,7 @@
     "category-grid",
     "brand-values",
     "story",
+    "featured-products",
     "featured-collections",
     "craftsmanship",
     "newsletter"
