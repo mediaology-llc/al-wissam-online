@@ -131,6 +131,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
+            "image": "shopify://shop_images/Leather_Jacket.jpg",
             "column_count": "8",
             "row_count": 2,
             "add_padding": false,
@@ -149,6 +150,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
+            "image": "shopify://shop_images/varsity_jacket.png",
             "column_count": "4",
             "row_count": 1,
             "add_padding": false,
