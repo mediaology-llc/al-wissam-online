@@ -483,6 +483,7 @@
         "image-1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/store.jpg",
             "rotation": 0
           }
         }
@@ -494,7 +495,7 @@
         "color_scheme": "scheme-3",
         "reveal_on_scroll": true,
         "separate_section_with_border": false,
-        "media_position_desktop": "before_text",
+        "media_position_desktop": "after_text",
         "media_position_mobile": "before_text",
         "media_layout": "separated",
         "media_alignment": "center",
@@ -503,7 +504,7 @@
         "text_alignment": "start",
         "subheading": "Visit Us in Detroit",
         "title": "Discover our retail store.",
-        "content": "<p>Step inside the heart of Al Wissam — a Detroit landmark where craft, culture, and community come together. Our flagship store carries the full collection: leather jackets, varsity pieces, signature embroidery, and exclusive drops you won't find anywhere else.</p><p><strong>13354 Michigan Ave.<br>Dearborn, MI 48126</strong></p>",
+        "content": "<p>Step inside the heart of Al Wissam — a Detroit landmark where craft, culture, and community come together. Our flagship store carries the full collection: leather jackets, varsity pieces, signature embroidery, and exclusive drops you won't find anywhere else.</p><p><strong>13354 Michigan Ave.<br/>Dearborn, MI 48126</strong></p>",
         "button_1_text": "Get Directions",
         "button_1_link": "https://www.google.com/maps/search/?api=1&query=Al+Wissam+13354+Michigan+Ave+Dearborn+MI+48126",
         "button_1_style": "outline",
