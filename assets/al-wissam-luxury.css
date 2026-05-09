@@ -48,10 +48,10 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
   margin: 0;
 }
 
-/* Category card titles: render as a beige pill with white text
-   sitting at the bottom of the card image, replacing the bare
-   dark label that clashed with the model photos. Single line,
-   tracked uppercase. */
+/* Category card titles: render as a beige pill wrapped in a
+   white frame, sitting centered at the bottom of the card image.
+   Replaces the bare dark label that clashed with the model
+   photos. Single line, tracked uppercase. */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
@@ -65,16 +65,19 @@ html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 
   background-color: var(--aw-gold);
   padding: 0.5rem 1rem;
   margin: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  /* White frame around the beige pill via box-shadow spread —
+     no extra layout cost, sits flush around the pill */
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 4px 12px rgba(0, 0, 0, 0.10);
 }
 
-/* The .prose wrapper that holds the title needs to wrap its
-   content tightly around the inline-block pill, not stretch
-   across the whole card width. */
+/* Prose wrapper: full-width centred container so the inline-
+   block pill above can be horizontally centred via text-align */
 html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
-  width: auto;
-  max-width: calc(100% - 1.5rem);
-  margin-block-end: 1rem;
+  width: 100%;
+  text-align: center;
+  margin-block-end: 1.25rem;
 }
 
 /* Lil Woo: cards have transparent overlay (no dark gradient over
