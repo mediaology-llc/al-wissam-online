@@ -846,6 +846,20 @@ body .shopify-section--header .header {
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+/* Mediaology credit link in the footer copyright row — bold gold,
+   underlined on hover for the "this is a link" cue. */
+.shopify-section--footer .footer__credit,
+.footer__credit {
+  color: var(--aw-gold) !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+.shopify-section--footer .footer__credit:hover,
+.footer__credit:hover {
+  color: var(--aw-gold) !important;
+  text-decoration: underline;
+}
+
 /* ============================================================
    LUXURY PLACEHOLDER IMAGES
    Replace Prestige's stock line-art placeholders with cinematic
