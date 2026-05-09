@@ -342,6 +342,16 @@
   color: #ffffff;
 }
 
+/* Belt-and-suspenders for hiding the colour-swatch row beneath product
+   titles. settings.product_color_display is set to "hide" globally,
+   but Shopify's CDN sometimes serves a stale liquid render. Hide the
+   fieldset directly via CSS so the swatches drop the moment this CSS
+   loads — independent of the liquid render cache. */
+.product-card .product-card__info > fieldset,
+.product-card__info > fieldset {
+  display: none !important;
+}
+
 /* ---------- Featured collections / product cards: white card surface ---------- */
 .shopify-section--featured-collections .product-card,
 .shopify-section--featured-product .product-card,
