@@ -207,6 +207,7 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-4",
+            "image": "shopify://shop_images/image2.png",
             "column_count": "6",
             "row_count": 1,
             "add_padding": false,
