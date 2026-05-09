@@ -12,6 +12,63 @@
 }
 
 /* ============================================================
+   LIL WOO HEADER VARIANT
+   White surface with black text, logo left + nav centered + icons
+   right (instead of AL WISSAM's nav-left/logo-center/icons-right
+   Gymshark layout). Menu items rendered bold for the youthful,
+   higher-energy feel. Activates only when the router puts
+   html.aw-brand-lil-woo on the document.
+   ============================================================ */
+html.aw-brand-lil-woo .shopify-section--header .header,
+html.aw-brand-lil-woo body .shopify-section--header .header {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  --background: 255 255 255 !important;
+  --text-color: 10 10 10 !important;
+}
+
+@media screen and (min-width: 1000px) {
+  html.aw-brand-lil-woo .header {
+    /* logo LEFT | nav CENTER | icons RIGHT */
+    grid:
+      "logo primary-nav secondary-nav"
+      / auto minmax(0, 1fr) auto !important;
+  }
+  html.aw-brand-lil-woo .header__logo {
+    justify-self: start !important;
+  }
+  html.aw-brand-lil-woo .header__primary-nav {
+    justify-content: center !important;
+  }
+}
+
+/* Bold the menu items + ink-black colour */
+html.aw-brand-lil-woo .header__primary-nav-item,
+html.aw-brand-lil-woo .header__primary-nav-item [data-title] {
+  color: #0a0a0a !important;
+  font-weight: 700 !important;
+}
+
+/* Bring the icon row into ink-black to match */
+html.aw-brand-lil-woo .header__secondary-nav svg,
+html.aw-brand-lil-woo .header__secondary-nav .header__nav-icon {
+  color: #0a0a0a !important;
+}
+
+/* Logo: AL WISSAM's dark cursive logo is filter:invert(1)'d on the
+   dark header. On Lil Woo's white header we want the logo as-is
+   (or inverted back). Until Lil Woo has its own logo asset we
+   simply remove the invert filter so the existing dark mark reads
+   correctly on white. */
+html.aw-brand-lil-woo .shopify-section--header .header__logo-image {
+  filter: none;
+}
+
+/* Gold separator under the header recolours via --aw-gold (already
+   handled by the per-brand colorway block below — pink for lil-woo,
+   bronze for retail). Nothing to override here. */
+
+/* ============================================================
    PER-BRAND SKIN COLORWAYS
    The brand router (assets/al-wissam-brand-router.js) sets
    .aw-brand-{name} on <html> based on URL path + cookie. Each
