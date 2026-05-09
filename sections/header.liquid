@@ -121,6 +121,17 @@
     {%- assign menu = section.settings.menu -%}
     {%- assign sidebar_menu = section.settings.sidebar_menu -%}
 
+    {%- comment -%}
+      Per-brand menu picks. Each brand can have its own linklist;
+      empty settings fall back to the main menu so visitors never
+      get a menu-less header. The brand router decides which of
+      the three rendered <ul>s is actually visible (CSS scoped to
+      html.aw-brand-{name}).
+    {%- endcomment -%}
+    {%- assign al_wissam_menu = section.settings.menu -%}
+    {%- assign lil_woo_menu = section.settings.menu_lil_woo | default: section.settings.menu -%}
+    {%- assign retail_menu = section.settings.menu_retail | default: section.settings.menu -%}
+
     {%- if menu.links.size > 0 or sidebar_menu.links.size > 0 -%}
       <nav
         class="header__primary-nav {% if section.settings.layout == 'logo_center_navigation_below' or section.settings.layout == 'logo_left_navigation_center' %}header__primary-nav--center{% endif %}"
@@ -138,88 +149,28 @@
         </button>
 
         {%- if menu.links.size > 0 and section.settings.layout != 'drawer' -%}
-          <ul class="contents unstyled-list md-max:hidden">
-            {%- for link in menu.links -%}
-              {% liquid
-                assign link_title_downcase = link.title | strip | downcase
-                assign mega_menu_block = ''
+          <ul class="contents unstyled-list md-max:hidden aw-brand-list aw-brand-list--al-wissam" data-aw-brand="al-wissam">
+            {%- render 'header-nav-items',
+                menu: al_wissam_menu,
+                mega_blocks: section.blocks,
+                menu_text_font: section.settings.menu_text_font,
+                menu_open_trigger: section.settings.menu_open_trigger -%}
+          </ul>
 
-                for block in section.blocks
-                  assign menu_item_downcase = block.settings.menu_item | strip | downcase
+          <ul class="contents unstyled-list md-max:hidden aw-brand-list aw-brand-list--lil-woo" data-aw-brand="lil-woo">
+            {%- render 'header-nav-items',
+                menu: lil_woo_menu,
+                mega_blocks: section.blocks,
+                menu_text_font: section.settings.menu_text_font,
+                menu_open_trigger: section.settings.menu_open_trigger -%}
+          </ul>
 
-                  if menu_item_downcase == link_title_downcase
-                    assign mega_menu_block = block
-                    break
-                  endif
-                endfor
-              %}
-
-              <li class="header__primary-nav-item">
-                {%- if link.levels == 0 and mega_menu_block == '' -%}
-                  <a
-                    href="{{ link.url }}"
-                    data-title="{{ link.title | escape }}"
-                    class="block {% if section.settings.menu_text_font == 'heading' %}h6{% endif %}"
-                    {% if link.current %}
-                      aria-current="page"
-                    {% endif %}
-                  >
-                    {{- link.title -}}
-                  </a>
-                {%- else -%}
-                  {%- capture disclosure_content -%}
-                    <details class="header__menu-disclosure">
-                      <summary data-follow-link="{{ link.url }}" {% if section.settings.menu_text_font == 'heading' %}class="h6"{% endif %} data-title="{{ link.title | escape }}">
-                        {{- link.title -}}
-                      </summary>
-
-                      {%- if mega_menu_block != '' -%}
-                        {%- render 'mega-menu', link: link, block: mega_menu_block -%}
-                      {%- else -%}
-                        <ul class="header__dropdown-menu {% if link.levels <= 1 %}header__dropdown-menu--restrictable{% endif %} unstyled-list" role="list">
-                          {%- for sub_link in link.links -%}
-                            <li>
-                              {%- if sub_link.levels == 0 -%}
-                                <a href="{{ sub_link.url }}" class="link-faded-reverse" {% if sub_link.current %}aria-current="page"{% endif %}>{{ sub_link.title }}</a>
-                              {%- else -%}
-                                <dropdown-menu-disclosure follow-summary-link trigger="{{ section.settings.menu_open_trigger }}" class="contents">
-                                  <details class="header__menu-disclosure">
-                                    <summary data-follow-link="{{ sub_link.url }}" class="link-faded-reverse">
-                                      <div class="h-stack gap-4 justify-between">
-                                        {{- sub_link.title -}}
-                                        {%- render 'icon' with 'arrow-right', width: 8, direction_aware: true -%}
-                                      </div>
-                                    </summary>
-
-                                    <ul class="header__dropdown-menu unstyled-list" role="list">
-                                      {%- for sub_sub_link in sub_link.links -%}
-                                        <li>
-                                          <a href="{{ sub_sub_link.url }}" class="link-faded-reverse" {% if sub_sub_link.current %}aria-current="page"{% endif %}>{{ sub_sub_link.title }}</a>
-                                        </li>
-                                      {%- endfor -%}
-                                    </ul>
-                                  </details>
-                                </dropdown-menu-disclosure>
-                              {%- endif -%}
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      {%- endif -%}
-                    </details>
-                  {%- endcapture -%}
-
-                  {% if mega_menu_block != '' %}
-                    <mega-menu-disclosure follow-summary-link trigger="{{ section.settings.menu_open_trigger }}" class="contents">
-                      {{- disclosure_content -}}
-                    </mega-menu-disclosure>
-                  {%- else -%}
-                    <dropdown-menu-disclosure follow-summary-link trigger="{{ section.settings.menu_open_trigger }}">
-                      {{- disclosure_content -}}
-                    </dropdown-menu-disclosure>
-                  {%- endif -%}
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
+          <ul class="contents unstyled-list md-max:hidden aw-brand-list aw-brand-list--retail" data-aw-brand="retail">
+            {%- render 'header-nav-items',
+                menu: retail_menu,
+                mega_blocks: section.blocks,
+                menu_text_font: section.settings.menu_text_font,
+                menu_open_trigger: section.settings.menu_open_trigger -%}
           </ul>
         {%- endif -%}
       </nav>
@@ -439,6 +390,18 @@
       "id": "menu",
       "label": "t:sections.header.menu",
       "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_lil_woo",
+      "label": "Lil Woo menu",
+      "info": "Used only on the Lil Woo skin. Falls back to the main menu above if empty."
+    },
+    {
+      "type": "link_list",
+      "id": "menu_retail",
+      "label": "Retail Store menu",
+      "info": "Used only on the Retail Store skin. Falls back to the main menu above if empty."
     },
     {
       "type": "link_list",

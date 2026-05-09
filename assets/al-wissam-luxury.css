@@ -98,6 +98,27 @@ html.aw-brand-lil-woo .shopify-section--header .header__logo-image {
 }
 
 /* ============================================================
+   PER-BRAND PRIMARY MENU SWAP
+   header.liquid renders three <ul> nav lists, one per brand,
+   each tagged data-aw-brand="al-wissam|lil-woo|retail". The
+   header keeps its display: contents (so <li>s flow into the
+   parent flex layout). Hide the non-active brands; show only
+   the matching one. */
+.header__primary-nav .aw-brand-list {
+  display: none !important;
+}
+html.aw-brand-al-wissam .header__primary-nav .aw-brand-list--al-wissam,
+html.aw-brand-lil-woo .header__primary-nav .aw-brand-list--lil-woo,
+html.aw-brand-retail .header__primary-nav .aw-brand-list--retail {
+  display: contents !important;
+}
+/* Pre-router fallback: until the JS class lands on <html>, show
+   the al-wissam list so visitors aren't briefly menu-less. */
+html:not([data-aw-brand]) .header__primary-nav .aw-brand-list--al-wissam {
+  display: contents !important;
+}
+
+/* ============================================================
    PER-BRAND LOGO SWAP
    The header renders the AL WISSAM default logo plus, when
    uploaded, brand-specific logos for Lil Woo and Retail. Show
