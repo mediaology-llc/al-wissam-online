@@ -22,6 +22,14 @@
             "is_active": true
           }
         },
+        "brand-lil-woo": {
+          "type": "brand",
+          "settings": {
+            "label": "LIL WOO",
+            "link": "",
+            "is_active": false
+          }
+        },
         "brand-retail-store": {
           "type": "brand",
           "settings": {
@@ -33,6 +41,7 @@
       },
       "block_order": [
         "brand-al-wissam",
+        "brand-lil-woo",
         "brand-retail-store"
       ],
       "settings": {
