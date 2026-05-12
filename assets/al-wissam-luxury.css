@@ -548,6 +548,66 @@ html.aw-brand-retail {
   --aw-gold: var(--aw-retail-accent, #9c7a3e);
 }
 
+/* ============================================================
+   RETAIL SKIN — page.retail.json
+   Detroit physical store experience: warmer, multi-brand boutique
+   feel. Brand colour is a deeper bronze (#9c7a3e) so it reads as
+   "in-store" rather than the lighter luxury gold or the soft Lil
+   Woo tan. Stays close to AL WISSAM's dark/luxe foundation but
+   leans warmer.
+
+   Most of the retail skin inherits the global theme styling —
+   these overrides target the parts that should feel different
+   from the other two skins.
+   ============================================================ */
+
+/* Brand switcher in retail: same dark surface as AL WISSAM (the
+   retail skin doesn't need to flip to white like Lil Woo did). The
+   active pill picks up the bronze accent automatically via --aw-gold. */
+
+/* Hero CTAs use the bronze accent and a parchment-warm overlay */
+html.aw-brand-retail .shopify-section--slideshow .button--solid {
+  background-color: var(--aw-gold) !important;
+  border-color: var(--aw-gold) !important;
+  color: #ffffff !important;
+}
+
+/* "Shop by Brand" 4-up: clean light tiles with bronze hover underline
+   for the title — distinct from Lil Woo's beige plate treatment. */
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .h4 {
+  color: #0a0a0a !important;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .prose .h4 {
+  color: var(--aw-gold) !important;
+}
+
+/* "View all" + section title styling — bronze underline accent */
+html.aw-brand-retail .shopify-section--featured-collections .section-header .link::after,
+html.aw-brand-retail .shopify-section--featured-collections .section-header .button::after {
+  background-color: var(--aw-gold);
+}
+
+/* Visit Us section ("Find us in Detroit"): the multiple-media-with-text
+   section already inherits the retail color scheme. Highlight the
+   address heading with a bronze rule for "in-store" feel. */
+html.aw-brand-retail .shopify-section--multiple-media-with-text .prose strong {
+  color: var(--aw-gold);
+}
+html.aw-brand-retail .shopify-section--multiple-media-with-text .button--solid {
+  background-color: var(--aw-gold) !important;
+  border-color: var(--aw-gold) !important;
+  color: #ffffff !important;
+}
+
+/* Optional: tag the retail page body so the brand switcher / nav can
+   pick a slightly different colour scheme later via this hook. */
+html.aw-brand-retail body {
+  --aw-skin-bronze: #9c7a3e;
+}
+
 /* Hide nav/footer regions tagged for non-active brands. The
    header.liquid renders nav variants wrapped in .aw-nav--{brand};
    only the matching brand's variant is shown. The fallback rule

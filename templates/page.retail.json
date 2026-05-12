@@ -1,0 +1,240 @@
+{
+  "sections": {
+    "hero": {
+      "type": "slideshow",
+      "blocks": {
+        "slide-1": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "subheading": "The Detroit Retail Experience",
+            "title": "Welcome to\nOur Store.",
+            "mobile_text_position": "place-self-center-center text-center",
+            "desktop_text_position": "sm:place-self-center-center sm:text-center",
+            "content_max_width": 760,
+            "button_1_text": "Shop the Store",
+            "button_1_link": "shopify://collections/all",
+            "button_1_style": "solid",
+            "button_1_background": "#9c7a3e",
+            "button_1_text_color": "#ffffff",
+            "button_2_text": "Find Us",
+            "button_2_link": "#visit",
+            "button_2_style": "outline",
+            "button_2_background": "rgba(0,0,0,0)",
+            "button_2_text_color": "#ffffff",
+            "background": "#0a0a0a",
+            "background_opacity": 0,
+            "text_color": "#ffffff",
+            "border_color": "rgba(0,0,0,0)",
+            "gradient_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%)"
+          }
+        }
+      },
+      "block_order": [
+        "slide-1"
+      ],
+      "settings": {
+        "allow_transparent_header": false,
+        "show_next_section_button": false,
+        "media_size": "fill",
+        "show_initial_transition": true,
+        "autoplay": false,
+        "autoplay_pause_on_video": true,
+        "cycle_speed": 7,
+        "background": "#0a0a0a",
+        "controls_color": "#ffffff"
+      }
+    },
+    "shop-by-brand": {
+      "type": "media-grid",
+      "blocks": {
+        "brand-1": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
+            "title": "Brand One",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-center-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "brand-2": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
+            "title": "Brand Two",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-center-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "brand-3": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
+            "title": "Brand Three",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-center-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "brand-4": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "image": "",
+            "column_count": "3",
+            "row_count": 1,
+            "add_padding": false,
+            "title": "Brand Four",
+            "heading_tag": "h4",
+            "content": "",
+            "link_text": "",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-center-center text-center",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "brand-1",
+        "brand-2",
+        "brand-3",
+        "brand-4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "desktop_row_height": 240,
+        "mobile_row_height": 180,
+        "section_width": "lg",
+        "spacing": "md",
+        "subheading": "",
+        "title": "Shop by Brand",
+        "content": ""
+      }
+    },
+    "new-arrivals": {
+      "type": "featured-collections",
+      "blocks": {
+        "drop": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "products_count": 6,
+            "title": "New Arrivals",
+            "link_url": "shopify://collections/all",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "drop"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "visit-store": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "column_count": "6"
+          }
+        }
+      },
+      "block_order": [
+        "image"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "subheading": "Visit Us",
+        "title": "Find us in Detroit.",
+        "content": "<p>Step inside our Detroit flagship — curated streetwear, signature pieces, and the latest arrivals on the floor every week.</p><p><strong>Address:</strong> 123 Example St, Detroit, MI<br><strong>Hours:</strong> Mon–Sat 11am–8pm · Sun 12pm–6pm</p>",
+        "button_text": "Get directions",
+        "button_link": "https://maps.google.com",
+        "button_style": "solid",
+        "text_position": "media_left",
+        "section_width": "lg"
+      }
+    },
+    "trending": {
+      "type": "featured-collections",
+      "blocks": {
+        "trend": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "products_count": 6,
+            "title": "Trending Now",
+            "link_url": "shopify://collections/all",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "trend"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "shop-by-brand",
+    "new-arrivals",
+    "visit-store",
+    "trending"
+  ]
+}

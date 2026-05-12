@@ -137,7 +137,10 @@
   var BRAND_HOME = {
     'al-wissam': '/',
     'lil-woo': '/pages/lil-woo?view=lil-woo',
-    'retail': '/pages/retail'
+    // ?view=retail forces Shopify to render the retail template even
+    // on a draft theme. Same workaround as lil-woo — strip once the
+    // theme is published, harmless if left in.
+    'retail': '/pages/retail?view=retail'
   };
   var activeHome = BRAND_HOME[brand] || '/';
 
