@@ -67,7 +67,8 @@
         "brand-2": {
           "type": "brand",
           "settings": {
-            "fallback_text": "Adidas",
+            "image": "shopify://shop_images/Brands_Home_Page_Slider_Logos-02.png",
+            "fallback_text": "Lil Woo",
             "link": "shopify://collections/all"
           }
         },
