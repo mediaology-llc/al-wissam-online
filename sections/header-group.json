@@ -34,7 +34,7 @@
           "type": "brand",
           "settings": {
             "label": "SHOP OUR RETAIL STORE",
-            "link": "/pages/retail?view=retail",
+            "link": "/retail",
             "is_active": false
           }
         }
