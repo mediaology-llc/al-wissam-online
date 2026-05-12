@@ -546,9 +546,12 @@ html.aw-brand-lil-woo {
 }
 html.aw-brand-retail {
   --aw-gold: var(--aw-retail-accent, #c8102e);
-  /* Cream/parchment page surface — the retail skin's identity colour */
-  --aw-retail-cream: #efe7d7;
-  --aw-retail-cream-dim: #e6dcc7;
+  /* Page surface — white per merchant request. Kept as named tokens
+     so future shade changes happen in one place. The "-dim" tone is
+     used on accent strips (trust-icons band) to subtly differentiate
+     them from the main surface. */
+  --aw-retail-cream: #ffffff;
+  --aw-retail-cream-dim: #f5f5f5;
 }
 
 /* ============================================================
@@ -582,12 +585,12 @@ html.aw-brand-retail .brand-switcher__item:not(:last-child)::after {
   background: #0a0a0a !important;
 }
 
-/* ---------- Header: Lil Woo-style layout on cream ---------- */
+/* ---------- Header: Lil Woo-style layout on white ---------- */
 html.aw-brand-retail .shopify-section--header .header,
 html.aw-brand-retail body .shopify-section--header .header {
   background-color: var(--aw-retail-cream) !important;
   color: #0a0a0a !important;
-  --background: 239 231 215 !important;
+  --background: 255 255 255 !important;
   --text-color: 10 10 10 !important;
 }
 
@@ -623,11 +626,40 @@ html.aw-brand-retail .header__primary-nav-item [data-title]:before {
   background: var(--aw-gold) !important;
 }
 
-/* Header icons (search/account/cart) — black on cream */
-html.aw-brand-retail .header__secondary-nav svg,
-html.aw-brand-retail .header__secondary-nav .header__nav-icon {
+/* Header icons (search / account / cart / currency).
+   Prestige's icons are SVGs that paint via stroke="currentColor" on
+   most paths, and a few set fill. We force both to black so the
+   thin strokes don't fade into the surface. The localization picker
+   ("USD ▼") inherits from .header__secondary-nav text colour. */
+html.aw-brand-retail .shopify-section--header .header,
+html.aw-brand-retail .shopify-section--header .header__secondary-nav,
+html.aw-brand-retail .shopify-section--header .header__secondary-nav a,
+html.aw-brand-retail .shopify-section--header .header__secondary-nav button,
+html.aw-brand-retail .shopify-section--header .header__secondary-nav .header__nav-icon {
   color: #0a0a0a !important;
+}
+html.aw-brand-retail .shopify-section--header .header__secondary-nav svg,
+html.aw-brand-retail .shopify-section--header .header__secondary-nav svg *,
+html.aw-brand-retail .shopify-section--header .header svg,
+html.aw-brand-retail .shopify-section--header .header svg * {
+  color: #0a0a0a !important;
+  stroke: currentColor !important;
+}
+/* For icons that use fill (e.g. solid cart, account dot) keep them
+   black too — only when the SVG path actually declares a fill, not
+   when it's the default "none" so we don't fill outline icons. */
+html.aw-brand-retail .shopify-section--header svg [fill]:not([fill="none"]) {
   fill: currentColor !important;
+}
+
+/* Cart count badge: keep the red badge but ensure the number reads
+   white on red, not black-on-red */
+html.aw-brand-retail .shopify-section--header cart-dot,
+html.aw-brand-retail .shopify-section--header .cart-dot,
+html.aw-brand-retail .shopify-section--header cart-count,
+html.aw-brand-retail .shopify-section--header .cart-count {
+  background-color: var(--aw-gold) !important;
+  color: #ffffff !important;
 }
 
 /* No invert filter on retail logo (the AL WISSAM dark-bg filter
