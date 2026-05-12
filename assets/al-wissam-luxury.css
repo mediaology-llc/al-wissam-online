@@ -597,20 +597,18 @@ html.aw-brand-retail .brand-switcher__item:not(:last-child)::after {
   background: #0a0a0a !important;
 }
 
-/* Active pill on the retail skin: the global rule fills with --aw-gold
-   (which is the new red on retail) — that produced a solid red block
-   bleeding into the page's bottom red strip and hiding the text. Flip
-   it to a white fill with thin black outline + bold black label so the
-   active state reads cleanly on the white switcher bar. */
-html.aw-brand-retail .brand-switcher__link--active {
-  background-color: #ffffff !important;
-  color: #0a0a0a !important;
-  box-shadow: inset 0 0 0 1px #0a0a0a;
-}
+/* Active pill on the retail skin: keep the red fill (matches the new
+   --aw-gold accent), but force the label to white so it reads cleanly
+   on red. The global retail hover rule recolours all switcher links
+   to --aw-gold (red) on hover — which on the active pill would paint
+   red-on-red and disappear, so we lock the active state to white
+   text across normal / hover / focus. */
+html.aw-brand-retail .brand-switcher__link--active,
 html.aw-brand-retail .brand-switcher__link--active:hover,
 html.aw-brand-retail .brand-switcher__link--active:focus-visible {
-  background-color: #ffffff !important;
-  color: #0a0a0a !important;
+  background-color: var(--aw-gold) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
 }
 
 /* ---------- Header: Lil Woo-style layout on white ---------- */
