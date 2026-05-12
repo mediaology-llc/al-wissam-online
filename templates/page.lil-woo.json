@@ -222,6 +222,104 @@
         "hide_collection_title": false
       }
     },
+    "explore-collections": {
+      "type": "media-grid",
+      "blocks": {
+        "card-new": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-3",
+            "image": "",
+            "column_count": "3",
+            "row_count": 2,
+            "add_padding": false,
+            "title": "New In",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "card-best": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-3",
+            "image": "",
+            "column_count": "3",
+            "row_count": 2,
+            "add_padding": false,
+            "title": "Bestsellers",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "card-drop": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-3",
+            "image": "",
+            "column_count": "3",
+            "row_count": 2,
+            "add_padding": false,
+            "title": "The Drop",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Shop now",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "card-lookbook": {
+          "type": "image",
+          "settings": {
+            "color_scheme": "scheme-3",
+            "image": "",
+            "column_count": "3",
+            "row_count": 2,
+            "add_padding": false,
+            "title": "Lookbook",
+            "heading_tag": "h3",
+            "content": "",
+            "link_text": "Explore",
+            "link_url": "shopify://collections/all",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "card-new",
+        "card-best",
+        "card-drop",
+        "card-lookbook"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "desktop_row_height": 380,
+        "mobile_row_height": 260,
+        "section_width": "lg",
+        "spacing": "md",
+        "subheading": "",
+        "title": "Explore the Collection",
+        "content": ""
+      }
+    },
     "feature-video": {
       "type": "video",
       "blocks": {
@@ -264,6 +362,7 @@
     "hero",
     "shop-by-category",
     "new-drop",
-    "feature-video"
+    "feature-video",
+    "explore-collections"
   ]
 }

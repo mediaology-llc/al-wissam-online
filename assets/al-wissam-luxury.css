@@ -61,21 +61,23 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header :wh
   margin: 0;
 }
 
-/* Lil Woo category cards: image on a beige plate, text label
-   sits BELOW the image as plain caption — no pill, no outline.
+/* Lil Woo category cards (6-up "Shop by Category" only): image on
+   a beige plate, text label sits BELOW the image as plain caption.
    On hover the label fades to brand gold and a centred underline
    sweeps out — the same eyebrow idiom as the header nav links.
 
    Layout: content-over-media flips from grid (image+prose stacked
-   in same cell) to flex column (image row, then text row). The
-   image fills the top, the prose becomes a normal block below it
-   with the white card background. No overflow clipping issues. */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item {
+   in same cell) to flex column (image row, then text row).
+
+   Scoped to grids that contain at least 5 items (via :has) so the
+   4-up "Explore the Collection" lookbook grid further down — which
+   uses overlay text on big lookbook tiles — isn't affected. */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item {
   background-color: #ffffff;
   overflow: visible;
 }
 
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .content-over-media {
   --content-over-media-overlay: 0 0 0 / 0;
   display: flex !important;
   flex-direction: column !important;
@@ -84,28 +86,28 @@ html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media {
 }
 
 /* Image / placeholder occupies the top portion on a beige plate */
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > picture,
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > img,
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > svg,
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > .placeholder {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .content-over-media > picture,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .content-over-media > img,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .content-over-media > svg,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .content-over-media > .placeholder {
   flex: 1 1 auto;
   display: block;
   width: 100%;
   height: auto;
   background-color: #efe7d7;
 }
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > picture > img,
-html.aw-brand-lil-woo .shopify-section--media-grid .content-over-media > picture {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .content-over-media > picture > img,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .content-over-media > picture {
   display: block;
   width: 100%;
 }
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media > .placeholder,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:has(.placeholder) > .content-over-media::before {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:has(.placeholder) > .content-over-media > .placeholder,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:has(.placeholder) > .content-over-media::before {
   background: #d8c8b3 !important;
 }
 
 /* Prose shelf: solid white block under the image, centred caption */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item .prose {
   position: static !important;
   display: flex !important;
   flex: 0 0 auto !important;
@@ -122,9 +124,9 @@ html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose {
 
 /* The label itself: no box, no outline. Plain caps caption.
    Hover → brand gold + animated underline (eyebrow). */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item .prose .h2,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item .prose .h3,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item .prose .h4 {
   position: relative;
   display: inline-block;
   background: none !important;
@@ -143,9 +145,9 @@ html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4 
 }
 
 /* Eyebrow underline: zero-width by default, scales to full on hover */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h2::after,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h3::after,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4::after {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item .prose .h2::after,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item .prose .h3::after,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item .prose .h4::after {
   content: '';
   position: absolute;
   left: 0;
@@ -160,24 +162,137 @@ html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item .prose .h4:
 }
 
 /* Hover state: card link OR direct hover on the label */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h2,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h3,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h4,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:focus-visible .prose .h4 {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:hover .prose .h2,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:hover .prose .h3,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:hover .prose .h4,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:focus-visible .prose .h4 {
   color: var(--aw-gold) !important;
 }
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h2::after,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h3::after,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:hover .prose .h4::after,
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item:focus-visible .prose .h4::after {
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:hover .prose .h2::after,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:hover .prose .h3::after,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:hover .prose .h4::after,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item:focus-visible .prose .h4::after {
   transform: scaleX(1);
 }
 
 /* Defeat the global Al Wissam 6-up gold gradient overlay so it
    doesn't darken the Lil Woo image area. The Lil Woo skin is a
-   clean retail look, no luxury gradient sweep. */
-html.aw-brand-lil-woo .shopify-section--media-grid .media-grid__item > .content-over-media::after {
+   clean retail look on the 6-up; the 4-up lookbook DOES want a
+   subtle gradient so we don't disable it there. */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(5)) .media-grid__item > .content-over-media::after {
   display: none !important;
+}
+
+/* ============================================================
+   LIL WOO — 4-UP "EXPLORE THE COLLECTION" LOOKBOOK GRID
+   Large lookbook-style cards with image fill + text overlay
+   (instead of the 6-up's "text below" treatment). Targets grids
+   with exactly 4 items via :has — block count is the natural
+   discriminator since both grids live on the same template.
+   ============================================================ */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item {
+  background: #0a0a0a;
+  overflow: hidden;
+  position: relative;
+}
+/* Image fills the tile, no beige plate, gentle zoom-on-hover */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .content-over-media {
+  background-color: transparent !important;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .content-over-media > picture,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .content-over-media > picture > img,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .content-over-media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .content-over-media > picture > img,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .content-over-media > img {
+  transform: scale(1.05);
+}
+/* Bottom-up vignette behind the prose for legibility */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .content-over-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+  display: block !important; /* unset the 6-up :is() disable above */
+  opacity: 1;
+  transition: opacity 0.35s ease;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .content-over-media::after {
+  opacity: 0.85;
+}
+/* Prose sits bottom-left over the image */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem 1.5rem 1.5rem !important;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .h2,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .h3,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .h4 {
+  color: #ffffff !important;
+  font-size: clamp(1.25rem, 2vw, 1.75rem) !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0 !important;
+  line-height: 1.1;
+  white-space: normal;
+  display: block;
+}
+/* "Shop now" button styled as a thin gold underline link */
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .button,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .link {
+  display: inline-block;
+  position: relative;
+  color: #ffffff;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0 0 4px 0;
+  background: none;
+  border: none;
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .button::after,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--aw-gold);
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .prose .button::after,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .prose .link::after {
+  transform: scaleX(1);
+}
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .prose .button,
+html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .prose .link {
+  color: var(--aw-gold);
+}
+/* Card lift on hover */
+@media (hover: hover) and (min-width: 700px) {
+  html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item {
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 0.5s ease;
+  }
+  html.aw-brand-lil-woo .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+  }
 }
 
 /* New Drop section — product cards on beige photo plates
