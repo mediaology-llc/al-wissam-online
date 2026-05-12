@@ -79,7 +79,45 @@
 
         /* Per-brand accents — overridable via theme settings → Al Wissam brand */
         --aw-lil-woo-accent: {{ settings.lil_woo_accent | default: '#B89D84' }};
-        --aw-retail-accent: {{ settings.retail_accent | default: '#9c7a3e' }};
+        --aw-retail-accent: {{ settings.retail_accent | default: '#c8102e' }};
+      }
+
+      /* ------------------------------------------------------------
+         Retail skin: force every section wrapper to render on a
+         white surface. This block lives inline in the layout so it
+         ships with the HTML on every page render — no asset cache
+         can stale-serve an older copy. Together with the matching
+         rules in al-wissam-luxury.css it guarantees the home page
+         reads white regardless of what color scheme a section has.
+         The dark lookbook cards inside shop-by-category are nested
+         two levels deep (.media-grid__item > .content-over-media)
+         so they keep their existing #0a0a0a from the dedicated rule
+         in al-wissam-luxury.css.
+         ------------------------------------------------------------ */
+      html.aw-brand-retail body .shopify-section--media-grid > .section-spacing,
+      html.aw-brand-retail body .shopify-section--media-grid > .color-scheme,
+      html.aw-brand-retail body .shopify-section--text-with-icons > .section-spacing,
+      html.aw-brand-retail body .shopify-section--text-with-icons > .color-scheme,
+      html.aw-brand-retail body .shopify-section--multiple-media-with-text > .section-spacing,
+      html.aw-brand-retail body .shopify-section--multiple-media-with-text > .color-scheme,
+      html.aw-brand-retail body .shopify-section--image-with-text-overlay > .section-spacing,
+      html.aw-brand-retail body .shopify-section--image-with-text-overlay > .color-scheme,
+      html.aw-brand-retail body .shopify-section--newsletter > .section-spacing,
+      html.aw-brand-retail body .shopify-section--newsletter > .color-scheme,
+      html.aw-brand-retail body .shopify-section--featured-collections > .section-spacing,
+      html.aw-brand-retail body .shopify-section--featured-collections > .color-scheme {
+        background-color: #ffffff !important;
+        background-image: none !important;
+        background: #ffffff !important;
+        color: #0a0a0a !important;
+        --background: 255 255 255 !important;
+        --background-without-opacity: 255 255 255 !important;
+        --background-gradient: none !important;
+        --text-color: 10 10 10 !important;
+      }
+      html.aw-brand-retail body .shopify-section--media-grid .section-header :where(.h0, .h1, .h2, .h3, .h4, .h5, .h6, p, a),
+      html.aw-brand-retail body .shopify-section--featured-collections .section-header :where(.h0, .h1, .h2, .h3, .h4, .h5, .h6, p, a) {
+        color: #0a0a0a !important;
       }
     </style>
   </head>
