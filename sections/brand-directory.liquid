@@ -3,62 +3,31 @@
   BRAND DIRECTORY  (retail skin — /pages/brands)
   ----------------------------------------------------------------------------------------------------------------------
 
-  A-Z brand index. Two sources merged:
+  A-Z brand index that fetches the full vendor list from Shopify's
+  public /products.json endpoint at runtime. This bypasses the
+  ~50-product cap that constrains `collections.all.products` inside
+  a Liquid section render — every vendor in the catalog will show up
+  on this page automatically the moment a product is tagged with it
+  in admin.
 
-  1. AUTO  — `collections.all.products | map: 'vendor' | uniq` walks
-             the store's product list and harvests every unique vendor
-             it can see. Picks up new vendors automatically the second
-             a product is tagged with one in admin.
+  Flow on each page load:
+    1. Liquid renders the page shell + an "ALL" filter + an
+       initial vendor list from the first page of products (so
+       there's content to read during JS load + for crawlers).
+    2. JS pages through /products.json?limit=250&page=N until it
+       gets an empty page (or hits a 5000-product safety cap),
+       collects unique vendors, sorts naturally, and re-renders
+       the .brand-directory__list innerHTML.
+    3. The A-Z filter pills update their empty/present state to
+       match the freshly built letter buckets.
 
-             Limitation: Shopify paginates collections.all.products at
-             50 per page inside section render. Vendors that only
-             appear on products past page 1 don't get included.
-
-  2. MANUAL — Each section block adds one extra brand to the list.
-             Use these to fill in vendors the auto-discovery missed
-             (large catalogs), or to add brands that don't have a
-             product tagged in Shopify yet ("coming soon" brands).
-
-             A block-defined brand can either point at the standard
-             vendor collection (leave Link blank) or override with a
-             custom URL (Link filled).
-
-  Merge: auto list + manual names, case-insensitive dedupe, natural
-  alphabetic sort, bucket into A-Z + #. Empty letters dim their
-  filter pill.
+  Each vendor link points to /collections/vendors?q={vendor}, which
+  is Shopify's built-in vendor collection URL — it shows only that
+  vendor's products natively, no admin setup required.
 {%- endcomment -%}
 
 {%- assign alphabet = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#' | split: ',' -%}
-
-{%- comment -%} ---------- Build merged vendor list ---------- {%- endcomment -%}
-{%- assign auto_vendors = collections.all.products | map: 'vendor' | uniq -%}
-
-{%- assign all_names = '' -%}
-{%- assign seen_keys = '|' -%}
-
-{%- if section.settings.auto_populate -%}
-  {%- for v in auto_vendors -%}
-    {%- assign v_clean = v | strip -%}
-    {%- if v_clean == blank -%}{%- continue -%}{%- endif -%}
-    {%- assign key = '|' | append: v_clean | downcase | append: '|' -%}
-    {%- unless seen_keys contains key -%}
-      {%- assign seen_keys = seen_keys | append: v_clean | downcase | append: '|' -%}
-      {%- assign all_names = all_names | append: v_clean | append: '«SEP»' -%}
-    {%- endunless -%}
-  {%- endfor -%}
-{%- endif -%}
-
-{%- for block in section.blocks -%}
-  {%- assign b_name = block.settings.name | strip -%}
-  {%- if b_name == blank -%}{%- continue -%}{%- endif -%}
-  {%- assign key = '|' | append: b_name | downcase | append: '|' -%}
-  {%- unless seen_keys contains key -%}
-    {%- assign seen_keys = seen_keys | append: b_name | downcase | append: '|' -%}
-    {%- assign all_names = all_names | append: b_name | append: '«SEP»' -%}
-  {%- endunless -%}
-{%- endfor -%}
-
-{%- assign vendors = all_names | split: '«SEP»' | sort_natural -%}
+{%- assign initial_vendors = collections.all.products | map: 'vendor' | uniq | sort_natural -%}
 
 <div class="brand-directory" data-brand-directory>
   <div class="brand-directory__inner">
@@ -84,51 +53,38 @@
       {%- endfor -%}
     </div>
 
-    {%- comment -%} ---------- Letter groups ---------- {%- endcomment -%}
-    <div class="brand-directory__list">
-      {%- if vendors.size == 0 -%}
-        <p class="brand-directory__empty">
-          {{ section.settings.empty_message | default: 'No brands yet. Add a vendor to any product in Shopify admin and it will appear here automatically.' }}
+    {%- comment -%}
+      ---------- Initial letter groups (Liquid SSR) ----------
+      Renders whatever vendors fit in the first products page so
+      there's instant content before JS finishes fetching the rest.
+      JS replaces this list entirely once /products.json is paged.
+    {%- endcomment -%}
+    <div class="brand-directory__list" data-brand-directory-list>
+      {%- if initial_vendors.size == 0 -%}
+        <p class="brand-directory__empty" data-brand-directory-empty>
+          {{ section.settings.empty_message | default: 'Loading brands…' }}
         </p>
       {%- else -%}
         {%- for letter in alphabet -%}
-          {%- assign group_html = '' -%}
           {%- assign group_count = 0 -%}
-
-          {%- for vendor in vendors -%}
-            {%- assign vendor_name = vendor | strip -%}
-            {%- if vendor_name == blank -%}{%- continue -%}{%- endif -%}
-
-            {%- assign first_char = vendor_name | slice: 0, 1 | upcase -%}
-            {%- assign is_letter_group = false -%}
+          {%- assign group_html = '' -%}
+          {%- for vendor in initial_vendors -%}
+            {%- assign vname = vendor | strip -%}
+            {%- if vname == blank -%}{%- continue -%}{%- endif -%}
+            {%- assign fc = vname | slice: 0, 1 | upcase -%}
+            {%- assign matches = false -%}
             {%- if letter == '#' -%}
-              {%- unless 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains first_char -%}
-                {%- assign is_letter_group = true -%}
+              {%- unless 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains fc -%}
+                {%- assign matches = true -%}
               {%- endunless -%}
-            {%- elsif first_char == letter -%}
-              {%- assign is_letter_group = true -%}
+            {%- elsif fc == letter -%}
+              {%- assign matches = true -%}
             {%- endif -%}
-
-            {%- if is_letter_group -%}
-              {%- comment -%}
-                If a block matches this vendor by name (case-insens.),
-                use its overridden Link. Otherwise fall back to the
-                vendor's automatic collection.
-              {%- endcomment -%}
-              {%- assign vendor_url = vendor_name | url_for_vendor -%}
-              {%- for block in section.blocks -%}
-                {%- assign bn = block.settings.name | strip | downcase -%}
-                {%- if bn == vendor_name | downcase and block.settings.link != blank -%}
-                  {%- assign vendor_url = block.settings.link -%}
-                  {%- break -%}
-                {%- endif -%}
-              {%- endfor -%}
-
+            {%- if matches -%}
               {%- assign group_count = group_count | plus: 1 -%}
-              {%- capture group_html -%}{{ group_html }}<a href="{{ vendor_url }}" class="brand-directory__brand">{{ vendor_name | escape }}</a>{%- endcapture -%}
+              {%- capture group_html -%}{{ group_html }}<a href="{{ vname | url_for_vendor }}" class="brand-directory__brand">{{ vname | escape }}</a>{%- endcapture -%}
             {%- endif -%}
           {%- endfor -%}
-
           {%- if group_count > 0 -%}
             <div class="brand-directory__group" data-letter-group="{{ letter }}">
               <div class="brand-directory__letter">{{ letter }}</div>
@@ -143,51 +99,137 @@
 
 <script>
   (function () {
-    function initBrandDirectory(root) {
-      var dirs = root.querySelectorAll('[data-brand-directory]');
-      dirs.forEach(function (dir) {
-        if (dir.dataset.brandDirectoryBound === '1') return;
-        dir.dataset.brandDirectoryBound = '1';
+    var ALPHABET = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    var PAGE_SIZE = 250;
+    var MAX_PAGES = 20; // 20 * 250 = 5000 products safety cap
 
-        var filters = dir.querySelectorAll('[data-letter]');
-        var groups = dir.querySelectorAll('[data-letter-group]');
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+      });
+    }
 
-        var presentLetters = {};
-        groups.forEach(function (g) { presentLetters[g.dataset.letterGroup] = true; });
-        filters.forEach(function (btn) {
-          var l = btn.dataset.letter;
-          if (l === 'all') return;
-          if (!presentLetters[l]) {
-            btn.classList.add('brand-directory__filter--empty');
-            btn.setAttribute('aria-disabled', 'true');
-          }
+    function vendorUrl(name) {
+      return '/collections/vendors?q=' + encodeURIComponent(name);
+    }
+
+    function bucketize(vendors) {
+      var buckets = { '#': [] };
+      ALPHABET.forEach(function (l) { buckets[l] = []; });
+      vendors.forEach(function (v) {
+        var first = (v.charAt(0) || '').toUpperCase();
+        if (ALPHABET.indexOf(first) !== -1) buckets[first].push(v);
+        else buckets['#'].push(v);
+      });
+      return buckets;
+    }
+
+    function renderList(listEl, buckets) {
+      var html = '';
+      ALPHABET.concat(['#']).forEach(function (letter) {
+        var items = buckets[letter];
+        if (!items || items.length === 0) return;
+        html += '<div class="brand-directory__group" data-letter-group="' + letter + '">';
+        html += '<div class="brand-directory__letter">' + escapeHtml(letter) + '</div>';
+        html += '<div class="brand-directory__brands">';
+        items.forEach(function (v) {
+          html += '<a href="' + vendorUrl(v) + '" class="brand-directory__brand">' + escapeHtml(v) + '</a>';
         });
+        html += '</div></div>';
+      });
+      listEl.innerHTML = html;
+    }
 
-        filters.forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            if (btn.classList.contains('brand-directory__filter--empty')) return;
-            var letter = btn.dataset.letter;
-            filters.forEach(function (f) {
-              f.classList.remove('brand-directory__filter--active');
-              f.setAttribute('aria-selected', 'false');
-            });
-            btn.classList.add('brand-directory__filter--active');
-            btn.setAttribute('aria-selected', 'true');
-            groups.forEach(function (g) {
-              if (letter === 'all' || g.dataset.letterGroup === letter) {
-                g.removeAttribute('hidden');
-              } else {
-                g.setAttribute('hidden', '');
-              }
-            });
+    function refreshFilterStates(dir, buckets) {
+      var filters = dir.querySelectorAll('[data-letter]');
+      filters.forEach(function (btn) {
+        var l = btn.dataset.letter;
+        if (l === 'all') return;
+        var has = buckets[l] && buckets[l].length > 0;
+        btn.classList.toggle('brand-directory__filter--empty', !has);
+        if (has) btn.removeAttribute('aria-disabled');
+        else btn.setAttribute('aria-disabled', 'true');
+      });
+    }
+
+    function bindFilters(dir) {
+      var filters = dir.querySelectorAll('[data-letter]');
+      filters.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.classList.contains('brand-directory__filter--empty')) return;
+          var letter = btn.dataset.letter;
+          filters.forEach(function (f) {
+            f.classList.remove('brand-directory__filter--active');
+            f.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('brand-directory__filter--active');
+          btn.setAttribute('aria-selected', 'true');
+          var groups = dir.querySelectorAll('[data-letter-group]');
+          groups.forEach(function (g) {
+            if (letter === 'all' || g.dataset.letterGroup === letter) g.removeAttribute('hidden');
+            else g.setAttribute('hidden', '');
           });
         });
       });
     }
 
-    initBrandDirectory(document);
+    async function fetchAllVendors() {
+      var vendors = new Set();
+      for (var page = 1; page <= MAX_PAGES; page++) {
+        try {
+          var res = await fetch('/products.json?limit=' + PAGE_SIZE + '&page=' + page, {
+            headers: { 'Accept': 'application/json' },
+            credentials: 'same-origin'
+          });
+          if (!res.ok) break;
+          var data = await res.json();
+          var products = (data && data.products) || [];
+          if (products.length === 0) break;
+          for (var i = 0; i < products.length; i++) {
+            var v = (products[i].vendor || '').trim();
+            if (v) vendors.add(v);
+          }
+          if (products.length < PAGE_SIZE) break;
+        } catch (e) {
+          // Silent: keep whatever the SSR initial render produced
+          console.warn('brand-directory: products.json fetch failed', e);
+          break;
+        }
+      }
+      return Array.from(vendors).sort(function (a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+      });
+    }
+
+    async function hydrateDirectory(dir) {
+      if (dir.dataset.brandDirectoryBound === '1') return;
+      dir.dataset.brandDirectoryBound = '1';
+
+      bindFilters(dir);
+
+      var listEl = dir.querySelector('[data-brand-directory-list]');
+      if (!listEl) return;
+
+      var vendors = await fetchAllVendors();
+      if (vendors.length === 0) return; // keep SSR fallback / empty state
+
+      var buckets = bucketize(vendors);
+      renderList(listEl, buckets);
+      refreshFilterStates(dir, buckets);
+    }
+
+    function initAll(root) {
+      var dirs = root.querySelectorAll('[data-brand-directory]');
+      dirs.forEach(hydrateDirectory);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { initAll(document); });
+    } else {
+      initAll(document);
+    }
     document.addEventListener('shopify:section:load', function (e) {
-      if (e.target) initBrandDirectory(e.target);
+      if (e.target) initAll(e.target);
     });
   })();
 </script>
@@ -205,40 +247,16 @@
       "default": "Brands"
     },
     {
-      "type": "checkbox",
-      "id": "auto_populate",
-      "label": "Auto-populate from product vendors",
-      "info": "Pulls unique vendor names off products in your store. Shopify pages this at ~50 products per render — for larger catalogs, add the missing brands as blocks below.",
-      "default": true
+      "type": "paragraph",
+      "content": "This directory auto-populates from every vendor in your store — no manual entry. Tag a product with a vendor in Shopify admin and that brand will appear here on the next page load. Each brand links to its built-in vendor collection (only that vendor's products)."
     },
     {
       "type": "text",
       "id": "empty_message",
-      "label": "Empty-state message",
-      "info": "Shown when neither auto nor manual brands resolve to anything."
+      "label": "Empty / loading message",
+      "info": "Shown briefly before the vendor list finishes loading."
     }
   ],
-  "blocks": [
-    {
-      "type": "brand",
-      "name": "Brand (manual entry)",
-      "settings": [
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Brand name",
-          "info": "Required. Used for sorting, lettering, and the link label."
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link (optional)",
-          "info": "Leave blank to use the vendor's automatic collection URL."
-        }
-      ]
-    }
-  ],
-  "max_blocks": 250,
   "presets": [
     {
       "name": "Brand directory",
