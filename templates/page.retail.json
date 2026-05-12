@@ -91,7 +91,8 @@
         "brand-5": {
           "type": "brand",
           "settings": {
-            "fallback_text": "Carhartt",
+            "image": "shopify://shop_images/Brands_Home_Page_Slider_Logos-03.png",
+            "fallback_text": "PSD Underwear",
             "link": "shopify://collections/all"
           }
         },
