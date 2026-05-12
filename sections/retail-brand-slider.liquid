@@ -1,0 +1,183 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  RETAIL BRAND SLIDER
+  ----------------------------------------------------------------------------------------------------------------------
+
+  Horizontal scrolling rail of brand logos for the retail page.
+
+  Each brand is a block configured in the theme editor:
+    - image_picker → brand logo (PNG/SVG with transparent bg)
+    - url          → optional link target (collection / external URL)
+    - text         → optional fallback text shown when no image is set
+
+  Section settings cover the title and the "View all" link beneath the
+  rail. The arrow buttons hook the track's scrollBy() via a tiny IIFE
+  at the bottom; native scroll-snap handles the snap-to-tile feel.
+{%- endcomment -%}
+
+<div id="retail-brand-slider" class="retail-brand-slider" data-brand-slider>
+  {%- if section.settings.title != blank -%}
+    <h2 class="retail-brand-slider__title">{{ section.settings.title | escape }}</h2>
+  {%- endif -%}
+
+  <div class="retail-brand-slider__wrap">
+    <button
+      type="button"
+      class="retail-brand-slider__nav retail-brand-slider__nav--prev"
+      aria-label="Previous brands"
+      data-brand-slider-prev
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="retail-brand-slider__track" data-brand-slider-track>
+      {%- for block in section.blocks -%}
+        {%- assign brand_link = block.settings.link | default: '#' -%}
+        <a
+          href="{{ brand_link }}"
+          class="retail-brand-slider__slide"
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            {{-
+              block.settings.image
+              | image_url: width: 400
+              | image_tag:
+                  alt: block.settings.image.alt | default: block.settings.fallback_text,
+                  sizes: '160px',
+                  widths: '120,160,200,300,400',
+                  class: 'retail-brand-slider__logo',
+                  loading: 'lazy'
+            -}}
+          {%- elsif block.settings.fallback_text != blank -%}
+            {{- block.settings.fallback_text -}}
+          {%- else -%}
+            Brand
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+
+    <button
+      type="button"
+      class="retail-brand-slider__nav retail-brand-slider__nav--next"
+      aria-label="Next brands"
+      data-brand-slider-next
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  {%- if section.settings.view_all_text != blank -%}
+    <a
+      href="{{ section.settings.view_all_link | default: '/collections/all' }}"
+      class="retail-brand-slider__view-all"
+    >
+      {{- section.settings.view_all_text | escape -}}
+    </a>
+  {%- endif -%}
+</div>
+
+<script>
+  (function () {
+    function initBrandSlider(root) {
+      var sliders = root.querySelectorAll('[data-brand-slider]');
+      sliders.forEach(function (slider) {
+        if (slider.dataset.brandSliderBound === '1') return;
+        slider.dataset.brandSliderBound = '1';
+
+        var track = slider.querySelector('[data-brand-slider-track]');
+        var prev = slider.querySelector('[data-brand-slider-prev]');
+        var next = slider.querySelector('[data-brand-slider-next]');
+        if (!track || !prev || !next) return;
+
+        var scrollByAmt = function (dir) {
+          var w = track.clientWidth;
+          track.scrollBy({ left: dir * (w * 0.8), behavior: 'smooth' });
+        };
+        prev.addEventListener('click', function () { scrollByAmt(-1); });
+        next.addEventListener('click', function () { scrollByAmt(1); });
+      });
+    }
+
+    initBrandSlider(document);
+
+    // Re-bind when Shopify theme editor reloads this section
+    document.addEventListener('shopify:section:load', function (e) {
+      if (e.target) initBrandSlider(e.target);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Brand slider",
+  "tag": "section",
+  "class": "shopify-section--retail-brand-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Shop Top Brands"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View-all link text",
+      "default": "View all brands"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View-all link URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Brand logo",
+          "info": "PNG or SVG with transparent background works best."
+        },
+        {
+          "type": "text",
+          "id": "fallback_text",
+          "label": "Brand name",
+          "info": "Shown if no logo image is uploaded."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Brand slider",
+      "category": "Custom",
+      "blocks": [
+        { "type": "brand", "settings": { "fallback_text": "Nike" } },
+        { "type": "brand", "settings": { "fallback_text": "Adidas" } },
+        { "type": "brand", "settings": { "fallback_text": "New Balance" } },
+        { "type": "brand", "settings": { "fallback_text": "The North Face" } },
+        { "type": "brand", "settings": { "fallback_text": "Carhartt" } },
+        { "type": "brand", "settings": { "fallback_text": "Essentials" } },
+        { "type": "brand", "settings": { "fallback_text": "True Religion" } },
+        { "type": "brand", "settings": { "fallback_text": "Gallery Dept." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

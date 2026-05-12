@@ -46,9 +46,79 @@
       }
     },
     "brand-slider": {
-      "type": "custom-liquid",
+      "type": "retail-brand-slider",
+      "blocks": {
+        "brand-1": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "Nike",
+            "link": "shopify://collections/all"
+          }
+        },
+        "brand-2": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "Adidas",
+            "link": "shopify://collections/all"
+          }
+        },
+        "brand-3": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "New Balance",
+            "link": "shopify://collections/all"
+          }
+        },
+        "brand-4": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "The North Face",
+            "link": "shopify://collections/all"
+          }
+        },
+        "brand-5": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "Carhartt",
+            "link": "shopify://collections/all"
+          }
+        },
+        "brand-6": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "Essentials",
+            "link": "shopify://collections/all"
+          }
+        },
+        "brand-7": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "True Religion",
+            "link": "shopify://collections/all"
+          }
+        },
+        "brand-8": {
+          "type": "brand",
+          "settings": {
+            "fallback_text": "Gallery Dept.",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "brand-1",
+        "brand-2",
+        "brand-3",
+        "brand-4",
+        "brand-5",
+        "brand-6",
+        "brand-7",
+        "brand-8"
+      ],
       "settings": {
-        "custom_liquid": "<div id=\"retail-brand-slider\" data-brand-slider>\n  <h2 class=\"retail-brand-slider__title\">Shop Top Brands</h2>\n  <div class=\"retail-brand-slider__wrap\">\n    <button type=\"button\" class=\"retail-brand-slider__nav retail-brand-slider__nav--prev\" aria-label=\"Previous brands\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M15 6l-6 6 6 6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>\n    <div class=\"retail-brand-slider__track\" data-brand-slider-track>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Nike</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Adidas</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">New Balance</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">The North Face</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Carhartt</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Essentials</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">True Religion</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Gallery Dept.</a>\n    </div>\n    <button type=\"button\" class=\"retail-brand-slider__nav retail-brand-slider__nav--next\" aria-label=\"Next brands\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M9 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>\n  </div>\n  <a href=\"/collections/all\" class=\"retail-brand-slider__view-all\">View all brands</a>\n</div>\n<script>\n(function(){\n  var sliders = document.querySelectorAll('[data-brand-slider]');\n  sliders.forEach(function(s){\n    var track = s.querySelector('[data-brand-slider-track]');\n    var prev = s.querySelector('.retail-brand-slider__nav--prev');\n    var next = s.querySelector('.retail-brand-slider__nav--next');\n    if(!track||!prev||!next) return;\n    var scrollByAmt = function(dir){\n      var w = track.clientWidth;\n      track.scrollBy({left: dir * (w * 0.8), behavior: 'smooth'});\n    };\n    prev.addEventListener('click', function(){ scrollByAmt(-1); });\n    next.addEventListener('click', function(){ scrollByAmt(1); });\n  });\n})();\n</script>"
+        "title": "Shop Top Brands",
+        "view_all_text": "View all brands",
+        "view_all_link": "shopify://collections/all"
       }
     },
     "shop-by-category": {
