@@ -1069,35 +1069,53 @@ html.aw-brand-retail .shopify-section--newsletter > .section-spacing {
   padding-inline: clamp(1.5rem, 4vw, 3rem);
 }
 
-/* Ensure the previously-dark sections (now flipped to scheme-1)
-   actually paint white. Some Prestige defaults can keep a darker
-   tone bleeding through the color-scheme wrapper — pin the surface
-   explicitly. Shop-by-category included so the wrapper paints
-   white between the dark lookbook cards. */
-html.aw-brand-retail .shopify-section--multiple-media-with-text,
-html.aw-brand-retail .shopify-section--multiple-media-with-text .color-scheme,
-html.aw-brand-retail .shopify-section--image-with-text-overlay,
-html.aw-brand-retail .shopify-section--image-with-text-overlay .color-scheme,
-html.aw-brand-retail .shopify-section--newsletter,
-html.aw-brand-retail .shopify-section--newsletter .color-scheme,
-html.aw-brand-retail .shopify-section--media-grid,
-html.aw-brand-retail .shopify-section--media-grid .section-spacing,
-html.aw-brand-retail .shopify-section--media-grid > .color-scheme,
-html.aw-brand-retail .shopify-section--text-with-icons,
-html.aw-brand-retail .shopify-section--text-with-icons .section-spacing,
-html.aw-brand-retail .shopify-section--text-with-icons .color-scheme {
+/* Force every section wrapper on the retail page to render on a
+   white surface. This rule deliberately uses maximum specificity
+   (body + multiple classes + !important) and resets every variable
+   the color-scheme cascade reads (--background, --background-without-
+   opacity, --background-gradient, --text-color) so neither the
+   inline <style> blocks Prestige emits per section nor the
+   .color-scheme--scheme-X rules in css-variables.liquid can darken
+   the section-spacing wrapper.
+
+   The direct-child combinator (>) on .section-spacing ensures we
+   only hit the OUTER wrapper — the dark lookbook cards inside
+   shop-by-category use .content-over-media.color-scheme--scheme-3
+   which is nested two levels deep, so it keeps its black bg via
+   the existing .media-grid__item { background: #0a0a0a } rule. */
+html.aw-brand-retail body .shopify-section--multiple-media-with-text > .section-spacing,
+html.aw-brand-retail body .shopify-section--image-with-text-overlay > .section-spacing,
+html.aw-brand-retail body .shopify-section--newsletter > .section-spacing,
+html.aw-brand-retail body .shopify-section--media-grid > .section-spacing,
+html.aw-brand-retail body .shopify-section--text-with-icons > .section-spacing,
+html.aw-brand-retail body .shopify-section--featured-collections > .section-spacing,
+html.aw-brand-retail body .shopify-section--multiple-media-with-text > .color-scheme,
+html.aw-brand-retail body .shopify-section--image-with-text-overlay > .color-scheme,
+html.aw-brand-retail body .shopify-section--newsletter > .color-scheme,
+html.aw-brand-retail body .shopify-section--media-grid > .color-scheme,
+html.aw-brand-retail body .shopify-section--text-with-icons > .color-scheme,
+html.aw-brand-retail body .shopify-section--featured-collections > .color-scheme {
   background-color: #ffffff !important;
+  background-image: none !important;
+  background: #ffffff !important;
   color: #0a0a0a !important;
   --background: 255 255 255 !important;
+  --background-without-opacity: 255 255 255 !important;
+  --background-gradient: none !important;
   --text-color: 10 10 10 !important;
 }
-/* Section header titles (e.g. "SHOP BY CATEGORY") must read dark on
-   the new white surface. */
-html.aw-brand-retail .shopify-section--media-grid .section-header :where(.h2, .h3, .h4),
-html.aw-brand-retail .shopify-section--media-grid .section-header * {
+
+/* Section header titles ("SHOP BY CATEGORY", "Most Loved", etc.)
+   read dark on the new white surface — but exclude any text that
+   sits over a dark card or block-level color-scheme. */
+html.aw-brand-retail body .shopify-section--media-grid .section-header :where(.h0, .h1, .h2, .h3, .h4, .h5, .h6, p, a),
+html.aw-brand-retail body .shopify-section--featured-collections .section-header :where(.h0, .h1, .h2, .h3, .h4, .h5, .h6, p, a) {
   color: #0a0a0a !important;
 }
-/* And cancel any dark overlay images placeholder gradient too */
+
+/* Cancel any dark overlay placeholder gradient on image-with-text-
+   overlay + newsletter so empty-state previews don't look like
+   dark sections. */
 html.aw-brand-retail .shopify-section--newsletter .content-over-media,
 html.aw-brand-retail .shopify-section--image-with-text-overlay .content-over-media {
   background-color: #ffffff;
