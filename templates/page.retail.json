@@ -107,7 +107,8 @@
         "brand-7": {
           "type": "brand",
           "settings": {
-            "fallback_text": "True Religion",
+            "image": "shopify://shop_images/Brands_Home_Page_Slider_Logos-08.png",
+            "fallback_text": "Pro Standard",
             "link": "shopify://collections/all"
           }
         },
