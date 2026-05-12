@@ -1,0 +1,69 @@
+{
+  "sections": {
+    "directory": {
+      "type": "brand-directory",
+      "blocks": {
+        "b-al-wissam":        { "type": "brand", "settings": { "name": "Al Wissam",                 "link": "shopify://collections/all" } },
+        "b-anom-denim":       { "type": "brand", "settings": { "name": "ANOM Denim",                "link": "shopify://collections/all" } },
+        "b-anti-social":      { "type": "brand", "settings": { "name": "Anti Social Social Club",   "link": "shopify://collections/all" } },
+        "b-bagmores":         { "type": "brand", "settings": { "name": "Bagmores",                  "link": "shopify://collections/all" } },
+        "b-city-lab":         { "type": "brand", "settings": { "name": "City Lab",                  "link": "shopify://collections/all" } },
+        "b-crisp-denim":      { "type": "brand", "settings": { "name": "Crisp Denim",               "link": "shopify://collections/all" } },
+        "b-cult-of-ind":      { "type": "brand", "settings": { "name": "Cult Of Individuality",     "link": "shopify://collections/all" } },
+        "b-ellesse":          { "type": "brand", "settings": { "name": "Ellesse",                   "link": "shopify://collections/all" } },
+        "b-embellish":        { "type": "brand", "settings": { "name": "Embellish",                 "link": "shopify://collections/all" } },
+        "b-g-star":           { "type": "brand", "settings": { "name": "G-STAR",                    "link": "shopify://collections/all" } },
+        "b-hvman":            { "type": "brand", "settings": { "name": "HVMAN",                     "link": "shopify://collections/all" } },
+        "b-hyde-park":        { "type": "brand", "settings": { "name": "Hyde Park",                 "link": "shopify://collections/all" } },
+        "b-jordan-craig":     { "type": "brand", "settings": { "name": "Jordan Craig",              "link": "shopify://collections/all" } },
+        "b-ksubi":            { "type": "brand", "settings": { "name": "KSUBI",                     "link": "shopify://collections/all" } },
+        "b-lil-woo":          { "type": "brand", "settings": { "name": "Lil Woo",                   "link": "shopify://collections/all" } },
+        "b-liquid-crystal":   { "type": "brand", "settings": { "name": "Liquid Crystal",            "link": "shopify://collections/all" } },
+        "b-lc-jordan-craig":  { "type": "brand", "settings": { "name": "LIQUID CRYSTAL - Jordan Craig", "link": "shopify://collections/all" } },
+        "b-memory-lane":      { "type": "brand", "settings": { "name": "Memory Lane",               "link": "shopify://collections/all" } },
+        "b-messy-teddy":      { "type": "brand", "settings": { "name": "Messy Teddy",               "link": "shopify://collections/all" } },
+        "b-mitchell-ness":    { "type": "brand", "settings": { "name": "Mitchell & Ness",           "link": "shopify://collections/all" } },
+        "b-pro-standard":     { "type": "brand", "settings": { "name": "Pro Standard",              "link": "shopify://collections/all" } },
+        "b-prps":             { "type": "brand", "settings": { "name": "Prps",                      "link": "shopify://collections/all" } },
+        "b-psd-underwear":    { "type": "brand", "settings": { "name": "PSD Underwear",             "link": "shopify://collections/all" } },
+        "b-psycho-bunny":     { "type": "brand", "settings": { "name": "Psycho Bunny",              "link": "shopify://collections/all" } },
+        "b-reference":        { "type": "brand", "settings": { "name": "Reference",                 "link": "shopify://collections/all" } },
+        "b-rich-cotton":      { "type": "brand", "settings": { "name": "Rich Cotton",               "link": "shopify://collections/all" } },
+        "b-roberto-vino":     { "type": "brand", "settings": { "name": "Roberto Vino Milano",       "link": "shopify://collections/all" } },
+        "b-rock-revival":     { "type": "brand", "settings": { "name": "Rock Revival",              "link": "shopify://collections/all" } },
+        "b-rta":              { "type": "brand", "settings": { "name": "RTA",                       "link": "shopify://collections/all" } },
+        "b-scotch-soda":      { "type": "brand", "settings": { "name": "Scotch & Soda",             "link": "shopify://collections/all" } },
+        "b-see-you-paradise": { "type": "brand", "settings": { "name": "See You In Paradise",       "link": "shopify://collections/all" } },
+        "b-syp-jordan-craig": { "type": "brand", "settings": { "name": "SEE YOU IN PARADISE - Jordan Craig", "link": "shopify://collections/all" } },
+        "b-serenede":         { "type": "brand", "settings": { "name": "SERENEDE",                  "link": "shopify://collections/all" } },
+        "b-sergio-tacchini":  { "type": "brand", "settings": { "name": "Sergio Tacchini",           "link": "shopify://collections/all" } },
+        "b-silencio":         { "type": "brand", "settings": { "name": "Silencio",                  "link": "shopify://collections/all" } },
+        "b-smoke-rise":       { "type": "brand", "settings": { "name": "Smoke Rise",                "link": "shopify://collections/all" } },
+        "b-true-classic":     { "type": "brand", "settings": { "name": "True Classic",              "link": "shopify://collections/all" } },
+        "b-true-religion":    { "type": "brand", "settings": { "name": "True Religion",             "link": "shopify://collections/all" } }
+      },
+      "block_order": [
+        "b-al-wissam","b-anom-denim","b-anti-social",
+        "b-bagmores",
+        "b-city-lab","b-crisp-denim","b-cult-of-ind",
+        "b-ellesse","b-embellish",
+        "b-g-star",
+        "b-hvman","b-hyde-park",
+        "b-jordan-craig",
+        "b-ksubi",
+        "b-lil-woo","b-liquid-crystal","b-lc-jordan-craig",
+        "b-memory-lane","b-messy-teddy","b-mitchell-ness",
+        "b-pro-standard","b-prps","b-psd-underwear","b-psycho-bunny",
+        "b-reference","b-rich-cotton","b-roberto-vino","b-rock-revival","b-rta",
+        "b-scotch-soda","b-see-you-paradise","b-syp-jordan-craig","b-serenede","b-sergio-tacchini","b-silencio","b-smoke-rise",
+        "b-true-classic","b-true-religion"
+      ],
+      "settings": {
+        "title": "Brands"
+      }
+    }
+  },
+  "order": [
+    "directory"
+  ]
+}
