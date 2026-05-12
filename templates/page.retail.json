@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -6,9 +15,8 @@
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "",
             "subheading": "Dearborn, Michigan",
-            "title": "Al Wissam\nRetail Store.",
+            "title": "Al WissamRetail Store.",
             "mobile_text_position": "place-self-center-start text-start",
             "desktop_text_position": "sm:place-self-center-start sm:text-start",
             "content_max_width": 680,
@@ -26,7 +34,7 @@
             "background_opacity": 0,
             "text_color": "#ffffff",
             "border_color": "rgba(0,0,0,0)",
-            "gradient_overlay": "linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.30) 45%, rgba(0, 0, 0, 0) 75%)"
+            "gradient_overlay": "linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0) 75%)"
           }
         }
       },
@@ -128,7 +136,6 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-3",
-            "image": "",
             "column_count": "3",
             "row_count": 2,
             "add_padding": false,
@@ -147,7 +154,6 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-3",
-            "image": "",
             "column_count": "3",
             "row_count": 2,
             "add_padding": false,
@@ -166,7 +172,6 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-3",
-            "image": "",
             "column_count": "2",
             "row_count": 2,
             "add_padding": false,
@@ -185,7 +190,6 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-3",
-            "image": "",
             "column_count": "2",
             "row_count": 2,
             "add_padding": false,
@@ -204,7 +208,6 @@
           "type": "image",
           "settings": {
             "color_scheme": "scheme-3",
-            "image": "",
             "column_count": "2",
             "row_count": 2,
             "add_padding": false,
@@ -246,6 +249,8 @@
           "type": "item",
           "settings": {
             "icon": "shield",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Authentic Products",
             "content": "<p>100% authentic. Guaranteed.</p>"
           }
@@ -254,6 +259,8 @@
           "type": "item",
           "settings": {
             "icon": "truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Fast Shipping",
             "content": "<p>Quick delivery, worldwide.</p>"
           }
@@ -262,6 +269,8 @@
           "type": "item",
           "settings": {
             "icon": "refresh",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Easy Returns",
             "content": "<p>14-day return policy.</p>"
           }
@@ -270,6 +279,8 @@
           "type": "item",
           "settings": {
             "icon": "lock",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
             "title": "Secure Checkout",
             "content": "<p>Your payment is protected.</p>"
           }
@@ -284,12 +295,10 @@
       "settings": {
         "color_scheme": "scheme-1",
         "separate_section_with_border": false,
-        "section_width": "lg",
-        "subheading": "",
-        "title": "",
-        "content": "",
-        "icon_size": "sm",
-        "icon_color": "#0a0a0a"
+        "stack_on_mobile": false,
+        "icon_color": "#0a0a0a",
+        "text_color": "",
+        "text_alignment": "center"
       }
     },
     "new-drop": {
@@ -328,8 +337,7 @@
         "store-photo": {
           "type": "image",
           "settings": {
-            "image": "",
-            "column_count": "6"
+            "rotation": 0
           }
         }
       },
@@ -338,14 +346,24 @@
       ],
       "settings": {
         "color_scheme": "scheme-3",
+        "reveal_on_scroll": true,
+        "separate_section_with_border": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "text_alignment": "center",
         "subheading": "Visit Us in Dearborn",
         "title": "Step inside the store.",
         "content": "<p>Curated streetwear, signature pieces, and the latest arrivals on the floor every week.</p><p><strong>2301 S Telegraph Rd</strong><br>Dearborn, MI 48124</p><p><strong>Mon – Sat:</strong> 10am – 9pm<br><strong>Sunday:</strong> 11am – 7pm</p><p><strong>(313) 561-1600</strong></p>",
-        "button_text": "Get Directions",
-        "button_link": "https://maps.google.com/?q=2301+S+Telegraph+Rd+Dearborn+MI",
-        "button_style": "solid",
-        "text_position": "media_left",
-        "section_width": "lg"
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid"
       }
     },
     "bestsellers": {
@@ -412,12 +430,13 @@
       ],
       "settings": {
         "color_scheme": "scheme-3",
-        "image": "",
         "image_size": "lg",
         "allow_transparent_header": false,
         "reveal_on_scroll": true,
         "remove_vertical_spacing": false,
-        "text_position": "place-self-center-center text-center",
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
         "overlay_color": "#000000",
         "overlay_opacity": 30
       }
@@ -458,12 +477,12 @@
         "color_scheme": "scheme-3",
         "separate_section_with_border": false,
         "image_size": "md",
-        "image": "",
         "subheading": "Stay in the Loop",
         "title": "First in line for every drop.",
         "content": "<p>Sign up for early access to in-store events, restocks, and exclusive Detroit drops.</p>",
         "button_text": "Subscribe",
-        "overlay_color": "#000000"
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
       }
     }
   },
