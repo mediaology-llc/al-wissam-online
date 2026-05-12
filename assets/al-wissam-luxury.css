@@ -2240,25 +2240,47 @@ body .shopify-section--header .header {
    the link columns and pushes the promo image off to one side. We
    want the link columns aligned to the LEFT and the image slot
    sitting to their RIGHT. */
+/* Mega-menu: full-bleed layout where the link columns are spread
+   evenly across the panel and the promo image is anchored to the
+   right edge. Behaviour:
+   - Column 1 hugs the left edge (after container gutter padding)
+   - Columns 2 through N are distributed with even gaps between
+     each pair (justify-content: space-between inside a stretched
+     linklist)
+   - Promo image (or empty placeholder) sits at the far right edge
+     at its fixed 320px width
+   No more crowded-to-the-left feel. */
 .mega-menu {
   justify-content: flex-start !important;
-  gap: 4rem !important;
+  gap: 0 !important;
   padding-inline-start: max(var(--container-gutter), 2.5rem) !important;
   padding-inline-end: max(var(--container-gutter), 2.5rem) !important;
+  align-items: start !important;
 }
 .mega-menu__linklist {
-  flex-shrink: 0;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+  gap: 2rem !important;
+  margin-inline-end: 2.5rem !important;
+}
+.mega-menu__linklist > * {
+  flex: 0 0 auto !important;
+  max-width: none !important;
 }
 
-/* Push the promo image (when uploaded) to the right end of the panel
-   so it sits opposite the link columns instead of crowding them. */
+/* Promo image stays a fixed-width tile on the right. flex-grow:0 so
+   it never expands; the linklist above does all the growing. */
 .mega-menu__promo {
-  margin-inline-start: auto;
+  margin-inline-start: 0 !important;
   align-self: stretch;
   display: flex;
   align-items: stretch;
   width: 320px;
-  flex-shrink: 0;
+  flex: 0 0 320px !important;
 }
 .mega-menu__promo > * {
   width: 100%;
@@ -2283,8 +2305,8 @@ body .shopify-section--header .header {
   display: block;
   width: 320px;
   aspect-ratio: 4 / 5;
-  flex-shrink: 0;
-  margin-inline-start: auto;
+  flex: 0 0 320px;
+  margin-inline-start: 0;
   align-self: start;
   background:
     linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%),
