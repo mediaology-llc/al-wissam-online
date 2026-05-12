@@ -75,7 +75,8 @@
         "brand-3": {
           "type": "brand",
           "settings": {
-            "fallback_text": "New Balance",
+            "image": "shopify://shop_images/Brands_Home_Page_Slider_Logos-04.png",
+            "fallback_text": "HVMAN",
             "link": "shopify://collections/all"
           }
         },
