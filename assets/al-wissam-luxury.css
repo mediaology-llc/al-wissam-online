@@ -562,11 +562,23 @@ html.aw-brand-retail {
    Distinct from AL WISSAM (dark luxe) and Lil Woo (white minimal).
    ============================================================ */
 
-/* ---------- Page surface ---------- */
-html.aw-brand-retail body,
-html.aw-brand-retail .shopify-section--main-page .section-spacing {
-  background-color: var(--aw-retail-cream);
-  color: #0a0a0a;
+/* ---------- Page surface ----------
+   JSON page templates don't wrap in .shopify-section--main-page, so
+   the previous selector was inert. Force the body white directly and
+   override each section wrapper's default color-scheme on the retail
+   page. Sections that intentionally apply scheme-3 inside (e.g. the
+   lookbook category cards) keep their own dark blocks — only the
+   page surface and the inter-section gaps go white. */
+html.aw-brand-retail,
+html.aw-brand-retail body {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+html.aw-brand-retail body > .shopify-section {
+  background-color: #ffffff;
+}
+html.aw-brand-retail .color-scheme--scheme-1 {
+  background-color: #ffffff !important;
 }
 
 /* ---------- Brand switcher: matches Lil Woo (white-on-cream) ---------- */
@@ -799,14 +811,109 @@ html.aw-brand-retail #retail-visit-card .visit-card__cta:hover {
   border-color: var(--aw-gold);
 }
 
-/* ---------- "Shop Top Brands" — horizontal logo rail ---------- */
-/* media-grid blocks displayed inline on a cream surface; logos sit
-   centred in each tile with no overlay text. The merchant uploads
-   each brand's logo image to a block. */
-html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(6)) .section-spacing,
-html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(7)) .section-spacing,
-html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(8)) .section-spacing {
-  background-color: var(--aw-retail-cream);
+/* ---------- "Shop Top Brands" — horizontal logo slider ----------
+   Custom-liquid section (#retail-brand-slider) houses a hand-rolled
+   horizontal scroller with prev/next arrows. Each .slide is a
+   fixed-width tile the merchant fills with a brand logo image (or
+   text fallback). Uses native scroll-snap + JS scrollBy() for the
+   arrow buttons — no carousel library needed. */
+html.aw-brand-retail #retail-brand-slider {
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  background: #ffffff;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__title {
+  font-size: 0.875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #0a0a0a;
+  margin: 0 0 2rem 0;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: var(--container-lg-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__nav {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #0a0a0a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__nav:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--aw-gold);
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__nav svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__track {
+  flex: 1 1 auto;
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 0.5rem 0;
+  min-width: 0;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__track::-webkit-scrollbar {
+  display: none;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__slide {
+  flex: 0 0 auto;
+  width: clamp(7rem, 13vw, 11rem);
+  height: 4.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  color: #0a0a0a;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__slide:hover {
+  opacity: 0.55;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__view-all {
+  display: inline-block;
+  margin-top: 2rem;
+  padding-bottom: 4px;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-bottom: 1px solid #0a0a0a;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__view-all:hover {
+  color: var(--aw-gold);
+  border-bottom-color: var(--aw-gold);
 }
 
 /* ---------- "Shop By Category" — 5-up grid, lookbook style ---------- */

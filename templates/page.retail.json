@@ -45,148 +45,10 @@
         "controls_color": "#ffffff"
       }
     },
-    "visit-card": {
+    "brand-slider": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div id=\"retail-visit-card\">\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 21s-7-7.2-7-12a7 7 0 1 1 14 0c0 4.8-7 12-7 12z\"/><circle cx=\"12\" cy=\"9\" r=\"2.5\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Visit Us in Dearborn</span>\n      <span class=\"visit-card__value\">2301 S Telegraph Rd<br>Dearborn, MI 48124</span>\n    </div>\n  </div>\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Store Hours</span>\n      <span class=\"visit-card__value\">Mon – Sat: 10am – 9pm<br>Sunday: 11am – 7pm</span>\n    </div>\n  </div>\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Call Us</span>\n      <span class=\"visit-card__value\">(313) 561-1600</span>\n    </div>\n  </div>\n  <a class=\"visit-card__cta\" href=\"https://maps.google.com/?q=2301+S+Telegraph+Rd+Dearborn+MI\" target=\"_blank\" rel=\"noopener\">Get Directions</a>\n</div>"
-      }
-    },
-    "shop-top-brands": {
-      "type": "media-grid",
-      "blocks": {
-        "brand-1": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-1",
-            "image": "",
-            "column_count": "2",
-            "row_count": 1,
-            "add_padding": true,
-            "title": "Brand 1",
-            "heading_tag": "h6",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-center-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "brand-2": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-1",
-            "image": "",
-            "column_count": "2",
-            "row_count": 1,
-            "add_padding": true,
-            "title": "Brand 2",
-            "heading_tag": "h6",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-center-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "brand-3": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-1",
-            "image": "",
-            "column_count": "2",
-            "row_count": 1,
-            "add_padding": true,
-            "title": "Brand 3",
-            "heading_tag": "h6",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-center-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "brand-4": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-1",
-            "image": "",
-            "column_count": "2",
-            "row_count": 1,
-            "add_padding": true,
-            "title": "Brand 4",
-            "heading_tag": "h6",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-center-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "brand-5": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-1",
-            "image": "",
-            "column_count": "2",
-            "row_count": 1,
-            "add_padding": true,
-            "title": "Brand 5",
-            "heading_tag": "h6",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-center-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        },
-        "brand-6": {
-          "type": "image",
-          "settings": {
-            "color_scheme": "scheme-1",
-            "image": "",
-            "column_count": "2",
-            "row_count": 1,
-            "add_padding": true,
-            "title": "Brand 6",
-            "heading_tag": "h6",
-            "content": "",
-            "link_text": "",
-            "link_url": "shopify://collections/all",
-            "link_style": "link",
-            "text_position": "place-self-center-center text-center",
-            "overlay_color": "#000000",
-            "overlay_opacity": 0
-          }
-        }
-      },
-      "block_order": [
-        "brand-1",
-        "brand-2",
-        "brand-3",
-        "brand-4",
-        "brand-5",
-        "brand-6"
-      ],
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "desktop_row_height": 120,
-        "mobile_row_height": 100,
-        "section_width": "lg",
-        "spacing": "md",
-        "subheading": "",
-        "title": "Shop Top Brands",
-        "content": ""
+        "custom_liquid": "<div id=\"retail-brand-slider\" data-brand-slider>\n  <h2 class=\"retail-brand-slider__title\">Shop Top Brands</h2>\n  <div class=\"retail-brand-slider__wrap\">\n    <button type=\"button\" class=\"retail-brand-slider__nav retail-brand-slider__nav--prev\" aria-label=\"Previous brands\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M15 6l-6 6 6 6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>\n    <div class=\"retail-brand-slider__track\" data-brand-slider-track>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Nike</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Adidas</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">New Balance</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">The North Face</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Carhartt</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Essentials</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">True Religion</a>\n      <a href=\"/collections/all\" class=\"retail-brand-slider__slide\">Gallery Dept.</a>\n    </div>\n    <button type=\"button\" class=\"retail-brand-slider__nav retail-brand-slider__nav--next\" aria-label=\"Next brands\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M9 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>\n  </div>\n  <a href=\"/collections/all\" class=\"retail-brand-slider__view-all\">View all brands</a>\n</div>\n<script>\n(function(){\n  var sliders = document.querySelectorAll('[data-brand-slider]');\n  sliders.forEach(function(s){\n    var track = s.querySelector('[data-brand-slider-track]');\n    var prev = s.querySelector('.retail-brand-slider__nav--prev');\n    var next = s.querySelector('.retail-brand-slider__nav--next');\n    if(!track||!prev||!next) return;\n    var scrollByAmt = function(dir){\n      var w = track.clientWidth;\n      track.scrollBy({left: dir * (w * 0.8), behavior: 'smooth'});\n    };\n    prev.addEventListener('click', function(){ scrollByAmt(-1); });\n    next.addEventListener('click', function(){ scrollByAmt(1); });\n  });\n})();\n</script>"
       }
     },
     "shop-by-category": {
@@ -363,8 +225,7 @@
   },
   "order": [
     "hero",
-    "visit-card",
-    "shop-top-brands",
+    "brand-slider",
     "shop-by-category",
     "trust-icons"
   ]
