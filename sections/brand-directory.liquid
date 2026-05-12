@@ -3,27 +3,62 @@
   BRAND DIRECTORY  (retail skin — /pages/brands)
   ----------------------------------------------------------------------------------------------------------------------
 
-  A-Z brand index that auto-populates from Shopify product vendors.
+  A-Z brand index. Two sources merged:
 
-  Behaviour:
-    - Iterates collections.all.products → maps to vendor → uniq → sort
-    - Each vendor links to its automatic vendor collection via the
-      url_for_vendor filter, so clicking "Nike" shows only Nike's
-      products at /collections/vendors?q=Nike (Shopify-built).
-    - Filter bar lets visitors jump to a letter; empty letters dim.
-    - No manual data entry — new vendors appear here automatically
-      as soon as a product is tagged with that vendor in admin.
+  1. AUTO  — `collections.all.products | map: 'vendor' | uniq` walks
+             the store's product list and harvests every unique vendor
+             it can see. Picks up new vendors automatically the second
+             a product is tagged with one in admin.
 
-  Limitations:
-    - collections.all paginates internally; sections see the first
-      page worth of products (currently 50 by default). For most
-      Detroit retail catalogs this covers every vendor. If the store
-      grows past that limit and vendors start dropping off the list,
-      switch the loop to use `paginate` over collections.all.products.
+             Limitation: Shopify paginates collections.all.products at
+             50 per page inside section render. Vendors that only
+             appear on products past page 1 don't get included.
+
+  2. MANUAL — Each section block adds one extra brand to the list.
+             Use these to fill in vendors the auto-discovery missed
+             (large catalogs), or to add brands that don't have a
+             product tagged in Shopify yet ("coming soon" brands).
+
+             A block-defined brand can either point at the standard
+             vendor collection (leave Link blank) or override with a
+             custom URL (Link filled).
+
+  Merge: auto list + manual names, case-insensitive dedupe, natural
+  alphabetic sort, bucket into A-Z + #. Empty letters dim their
+  filter pill.
 {%- endcomment -%}
 
 {%- assign alphabet = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#' | split: ',' -%}
-{%- assign vendors = collections.all.products | map: 'vendor' | uniq | sort_natural -%}
+
+{%- comment -%} ---------- Build merged vendor list ---------- {%- endcomment -%}
+{%- assign auto_vendors = collections.all.products | map: 'vendor' | uniq -%}
+
+{%- assign all_names = '' -%}
+{%- assign seen_keys = '|' -%}
+
+{%- if section.settings.auto_populate -%}
+  {%- for v in auto_vendors -%}
+    {%- assign v_clean = v | strip -%}
+    {%- if v_clean == blank -%}{%- continue -%}{%- endif -%}
+    {%- assign key = '|' | append: v_clean | downcase | append: '|' -%}
+    {%- unless seen_keys contains key -%}
+      {%- assign seen_keys = seen_keys | append: v_clean | downcase | append: '|' -%}
+      {%- assign all_names = all_names | append: v_clean | append: '«SEP»' -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- for block in section.blocks -%}
+  {%- assign b_name = block.settings.name | strip -%}
+  {%- if b_name == blank -%}{%- continue -%}{%- endif -%}
+  {%- assign key = '|' | append: b_name | downcase | append: '|' -%}
+  {%- unless seen_keys contains key -%}
+    {%- assign seen_keys = seen_keys | append: b_name | downcase | append: '|' -%}
+    {%- assign all_names = all_names | append: b_name | append: '«SEP»' -%}
+  {%- endunless -%}
+{%- endfor -%}
+
+{%- assign vendors = all_names | split: '«SEP»' | sort_natural -%}
 
 <div class="brand-directory" data-brand-directory>
   <div class="brand-directory__inner">
@@ -65,14 +100,32 @@
             {%- if vendor_name == blank -%}{%- continue -%}{%- endif -%}
 
             {%- assign first_char = vendor_name | slice: 0, 1 | upcase -%}
+            {%- assign is_letter_group = false -%}
             {%- if letter == '#' -%}
               {%- unless 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains first_char -%}
-                {%- assign group_count = group_count | plus: 1 -%}
-                {%- capture group_html -%}{{ group_html }}<a href="{{ vendor_name | url_for_vendor }}" class="brand-directory__brand">{{ vendor_name | escape }}</a>{%- endcapture -%}
+                {%- assign is_letter_group = true -%}
               {%- endunless -%}
             {%- elsif first_char == letter -%}
+              {%- assign is_letter_group = true -%}
+            {%- endif -%}
+
+            {%- if is_letter_group -%}
+              {%- comment -%}
+                If a block matches this vendor by name (case-insens.),
+                use its overridden Link. Otherwise fall back to the
+                vendor's automatic collection.
+              {%- endcomment -%}
+              {%- assign vendor_url = vendor_name | url_for_vendor -%}
+              {%- for block in section.blocks -%}
+                {%- assign bn = block.settings.name | strip | downcase -%}
+                {%- if bn == vendor_name | downcase and block.settings.link != blank -%}
+                  {%- assign vendor_url = block.settings.link -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+
               {%- assign group_count = group_count | plus: 1 -%}
-              {%- capture group_html -%}{{ group_html }}<a href="{{ vendor_name | url_for_vendor }}" class="brand-directory__brand">{{ vendor_name | escape }}</a>{%- endcapture -%}
+              {%- capture group_html -%}{{ group_html }}<a href="{{ vendor_url }}" class="brand-directory__brand">{{ vendor_name | escape }}</a>{%- endcapture -%}
             {%- endif -%}
           {%- endfor -%}
 
@@ -99,7 +152,6 @@
         var filters = dir.querySelectorAll('[data-letter]');
         var groups = dir.querySelectorAll('[data-letter-group]');
 
-        // Dim filter buttons whose letter has no vendors.
         var presentLetters = {};
         groups.forEach(function (g) { presentLetters[g.dataset.letterGroup] = true; });
         filters.forEach(function (btn) {
@@ -114,7 +166,6 @@
         filters.forEach(function (btn) {
           btn.addEventListener('click', function () {
             if (btn.classList.contains('brand-directory__filter--empty')) return;
-
             var letter = btn.dataset.letter;
             filters.forEach(function (f) {
               f.classList.remove('brand-directory__filter--active');
@@ -122,7 +173,6 @@
             });
             btn.classList.add('brand-directory__filter--active');
             btn.setAttribute('aria-selected', 'true');
-
             groups.forEach(function (g) {
               if (letter === 'all' || g.dataset.letterGroup === letter) {
                 g.removeAttribute('hidden');
@@ -155,16 +205,40 @@
       "default": "Brands"
     },
     {
-      "type": "paragraph",
-      "content": "Brands populate automatically from each product's Vendor field in Shopify admin. Clicking a brand opens that vendor's automatic collection (only that vendor's products)."
+      "type": "checkbox",
+      "id": "auto_populate",
+      "label": "Auto-populate from product vendors",
+      "info": "Pulls unique vendor names off products in your store. Shopify pages this at ~50 products per render — for larger catalogs, add the missing brands as blocks below.",
+      "default": true
     },
     {
       "type": "text",
       "id": "empty_message",
       "label": "Empty-state message",
-      "info": "Shown when no products have vendors set."
+      "info": "Shown when neither auto nor manual brands resolve to anything."
     }
   ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand (manual entry)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand name",
+          "info": "Required. Used for sorting, lettering, and the link label."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)",
+          "info": "Leave blank to use the vendor's automatic collection URL."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 250,
   "presets": [
     {
       "name": "Brand directory",
