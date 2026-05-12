@@ -16,27 +16,27 @@
           "type": "video",
           "settings": {
             "video": "shopify://files/videos/Dearborn Store Shopping.mov",
-            "allow_sound": true,
-            "subheading": "Tell your story",
-            "title": "Video slide",
-            "mobile_text_position": "place-self-center text-center",
-            "desktop_text_position": "sm:place-self-center sm:text-center",
-            "content_max_width": 780,
-            "button_1_text": "",
-            "button_1_link": "",
+            "allow_sound": false,
+            "subheading": "Dearborn, Michigan",
+            "title": "Al Wissam\nRetail Store.",
+            "mobile_text_position": "place-self-center-start text-start",
+            "desktop_text_position": "sm:place-self-center-start sm:text-start",
+            "content_max_width": 680,
+            "button_1_text": "Shop New Arrivals",
+            "button_1_link": "shopify://collections/all",
             "button_1_style": "solid",
             "button_1_background": "#ffffff",
-            "button_1_text_color": "#000000",
-            "button_2_text": "",
-            "button_2_link": "",
+            "button_1_text_color": "#0a0a0a",
+            "button_2_text": "Shop by Brand",
+            "button_2_link": "shopify://collections/all",
             "button_2_style": "outline",
-            "button_2_background": "#ffffff",
-            "button_2_text_color": "#000000",
-            "background": "",
-            "background_opacity": 50,
+            "button_2_background": "rgba(0,0,0,0)",
+            "button_2_text_color": "#ffffff",
+            "background": "#0a0a0a",
+            "background_opacity": 0,
             "text_color": "#ffffff",
-            "border_color": "",
-            "gradient_overlay": "linear-gradient(180deg, rgba(54, 54, 54, 0.2), rgba(4, 4, 4, 0.65) 100%)"
+            "border_color": "rgba(0,0,0,0)",
+            "gradient_overlay": "linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.30) 45%, rgba(0, 0, 0, 0) 75%)"
           }
         }
       },
@@ -53,6 +53,12 @@
         "cycle_speed": 7,
         "background": "#0a0a0a",
         "controls_color": "#ffffff"
+      }
+    },
+    "visit-card": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div id=\"retail-visit-card\">\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 21s-7-7.2-7-12a7 7 0 1 1 14 0c0 4.8-7 12-7 12z\"/><circle cx=\"12\" cy=\"9\" r=\"2.5\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Visit Us in Dearborn</span>\n      <span class=\"visit-card__value\">2301 S Telegraph Rd<br>Dearborn, MI 48124</span>\n    </div>\n  </div>\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Store Hours</span>\n      <span class=\"visit-card__value\">Mon – Sat: 10am – 9pm<br>Sunday: 11am – 7pm</span>\n    </div>\n  </div>\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Call Us</span>\n      <span class=\"visit-card__value\">(313) 561-1600</span>\n    </div>\n  </div>\n  <a class=\"visit-card__cta\" href=\"https://maps.google.com/?q=2301+S+Telegraph+Rd+Dearborn+MI\" target=\"_blank\" rel=\"noopener\">Get Directions</a>\n</div>"
       }
     },
     "brand-slider": {
@@ -245,7 +251,7 @@
         "separate_section_with_border": false,
         "desktop_row_height": 360,
         "mobile_row_height": 240,
-        "section_width": "lg",
+        "section_width": "full",
         "spacing": "md",
         "subheading": "",
         "title": "Shop by Category",
@@ -355,7 +361,7 @@
         "store-photo"
       ],
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "reveal_on_scroll": true,
         "separate_section_with_border": true,
         "media_position_desktop": "before_text",
@@ -439,7 +445,7 @@
         "button-1"
       ],
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "image_size": "lg",
         "allow_transparent_header": false,
         "reveal_on_scroll": true,
@@ -484,7 +490,7 @@
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "separate_section_with_border": false,
         "image_size": "md",
         "subheading": "Stay in the Loop",
@@ -498,6 +504,7 @@
   },
   "order": [
     "hero",
+    "visit-card",
     "brand-slider",
     "shop-by-category",
     "trust-icons",

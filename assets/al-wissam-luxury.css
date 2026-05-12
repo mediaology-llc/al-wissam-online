@@ -848,9 +848,21 @@ html.aw-brand-retail #retail-brand-slider .retail-brand-slider__wrap {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  max-width: var(--container-lg-max-width);
+  /* Full viewport width with comfortable inner padding so the
+     leftmost and rightmost logos don't touch the screen edges. */
+  max-width: none;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding-inline: clamp(1.5rem, 4vw, 3rem);
+  box-sizing: border-box;
+}
+html.aw-brand-retail #retail-brand-slider .retail-brand-slider__title {
+  /* Centred title block — also full width with the same padding so
+     the underline / type aligns to the slider track below. */
+  text-align: center;
+  width: 100%;
+  padding-inline: clamp(1.5rem, 4vw, 3rem);
+  box-sizing: border-box;
 }
 html.aw-brand-retail #retail-brand-slider .retail-brand-slider__nav {
   width: 2.5rem;
@@ -1039,6 +1051,43 @@ html.aw-brand-retail .announcement-bar {
   color: #ffffff !important;
   --background: 10 10 10 !important;
   --text-color: 255 255 255 !important;
+}
+
+/* ----------------------------------------------------------------
+   Retail page: full-bleed sections with inner padding.
+   When section_width: full is set, Prestige drops the container
+   max-width, but content can end up flush against the viewport
+   edge. These rules add comfortable inner padding so the layout
+   reads as full-width but breathes.
+   ---------------------------------------------------------------- */
+html.aw-brand-retail .shopify-section--media-grid > .section-spacing,
+html.aw-brand-retail .shopify-section--featured-collections > .section-spacing,
+html.aw-brand-retail .shopify-section--multiple-media-with-text > .section-spacing,
+html.aw-brand-retail .shopify-section--image-with-text-overlay > .section-spacing,
+html.aw-brand-retail .shopify-section--text-with-icons > .section-spacing,
+html.aw-brand-retail .shopify-section--newsletter > .section-spacing {
+  padding-inline: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Ensure the previously-dark sections (now flipped to scheme-1)
+   actually paint white. Some Prestige defaults can keep a darker
+   tone bleeding through the color-scheme wrapper — pin the surface
+   explicitly. */
+html.aw-brand-retail .shopify-section--multiple-media-with-text,
+html.aw-brand-retail .shopify-section--multiple-media-with-text .color-scheme,
+html.aw-brand-retail .shopify-section--image-with-text-overlay,
+html.aw-brand-retail .shopify-section--image-with-text-overlay .color-scheme,
+html.aw-brand-retail .shopify-section--newsletter,
+html.aw-brand-retail .shopify-section--newsletter .color-scheme {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  --background: 255 255 255 !important;
+  --text-color: 10 10 10 !important;
+}
+/* And cancel any dark overlay images placeholder gradient too */
+html.aw-brand-retail .shopify-section--newsletter .content-over-media,
+html.aw-brand-retail .shopify-section--image-with-text-overlay .content-over-media {
+  background-color: #ffffff;
 }
 
 /* Retail hero video: force silent. Shopify defaults a new slideshow
