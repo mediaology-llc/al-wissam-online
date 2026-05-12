@@ -115,7 +115,8 @@
         "brand-8": {
           "type": "brand",
           "settings": {
-            "fallback_text": "Gallery Dept.",
+            "image": "shopify://shop_images/Brands_Home_Page_Slider_Logos-05.png",
+            "fallback_text": "CULT of Individuality",
             "link": "shopify://collections/all"
           }
         }
