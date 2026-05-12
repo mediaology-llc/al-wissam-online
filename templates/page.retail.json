@@ -291,12 +291,192 @@
         "icon_size": "sm",
         "icon_color": "#0a0a0a"
       }
+    },
+    "new-drop": {
+      "type": "featured-collections",
+      "blocks": {
+        "drop": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "products_count": 6,
+            "title": "New Drop",
+            "link_url": "shopify://collections/all",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "drop"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "visit-us": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "store-photo": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "column_count": "6"
+          }
+        }
+      },
+      "block_order": [
+        "store-photo"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "subheading": "Visit Us in Dearborn",
+        "title": "Step inside the store.",
+        "content": "<p>Curated streetwear, signature pieces, and the latest arrivals on the floor every week.</p><p><strong>2301 S Telegraph Rd</strong><br>Dearborn, MI 48124</p><p><strong>Mon – Sat:</strong> 10am – 9pm<br><strong>Sunday:</strong> 11am – 7pm</p><p><strong>(313) 561-1600</strong></p>",
+        "button_text": "Get Directions",
+        "button_link": "https://maps.google.com/?q=2301+S+Telegraph+Rd+Dearborn+MI",
+        "button_style": "solid",
+        "text_position": "media_left",
+        "section_width": "lg"
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collections",
+      "blocks": {
+        "best": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "products_count": 6,
+            "title": "Bestsellers",
+            "link_url": "shopify://collections/all",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "best"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "the-experience": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "subheading-1": {
+          "type": "subheading",
+          "settings": {
+            "text": "The Retail Experience"
+          }
+        },
+        "heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Built for Detroit.",
+            "heading_tag": "h2"
+          }
+        },
+        "button-1": {
+          "type": "button",
+          "settings": {
+            "style": "outline",
+            "text": "Plan your visit",
+            "url": "https://maps.google.com/?q=2301+S+Telegraph+Rd+Dearborn+MI",
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "subheading-1",
+        "heading-1",
+        "button-1"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "image": "",
+        "image_size": "lg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": false,
+        "text_position": "place-self-center-center text-center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "trending-now": {
+      "type": "featured-collections",
+      "blocks": {
+        "trend": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "products_count": 6,
+            "title": "Trending Now",
+            "link_url": "shopify://collections/all",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "trend"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "separate_section_with_border": false,
+        "image_size": "md",
+        "image": "",
+        "subheading": "Stay in the Loop",
+        "title": "First in line for every drop.",
+        "content": "<p>Sign up for early access to in-store events, restocks, and exclusive Detroit drops.</p>",
+        "button_text": "Subscribe",
+        "overlay_color": "#000000"
+      }
     }
   },
   "order": [
     "hero",
     "brand-slider",
     "shop-by-category",
-    "trust-icons"
+    "trust-icons",
+    "new-drop",
+    "visit-us",
+    "bestsellers",
+    "the-experience",
+    "trending-now",
+    "newsletter"
   ]
 }
