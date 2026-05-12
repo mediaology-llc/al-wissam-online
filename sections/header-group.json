@@ -11,6 +11,23 @@
   "type": "header",
   "name": "Header group",
   "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg-shipping": {
+          "type": "message",
+          "settings": {
+            "text": "FREE SHIPPING ON ORDERS $150+"
+          }
+        }
+      },
+      "block_order": [
+        "msg-shipping"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3"
+      }
+    },
     "brand-switcher": {
       "type": "brand-switcher",
       "blocks": {
@@ -120,6 +137,7 @@
     }
   },
   "order": [
+    "announcement-bar",
     "brand-switcher",
     "header"
   ]

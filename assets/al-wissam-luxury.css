@@ -1041,6 +1041,18 @@ html.aw-brand-retail .announcement-bar {
   --text-color: 255 255 255 !important;
 }
 
+/* Retail hero video: force silent. Shopify defaults a new slideshow
+   video block to allow_sound: true, which surfaces a volume icon
+   even though the video itself is muted for autoplay. Hide the
+   control across the retail skin so the hero stays clean. The
+   <video> tag's `muted` attribute is already set by media.liquid
+   when autoplay is true (Prestige default), so audio never plays
+   regardless of this CSS. */
+html.aw-brand-retail .slideshow__volume-control,
+html.aw-brand-retail .shopify-section--slideshow .slideshow__volume-control {
+  display: none !important;
+}
+
 /* ============================================================
    BRAND DIRECTORY — /pages/brands (templates/page.brands.json)
    A-Z brand index. Base layout works on any skin; retail-scoped
