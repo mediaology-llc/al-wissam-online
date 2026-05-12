@@ -2240,40 +2240,37 @@ body .shopify-section--header .header {
    the link columns and pushes the promo image off to one side. We
    want the link columns aligned to the LEFT and the image slot
    sitting to their RIGHT. */
-/* Mega-menu: full-bleed layout where the link columns are spread
-   evenly across the panel and the promo image is anchored to the
-   right edge. Behaviour:
-   - Column 1 hugs the left edge (after container gutter padding)
-   - Columns 2 through N are distributed with even gaps between
-     each pair (justify-content: space-between inside a stretched
-     linklist)
-   - Promo image (or empty placeholder) sits at the far right edge
-     at its fixed 320px width
-   No more crowded-to-the-left feel. */
+/* Mega-menu: every column + the promo image are treated as siblings
+   on a single flex row with justify-content: space-between, so the
+   gaps between Outerwear → Tops → Bottoms → Accessories → Image are
+   all identical. The image reads as a 5th column instead of being
+   a separately-spaced trailing tile.
+
+   Trick: the linklist <ul> uses display: contents so its <li>
+   column items become direct flex children of .mega-menu alongside
+   the .mega-menu__promo div. flex with space-between distributes
+   them uniformly across the panel width. */
 .mega-menu {
-  justify-content: flex-start !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: start !important;
+  flex-wrap: nowrap !important;
   gap: 0 !important;
   padding-inline-start: max(var(--container-gutter), 2.5rem) !important;
   padding-inline-end: max(var(--container-gutter), 2.5rem) !important;
-  align-items: start !important;
 }
 .mega-menu__linklist {
-  flex: 1 1 auto !important;
-  min-width: 0 !important;
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  justify-content: space-between !important;
-  gap: 2rem !important;
-  margin-inline-end: 2.5rem !important;
+  display: contents !important;
 }
 .mega-menu__linklist > * {
   flex: 0 0 auto !important;
   max-width: none !important;
 }
 
-/* Promo image stays a fixed-width tile on the right. flex-grow:0 so
-   it never expands; the linklist above does all the growing. */
+/* Promo image: fixed-width flex item, same as the column items.
+   Sits at the right end and participates in space-between alongside
+   the columns. */
 .mega-menu__promo {
   margin-inline-start: 0 !important;
   align-self: stretch;
