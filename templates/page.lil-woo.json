@@ -313,11 +313,71 @@
         "separate_section_with_border": false,
         "desktop_row_height": 380,
         "mobile_row_height": 260,
-        "section_width": "lg",
+        "section_width": "full",
         "spacing": "md",
         "subheading": "",
         "title": "Explore the Collection",
         "content": ""
+      }
+    },
+    "most-loved": {
+      "type": "featured-collections",
+      "blocks": {
+        "loved": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "products_count": 6,
+            "title": "Most Loved",
+            "link_url": "shopify://collections/all",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "loved"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
+      }
+    },
+    "just-restocked": {
+      "type": "featured-collections",
+      "blocks": {
+        "restocked": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "products_count": 6,
+            "title": "Just Restocked",
+            "link_url": "shopify://collections/all",
+            "link_text": "View all"
+          }
+        }
+      },
+      "block_order": [
+        "restocked"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "hide_product_information": false,
+        "stack_products": true,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 6,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "hide_collection_title": false
       }
     },
     "feature-video": {
@@ -363,6 +423,8 @@
     "shop-by-category",
     "new-drop",
     "feature-video",
-    "explore-collections"
+    "explore-collections",
+    "most-loved",
+    "just-restocked"
   ]
 }
