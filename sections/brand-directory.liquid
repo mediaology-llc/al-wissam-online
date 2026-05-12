@@ -3,36 +3,33 @@
   BRAND DIRECTORY  (retail skin — /pages/brands)
   ----------------------------------------------------------------------------------------------------------------------
 
-  A-Z brand index. Each brand is a schema block edited in the theme
-  customizer (name + link URL).
+  A-Z brand index that auto-populates from Shopify product vendors.
 
-  Layout:
-    BRANDS
-    [ALL] A B C D … Z #         <- letter filter pills
-    ─────────────────────────
-    A   Al Wissam   Anti Social Club   …
-    ─────────────────────────
-    B   Bagmores   …
-    ─────────────────────────
+  Behaviour:
+    - Iterates collections.all.products → maps to vendor → uniq → sort
+    - Each vendor links to its automatic vendor collection via the
+      url_for_vendor filter, so clicking "Nike" shows only Nike's
+      products at /collections/vendors?q=Nike (Shopify-built).
+    - Filter bar lets visitors jump to a letter; empty letters dim.
+    - No manual data entry — new vendors appear here automatically
+      as soon as a product is tagged with that vendor in admin.
 
-  Filter buttons hide all groups except the chosen letter. "ALL"
-  shows every group. Logic lives in the inline IIFE at the bottom.
-
-  Group bucketing: each block's first character is uppercased; if
-  it's not A-Z it falls into the "#" bucket (for numerics / symbols).
+  Limitations:
+    - collections.all paginates internally; sections see the first
+      page worth of products (currently 50 by default). For most
+      Detroit retail catalogs this covers every vendor. If the store
+      grows past that limit and vendors start dropping off the list,
+      switch the loop to use `paginate` over collections.all.products.
 {%- endcomment -%}
 
 {%- assign alphabet = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#' | split: ',' -%}
+{%- assign vendors = collections.all.products | map: 'vendor' | uniq | sort_natural -%}
 
 <div class="brand-directory" data-brand-directory>
   <div class="brand-directory__inner">
     <h1 class="brand-directory__title">{{ section.settings.title | escape }}</h1>
 
-    {%- comment -%}
-      ---------- A-Z filter bar ----------
-      Render every letter; we'll dim the ones with no brands via CSS
-      after the JS scans the groups on load.
-    {%- endcomment -%}
+    {%- comment -%} ---------- A-Z filter pills ---------- {%- endcomment -%}
     <div class="brand-directory__filters" role="tablist">
       <button
         type="button"
@@ -52,40 +49,41 @@
       {%- endfor -%}
     </div>
 
-    {%- comment -%}
-      ---------- Letter groups ----------
-      Iterate the alphabet; for each letter, walk all blocks and
-      output the ones whose first character matches. Skip the
-      group entirely if it ends up empty.
-    {%- endcomment -%}
+    {%- comment -%} ---------- Letter groups ---------- {%- endcomment -%}
     <div class="brand-directory__list">
-      {%- for letter in alphabet -%}
-        {%- assign group_html = '' -%}
-        {%- assign group_count = 0 -%}
+      {%- if vendors.size == 0 -%}
+        <p class="brand-directory__empty">
+          {{ section.settings.empty_message | default: 'No brands yet. Add a vendor to any product in Shopify admin and it will appear here automatically.' }}
+        </p>
+      {%- else -%}
+        {%- for letter in alphabet -%}
+          {%- assign group_html = '' -%}
+          {%- assign group_count = 0 -%}
 
-        {%- for block in section.blocks -%}
-          {%- assign brand_name = block.settings.name | default: '' | strip -%}
-          {%- if brand_name == blank -%}{%- continue -%}{%- endif -%}
+          {%- for vendor in vendors -%}
+            {%- assign vendor_name = vendor | strip -%}
+            {%- if vendor_name == blank -%}{%- continue -%}{%- endif -%}
 
-          {%- assign first_char = brand_name | slice: 0, 1 | upcase -%}
-          {%- if letter == '#' -%}
-            {%- unless 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains first_char -%}
+            {%- assign first_char = vendor_name | slice: 0, 1 | upcase -%}
+            {%- if letter == '#' -%}
+              {%- unless 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains first_char -%}
+                {%- assign group_count = group_count | plus: 1 -%}
+                {%- capture group_html -%}{{ group_html }}<a href="{{ vendor_name | url_for_vendor }}" class="brand-directory__brand">{{ vendor_name | escape }}</a>{%- endcapture -%}
+              {%- endunless -%}
+            {%- elsif first_char == letter -%}
               {%- assign group_count = group_count | plus: 1 -%}
-              {%- capture group_html -%}{{ group_html }}<a href="{{ block.settings.link | default: '#' }}" class="brand-directory__brand" {{ block.shopify_attributes }}>{{ brand_name | escape }}</a>{%- endcapture -%}
-            {%- endunless -%}
-          {%- elsif first_char == letter -%}
-            {%- assign group_count = group_count | plus: 1 -%}
-            {%- capture group_html -%}{{ group_html }}<a href="{{ block.settings.link | default: '#' }}" class="brand-directory__brand" {{ block.shopify_attributes }}>{{ brand_name | escape }}</a>{%- endcapture -%}
+              {%- capture group_html -%}{{ group_html }}<a href="{{ vendor_name | url_for_vendor }}" class="brand-directory__brand">{{ vendor_name | escape }}</a>{%- endcapture -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if group_count > 0 -%}
+            <div class="brand-directory__group" data-letter-group="{{ letter }}">
+              <div class="brand-directory__letter">{{ letter }}</div>
+              <div class="brand-directory__brands">{{ group_html }}</div>
+            </div>
           {%- endif -%}
         {%- endfor -%}
-
-        {%- if group_count > 0 -%}
-          <div class="brand-directory__group" data-letter-group="{{ letter }}">
-            <div class="brand-directory__letter">{{ letter }}</div>
-            <div class="brand-directory__brands">{{ group_html }}</div>
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -101,9 +99,7 @@
         var filters = dir.querySelectorAll('[data-letter]');
         var groups = dir.querySelectorAll('[data-letter-group]');
 
-        // Dim filter buttons whose letter has no matching brands.
-        // We collect the set of letters that have groups, then
-        // mark every filter that isn't in the set as disabled-look.
+        // Dim filter buttons whose letter has no vendors.
         var presentLetters = {};
         groups.forEach(function (g) { presentLetters[g.dataset.letterGroup] = true; });
         filters.forEach(function (btn) {
@@ -117,7 +113,6 @@
 
         filters.forEach(function (btn) {
           btn.addEventListener('click', function () {
-            // Don't switch to a letter that has nothing
             if (btn.classList.contains('brand-directory__filter--empty')) return;
 
             var letter = btn.dataset.letter;
@@ -158,37 +153,22 @@
       "id": "title",
       "label": "Page title",
       "default": "Brands"
-    }
-  ],
-  "blocks": [
+    },
     {
-      "type": "brand",
-      "name": "Brand",
-      "settings": [
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Brand name"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link",
-          "info": "Vendor collection URL or external page."
-        }
-      ]
+      "type": "paragraph",
+      "content": "Brands populate automatically from each product's Vendor field in Shopify admin. Clicking a brand opens that vendor's automatic collection (only that vendor's products)."
+    },
+    {
+      "type": "text",
+      "id": "empty_message",
+      "label": "Empty-state message",
+      "info": "Shown when no products have vendors set."
     }
   ],
-  "max_blocks": 250,
   "presets": [
     {
       "name": "Brand directory",
-      "category": "Custom",
-      "blocks": [
-        { "type": "brand", "settings": { "name": "Al Wissam" } },
-        { "type": "brand", "settings": { "name": "Brand B" } },
-        { "type": "brand", "settings": { "name": "Brand C" } }
-      ]
+      "category": "Custom"
     }
   ]
 }
