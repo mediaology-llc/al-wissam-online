@@ -218,6 +218,63 @@ html.aw-brand-lil-woo .shopify-section--featured-collections .section-header .li
 }
 
 /* ============================================================
+   LIL WOO — FEATURE VIDEO BAND
+   Cinematic full-bleed video section placed under New Drop on
+   page.lil-woo.json. Uses Prestige's native `video` section with
+   video_size: fill (≈100vh), autoplay+muted+loop for hero-like
+   ambience. We strip any inherited horizontal gutter so it truly
+   spans edge to edge, and layer a soft bottom-up vignette so
+   subtitle + heading read cleanly on bright footage.
+   ============================================================ */
+html.aw-brand-lil-woo .shopify-section--video {
+  /* Defeat the home-page lg-width pin in case it ever scopes
+     here, and any default body gutter. */
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+html.aw-brand-lil-woo .shopify-section--video .section-spacing {
+  padding-block: 0 !important;
+}
+html.aw-brand-lil-woo .shopify-section--video .container,
+html.aw-brand-lil-woo .shopify-section--video > .section-spacing > .container {
+  --container-max-width: 100%;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+html.aw-brand-lil-woo .shopify-section--video .content-over-media {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw); /* full-bleed even inside a constrained parent */
+  position: relative;
+}
+/* Soft bottom-up vignette for caption legibility, hidden behind the video */
+html.aw-brand-lil-woo .shopify-section--video .content-over-media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+/* Keep text + play button above the vignette */
+html.aw-brand-lil-woo .shopify-section--video .content-over-media > .place-self-center {
+  position: relative;
+  z-index: 2;
+}
+/* Heading + subheading typography polish for the Lil Woo skin */
+html.aw-brand-lil-woo .shopify-section--video .prose .h6 {
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--aw-gold);
+  margin-block-end: 0.75rem;
+}
+html.aw-brand-lil-woo .shopify-section--video .prose .h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+/* ============================================================
    LIL WOO PAGE HERO (templates/page.lil-woo.json)
    Full-bleed slideshow with hero image + overlay text + CTA,
    same shape as the AL WISSAM home hero. The slideshow rules

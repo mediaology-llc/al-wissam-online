@@ -221,11 +221,48 @@
         "subheading": "",
         "hide_collection_title": false
       }
+    },
+    "feature-video": {
+      "type": "video",
+      "blocks": {
+        "subheading": {
+          "type": "subheading",
+          "settings": {
+            "text": "The Drop"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "Made for the everyday.",
+            "heading_tag": "h2"
+          }
+        },
+        "play": {
+          "type": "play",
+          "settings": {
+            "icon_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "subheading",
+        "heading",
+        "play"
+      ],
+      "settings": {
+        "autoplay": true,
+        "show_controls": false,
+        "video_size": "fill",
+        "external_video_url": "",
+        "text_color": "#ffffff"
+      }
     }
   },
   "order": [
     "hero",
     "shop-by-category",
-    "new-drop"
+    "new-drop",
+    "feature-video"
   ]
 }
