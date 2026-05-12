@@ -83,7 +83,8 @@
         "brand-4": {
           "type": "brand",
           "settings": {
-            "fallback_text": "The North Face",
+            "image": "shopify://shop_images/Brands_Home_Page_Slider_Logos-09.png",
+            "fallback_text": "Psycho Bunny",
             "link": "shopify://collections/all"
           }
         },
