@@ -18,7 +18,7 @@
             "video": "shopify://files/videos/Dearborn Store Shopping.mov",
             "allow_sound": false,
             "subheading": "Dearborn, Michigan",
-            "title": "Al Wissam\nRetail Store.",
+            "title": "Al WissamRetail Store.",
             "mobile_text_position": "place-self-center-start text-start",
             "desktop_text_position": "sm:place-self-center-start sm:text-start",
             "content_max_width": 680,
@@ -36,7 +36,7 @@
             "background_opacity": 0,
             "text_color": "#ffffff",
             "border_color": "rgba(0,0,0,0)",
-            "gradient_overlay": "linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.30) 45%, rgba(0, 0, 0, 0) 75%)"
+            "gradient_overlay": "linear-gradient(90deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0) 75%)"
           }
         }
       },
@@ -58,7 +58,12 @@
     "visit-card": {
       "type": "custom-liquid",
       "settings": {
-        "custom_liquid": "<div id=\"retail-visit-card\">\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M12 21s-7-7.2-7-12a7 7 0 1 1 14 0c0 4.8-7 12-7 12z\"/><circle cx=\"12\" cy=\"9\" r=\"2.5\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Visit Us in Dearborn</span>\n      <span class=\"visit-card__value\">2301 S Telegraph Rd<br>Dearborn, MI 48124</span>\n    </div>\n  </div>\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3.5 2\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Store Hours</span>\n      <span class=\"visit-card__value\">Mon – Sat: 10am – 9pm<br>Sunday: 11am – 7pm</span>\n    </div>\n  </div>\n  <div class=\"visit-card__row\">\n    <span class=\"visit-card__icon\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/></svg></span>\n    <div>\n      <span class=\"visit-card__label\">Call Us</span>\n      <span class=\"visit-card__value\">(313) 561-1600</span>\n    </div>\n  </div>\n  <a class=\"visit-card__cta\" href=\"https://maps.google.com/?q=2301+S+Telegraph+Rd+Dearborn+MI\" target=\"_blank\" rel=\"noopener\">Get Directions</a>\n</div>"
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<p>Write or copy/paste Liquid code</p>",
+        "text_alignment": "center"
       }
     },
     "brand-slider": {
@@ -323,7 +328,7 @@
         "drop": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "new-arrivals",
             "products_count": 6,
             "title": "New Drop",
             "link_url": "shopify://collections/all",
@@ -388,7 +393,7 @@
         "best": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "mens-shirts",
             "products_count": 6,
             "title": "Bestsellers",
             "link_url": "shopify://collections/all",
@@ -463,7 +468,7 @@
         "trend": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "mens-denim-jeans",
             "products_count": 6,
             "title": "Trending Now",
             "link_url": "shopify://collections/all",
