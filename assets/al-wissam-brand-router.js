@@ -137,11 +137,12 @@
   var BRAND_HOME = {
     'al-wissam': '/',
     'lil-woo': '/pages/lil-woo?view=lil-woo',
-    // The merchant set up a URL redirect from /retail → /pages/retail,
-    // so /retail is the canonical entry point. Path matcher above
-    // detects both /retail and /pages/retail, so the brand skin
-    // resolves correctly either way.
-    'retail': '/retail'
+    // No /retail → /pages/retail redirect exists yet, so we link
+    // straight at the canonical /pages/retail URL. ?view=retail
+    // forces the draft theme to render through page.retail.json
+    // (the admin Theme template dropdown only lists templates from
+    // the published theme — same workaround as lil-woo).
+    'retail': '/pages/retail?view=retail'
   };
   var activeHome = BRAND_HOME[brand] || '/';
 
