@@ -1105,9 +1105,76 @@ html.aw-brand-retail .announcement-bar {
   cursor: default;
 }
 
-/* ---------- Brand list ---------- */
+/* ---------- Brand list ----------
+   While JS pages /products.json the list sits in [data-state="loading"]:
+   the skeleton + "Loading brands…" message are visible. When the
+   render completes, JS swaps data-state="ready" and the skeleton +
+   message are hidden via the rules below — single render, no
+   50→full flicker. */
 .brand-directory__list {
   display: block;
+  position: relative;
+}
+.brand-directory__list[data-state="loading"] .brand-directory__group {
+  display: none;
+}
+.brand-directory__list[data-state="ready"] .brand-directory__skeleton,
+.brand-directory__list[data-state="ready"] .brand-directory__loading,
+.brand-directory__list[data-state="failed"] .brand-directory__skeleton {
+  display: none;
+}
+.brand-directory__skeleton {
+  display: block;
+}
+.brand-directory__skeleton-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding-block: 1.5rem;
+  border-top: 1px solid #e5e5e5;
+}
+.brand-directory__skeleton-letter {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(90deg, #eeeeee 25%, #f5f5f5 50%, #eeeeee 75%);
+  background-size: 200% 100%;
+  animation: brand-directory-shimmer 1.4s ease-in-out infinite;
+  align-self: center;
+}
+.brand-directory__skeleton-brands {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.625rem 1.5rem;
+}
+.brand-directory__skeleton-pill {
+  display: block;
+  height: 1rem;
+  background: linear-gradient(90deg, #eeeeee 25%, #f5f5f5 50%, #eeeeee 75%);
+  background-size: 200% 100%;
+  animation: brand-directory-shimmer 1.4s ease-in-out infinite;
+  border-radius: 2px;
+}
+.brand-directory__loading {
+  position: absolute;
+  inset-block-end: 1rem;
+  inset-inline-start: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999999;
+  font-weight: 600;
+  margin: 0;
+}
+@keyframes brand-directory-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-directory__skeleton-letter,
+  .brand-directory__skeleton-pill {
+    animation: none;
+  }
 }
 .brand-directory__group {
   display: grid;

@@ -27,7 +27,6 @@
 {%- endcomment -%}
 
 {%- assign alphabet = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,#' | split: ',' -%}
-{%- assign initial_vendors = collections.all.products | map: 'vendor' | uniq | sort_natural -%}
 
 <div class="brand-directory" data-brand-directory>
   <div class="brand-directory__inner">
@@ -54,46 +53,61 @@
     </div>
 
     {%- comment -%}
-      ---------- Initial letter groups (Liquid SSR) ----------
-      Renders whatever vendors fit in the first products page so
-      there's instant content before JS finishes fetching the rest.
-      JS replaces this list entirely once /products.json is paged.
+      ---------- Brand list ----------
+      Rendered entirely by JS after /products.json is fully paged
+      through (one render, no 50→full flicker). The skeleton holds
+      the layout height during the ~1–3s fetch so the page doesn't
+      jump. A <noscript> fallback offers the SSR partial list for
+      visitors with JS disabled.
     {%- endcomment -%}
-    <div class="brand-directory__list" data-brand-directory-list>
-      {%- if initial_vendors.size == 0 -%}
-        <p class="brand-directory__empty" data-brand-directory-empty>
-          {{ section.settings.empty_message | default: 'Loading brands…' }}
-        </p>
-      {%- else -%}
+    <div class="brand-directory__list" data-brand-directory-list data-state="loading">
+      <div class="brand-directory__skeleton" aria-hidden="true">
+        {%- for i in (1..6) -%}
+          <div class="brand-directory__skeleton-row">
+            <div class="brand-directory__skeleton-letter"></div>
+            <div class="brand-directory__skeleton-brands">
+              {%- for j in (1..4) -%}
+                <span class="brand-directory__skeleton-pill"></span>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <p class="brand-directory__loading" role="status">
+        {{ section.settings.empty_message | default: 'Loading brands…' }}
+      </p>
+    </div>
+
+    <noscript>
+      {%- assign noscript_vendors = collections.all.products | map: 'vendor' | uniq | sort_natural -%}
+      <div class="brand-directory__list brand-directory__list--noscript">
         {%- for letter in alphabet -%}
-          {%- assign group_count = 0 -%}
-          {%- assign group_html = '' -%}
-          {%- for vendor in initial_vendors -%}
+          {%- assign gc = 0 -%}
+          {%- assign gh = '' -%}
+          {%- for vendor in noscript_vendors -%}
             {%- assign vname = vendor | strip -%}
             {%- if vname == blank -%}{%- continue -%}{%- endif -%}
             {%- assign fc = vname | slice: 0, 1 | upcase -%}
-            {%- assign matches = false -%}
+            {%- assign m = false -%}
             {%- if letter == '#' -%}
-              {%- unless 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains fc -%}
-                {%- assign matches = true -%}
-              {%- endunless -%}
+              {%- unless 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' contains fc -%}{%- assign m = true -%}{%- endunless -%}
             {%- elsif fc == letter -%}
-              {%- assign matches = true -%}
+              {%- assign m = true -%}
             {%- endif -%}
-            {%- if matches -%}
-              {%- assign group_count = group_count | plus: 1 -%}
-              {%- capture group_html -%}{{ group_html }}<a href="{{ vname | url_for_vendor }}" class="brand-directory__brand">{{ vname | escape }}</a>{%- endcapture -%}
+            {%- if m -%}
+              {%- assign gc = gc | plus: 1 -%}
+              {%- capture gh -%}{{ gh }}<a href="{{ vname | url_for_vendor }}" class="brand-directory__brand">{{ vname | escape }}</a>{%- endcapture -%}
             {%- endif -%}
           {%- endfor -%}
-          {%- if group_count > 0 -%}
-            <div class="brand-directory__group" data-letter-group="{{ letter }}">
+          {%- if gc > 0 -%}
+            <div class="brand-directory__group">
               <div class="brand-directory__letter">{{ letter }}</div>
-              <div class="brand-directory__brands">{{ group_html }}</div>
+              <div class="brand-directory__brands">{{ gh }}</div>
             </div>
           {%- endif -%}
         {%- endfor -%}
-      {%- endif -%}
-    </div>
+      </div>
+    </noscript>
   </div>
 </div>
 
@@ -211,11 +225,21 @@
       if (!listEl) return;
 
       var vendors = await fetchAllVendors();
-      if (vendors.length === 0) return; // keep SSR fallback / empty state
+
+      if (vendors.length === 0) {
+        // No products / fetch failed entirely
+        listEl.setAttribute('data-state', 'failed');
+        var loader = listEl.querySelector('.brand-directory__loading');
+        if (loader) loader.textContent = 'No brands found.';
+        return;
+      }
 
       var buckets = bucketize(vendors);
       renderList(listEl, buckets);
       refreshFilterStates(dir, buckets);
+      // Flip to ready state — skeleton + loading text hide via CSS,
+      // groups become visible. Single, all-at-once paint.
+      listEl.setAttribute('data-state', 'ready');
     }
 
     function initAll(root) {
