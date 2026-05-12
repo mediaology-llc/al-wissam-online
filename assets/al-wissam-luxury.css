@@ -546,12 +546,12 @@ html.aw-brand-lil-woo {
 }
 html.aw-brand-retail {
   --aw-gold: var(--aw-retail-accent, #c8102e);
-  /* Page surface — white per merchant request. Kept as named tokens
-     so future shade changes happen in one place. The "-dim" tone is
-     used on accent strips (trust-icons band) to subtly differentiate
-     them from the main surface. */
+  /* Page surface — pure white everywhere. Both tokens map to #ffffff
+     now so the trust-icons band no longer reads as a grey strip — the
+     entire retail surface is one continuous white plane, accents come
+     from typography and the red --aw-gold only. */
   --aw-retail-cream: #ffffff;
-  --aw-retail-cream-dim: #f5f5f5;
+  --aw-retail-cream-dim: #ffffff;
 }
 
 /* ============================================================
@@ -1072,17 +1072,30 @@ html.aw-brand-retail .shopify-section--newsletter > .section-spacing {
 /* Ensure the previously-dark sections (now flipped to scheme-1)
    actually paint white. Some Prestige defaults can keep a darker
    tone bleeding through the color-scheme wrapper — pin the surface
-   explicitly. */
+   explicitly. Shop-by-category included so the wrapper paints
+   white between the dark lookbook cards. */
 html.aw-brand-retail .shopify-section--multiple-media-with-text,
 html.aw-brand-retail .shopify-section--multiple-media-with-text .color-scheme,
 html.aw-brand-retail .shopify-section--image-with-text-overlay,
 html.aw-brand-retail .shopify-section--image-with-text-overlay .color-scheme,
 html.aw-brand-retail .shopify-section--newsletter,
-html.aw-brand-retail .shopify-section--newsletter .color-scheme {
+html.aw-brand-retail .shopify-section--newsletter .color-scheme,
+html.aw-brand-retail .shopify-section--media-grid,
+html.aw-brand-retail .shopify-section--media-grid .section-spacing,
+html.aw-brand-retail .shopify-section--media-grid > .color-scheme,
+html.aw-brand-retail .shopify-section--text-with-icons,
+html.aw-brand-retail .shopify-section--text-with-icons .section-spacing,
+html.aw-brand-retail .shopify-section--text-with-icons .color-scheme {
   background-color: #ffffff !important;
   color: #0a0a0a !important;
   --background: 255 255 255 !important;
   --text-color: 10 10 10 !important;
+}
+/* Section header titles (e.g. "SHOP BY CATEGORY") must read dark on
+   the new white surface. */
+html.aw-brand-retail .shopify-section--media-grid .section-header :where(.h2, .h3, .h4),
+html.aw-brand-retail .shopify-section--media-grid .section-header * {
+  color: #0a0a0a !important;
 }
 /* And cancel any dark overlay images placeholder gradient too */
 html.aw-brand-retail .shopify-section--newsletter .content-over-media,

@@ -264,7 +264,7 @@
         "icon-1": {
           "type": "item",
           "settings": {
-            "icon": "shield",
+            "icon": "picto-shield",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Authentic Products",
@@ -274,7 +274,7 @@
         "icon-2": {
           "type": "item",
           "settings": {
-            "icon": "truck",
+            "icon": "picto-delivery-truck",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Fast Shipping",
@@ -284,7 +284,7 @@
         "icon-3": {
           "type": "item",
           "settings": {
-            "icon": "refresh",
+            "icon": "picto-return",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Easy Returns",
@@ -294,7 +294,7 @@
         "icon-4": {
           "type": "item",
           "settings": {
-            "icon": "lock",
+            "icon": "picto-lock",
             "icon_width": 24,
             "mobile_icon_width": 24,
             "title": "Secure Checkout",
