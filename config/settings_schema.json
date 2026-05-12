@@ -50,7 +50,7 @@
         "type": "color",
         "id": "retail_accent",
         "label": "Retail Store accent",
-        "default": "#9c7a3e"
+        "default": "#c8102e"
       }
     ]
   },

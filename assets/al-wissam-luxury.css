@@ -545,67 +545,347 @@ html.aw-brand-lil-woo {
   --aw-gold: var(--aw-lil-woo-accent, #B89D84);
 }
 html.aw-brand-retail {
-  --aw-gold: var(--aw-retail-accent, #9c7a3e);
+  --aw-gold: var(--aw-retail-accent, #c8102e);
+  /* Cream/parchment page surface — the retail skin's identity colour */
+  --aw-retail-cream: #efe7d7;
+  --aw-retail-cream-dim: #e6dcc7;
 }
 
 /* ============================================================
    RETAIL SKIN — page.retail.json
-   Detroit physical store experience: warmer, multi-brand boutique
-   feel. Brand colour is a deeper bronze (#9c7a3e) so it reads as
-   "in-store" rather than the lighter luxury gold or the soft Lil
-   Woo tan. Stays close to AL WISSAM's dark/luxe foundation but
-   leans warmer.
-
-   Most of the retail skin inherits the global theme styling —
-   these overrides target the parts that should feel different
-   from the other two skins.
+   Detroit flagship retail experience: cream/parchment surfaces,
+   Detroit red accent (#c8102e), Lil Woo-style header layout
+   (logo LEFT, nav CENTER, icons RIGHT, bold caps menu items).
+   Distinct from AL WISSAM (dark luxe) and Lil Woo (white minimal).
    ============================================================ */
 
-/* Brand switcher in retail: same dark surface as AL WISSAM (the
-   retail skin doesn't need to flip to white like Lil Woo did). The
-   active pill picks up the bronze accent automatically via --aw-gold. */
+/* ---------- Page surface ---------- */
+html.aw-brand-retail body,
+html.aw-brand-retail .shopify-section--main-page .section-spacing {
+  background-color: var(--aw-retail-cream);
+  color: #0a0a0a;
+}
 
-/* Hero CTAs use the bronze accent and a parchment-warm overlay */
+/* ---------- Brand switcher: matches Lil Woo (white-on-cream) ---------- */
+html.aw-brand-retail .brand-switcher {
+  background: #ffffff !important;
+  color: #0a0a0a !important;
+}
+html.aw-brand-retail .brand-switcher__link {
+  color: #0a0a0a !important;
+}
+html.aw-brand-retail .brand-switcher__link:hover,
+html.aw-brand-retail .brand-switcher__link:focus-visible {
+  color: var(--aw-gold) !important;
+}
+html.aw-brand-retail .brand-switcher__item:not(:last-child)::after {
+  background: #0a0a0a !important;
+}
+
+/* ---------- Header: Lil Woo-style layout on cream ---------- */
+html.aw-brand-retail .shopify-section--header .header,
+html.aw-brand-retail body .shopify-section--header .header {
+  background-color: var(--aw-retail-cream) !important;
+  color: #0a0a0a !important;
+  --background: 239 231 215 !important;
+  --text-color: 10 10 10 !important;
+}
+
+@media screen and (min-width: 1000px) {
+  html.aw-brand-retail .header {
+    /* logo LEFT | nav CENTER | icons RIGHT (same grid as Lil Woo) */
+    grid:
+      "logo primary-nav secondary-nav"
+      / auto minmax(0, 1fr) auto !important;
+  }
+  html.aw-brand-retail .header__logo {
+    justify-self: start !important;
+  }
+  html.aw-brand-retail .header__primary-nav {
+    justify-self: center !important;
+  }
+}
+
+/* Bold caps nav menu items, hover → red */
+html.aw-brand-retail .header__primary-nav-item,
+html.aw-brand-retail .header__primary-nav-item [data-title] {
+  color: #0a0a0a !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+html.aw-brand-retail .header__primary-nav-item:hover,
+html.aw-brand-retail .header__primary-nav-item:focus-within,
+html.aw-brand-retail .header__primary-nav-item [data-title]:hover {
+  color: var(--aw-gold) !important;
+}
+html.aw-brand-retail .header__primary-nav-item [data-title]:before {
+  background: var(--aw-gold) !important;
+}
+
+/* Header icons (search/account/cart) — black on cream */
+html.aw-brand-retail .header__secondary-nav svg,
+html.aw-brand-retail .header__secondary-nav .header__nav-icon {
+  color: #0a0a0a !important;
+  fill: currentColor !important;
+}
+
+/* No invert filter on retail logo (the AL WISSAM dark-bg filter
+   would white-out the retail logo on cream) */
+html.aw-brand-retail .shopify-section--header .header__logo-image {
+  filter: none !important;
+}
+
+/* ---------- Hero: floating store info card on right ---------- */
+/* The hero is a slideshow with the headline + buttons on the left.
+   The black store-info card is a separate custom-liquid section
+   immediately after, absolutely positioned to overlap the hero on
+   desktop. On mobile it stacks below the hero naturally. */
+html.aw-brand-retail .shopify-section--slideshow .slideshow__slide-content {
+  /* Left-aligned content matches the mockup */
+  text-align: start;
+}
 html.aw-brand-retail .shopify-section--slideshow .button--solid {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+html.aw-brand-retail .shopify-section--slideshow .button--outline {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+html.aw-brand-retail .shopify-section--slideshow .button--solid:hover,
+html.aw-brand-retail .shopify-section--slideshow .button--outline:hover {
   background-color: var(--aw-gold) !important;
   border-color: var(--aw-gold) !important;
   color: #ffffff !important;
 }
 
-/* "Shop by Brand" 4-up: clean light tiles with bronze hover underline
-   for the title — distinct from Lil Woo's beige plate treatment. */
-html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item .prose .h4 {
-  color: #0a0a0a !important;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+/* Eyebrow above hero title — small caps, slight letter-spacing */
+html.aw-brand-retail .shopify-section--slideshow .slideshow__slide-content .h6 {
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-}
-html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(4):last-child) .media-grid__item:hover .prose .h4 {
-  color: var(--aw-gold) !important;
+  font-weight: 600;
+  font-size: 0.75rem;
 }
 
-/* "View all" + section title styling — bronze underline accent */
+/* Hero title — massive, tight tracking */
+html.aw-brand-retail .shopify-section--slideshow .slideshow__slide-content .h0,
+html.aw-brand-retail .shopify-section--slideshow .slideshow__slide-content .h1 {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+/* Floating Visit Us card — custom-liquid section. Tags the card by
+   the unique id "retail-visit-card" so styles only hit that block. */
+html.aw-brand-retail .shopify-section--custom-liquid #retail-visit-card {
+  background: #0a0a0a;
+  color: #ffffff;
+  padding: 1.75rem 1.75rem 1.5rem;
+  width: 22rem;
+  max-width: calc(100% - 2rem);
+  border-radius: 0;
+  position: relative;
+  z-index: 3;
+  font-family: inherit;
+}
+@media screen and (min-width: 1000px) {
+  /* Overlap the bottom-right of the hero on desktop */
+  html.aw-brand-retail .shopify-section--custom-liquid:has(#retail-visit-card) {
+    position: relative;
+    margin-top: clamp(-22rem, -28vw, -16rem);
+    pointer-events: none; /* let card receive but section pass-through */
+    z-index: 3;
+  }
+  html.aw-brand-retail .shopify-section--custom-liquid #retail-visit-card {
+    pointer-events: auto;
+    margin-inline-start: auto;
+    margin-inline-end: clamp(1.5rem, 4vw, 4rem);
+  }
+}
+html.aw-brand-retail #retail-visit-card .visit-card__row {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.875rem;
+  align-items: start;
+  padding-block: 0.875rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+html.aw-brand-retail #retail-visit-card .visit-card__row:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+html.aw-brand-retail #retail-visit-card .visit-card__icon {
+  display: inline-flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--aw-gold);
+}
+html.aw-brand-retail #retail-visit-card .visit-card__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+html.aw-brand-retail #retail-visit-card .visit-card__label {
+  display: block;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+html.aw-brand-retail #retail-visit-card .visit-card__value {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #ffffff;
+  font-weight: 500;
+}
+html.aw-brand-retail #retail-visit-card .visit-card__cta {
+  display: block;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+html.aw-brand-retail #retail-visit-card .visit-card__cta:hover {
+  background: var(--aw-gold);
+  border-color: var(--aw-gold);
+}
+
+/* ---------- "Shop Top Brands" — horizontal logo rail ---------- */
+/* media-grid blocks displayed inline on a cream surface; logos sit
+   centred in each tile with no overlay text. The merchant uploads
+   each brand's logo image to a block. */
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(6)) .section-spacing,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(7)) .section-spacing,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(8)) .section-spacing {
+  background-color: var(--aw-retail-cream);
+}
+
+/* ---------- "Shop By Category" — 5-up grid, lookbook style ---------- */
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item {
+  background: #0a0a0a;
+  overflow: hidden;
+  position: relative;
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .content-over-media {
+  background-color: transparent !important;
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .content-over-media > picture,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .content-over-media > picture > img,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .content-over-media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item:hover .content-over-media > picture > img,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item:hover .content-over-media > img {
+  transform: scale(1.05);
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .content-over-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.65) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item .prose {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem !important;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h2,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h3,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item .prose .h4 {
+  color: #ffffff !important;
+  font-size: 1.25rem !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 0 0.375rem 0;
+  line-height: 1.1;
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item .prose .button,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item .prose .link {
+  color: #ffffff;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item:hover .prose .button,
+html.aw-brand-retail .shopify-section--media-grid:has(.media-grid__item:nth-child(5):last-child) .media-grid__item:hover .prose .link {
+  color: var(--aw-gold);
+}
+
+/* ---------- Section headers (h2 titles) ---------- */
+html.aw-brand-retail .shopify-section--media-grid .section-header :where(.h2, .h3, .h4),
+html.aw-brand-retail .shopify-section--featured-collections .section-header :where(.h2, .h3, .h4) {
+  color: #0a0a0a !important;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ---------- Trust icons row — cream surface, black icons + red hover ---------- */
+html.aw-brand-retail .shopify-section--text-with-icons {
+  background-color: var(--aw-retail-cream-dim) !important;
+}
+html.aw-brand-retail .shopify-section--text-with-icons .container svg {
+  color: #0a0a0a;
+}
+html.aw-brand-retail .shopify-section--text-with-icons .container .h6 {
+  color: #0a0a0a;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Defeat the AL WISSAM trust-band black overrides on retail */
+html.aw-brand-retail .shopify-section--text-with-icons,
+html.aw-brand-retail .shopify-section--text-with-icons .section-spacing,
+html.aw-brand-retail .shopify-section--text-with-icons .color-scheme {
+  background-color: var(--aw-retail-cream-dim) !important;
+  color: #0a0a0a !important;
+  --background: 230 220 199 !important;
+  --text-color: 10 10 10 !important;
+}
+
+/* ---------- Featured collections rails ---------- */
+html.aw-brand-retail .shopify-section--featured-collections {
+  background-color: var(--aw-retail-cream);
+}
 html.aw-brand-retail .shopify-section--featured-collections .section-header .link::after,
 html.aw-brand-retail .shopify-section--featured-collections .section-header .button::after {
   background-color: var(--aw-gold);
 }
 
-/* Visit Us section ("Find us in Detroit"): the multiple-media-with-text
-   section already inherits the retail color scheme. Highlight the
-   address heading with a bronze rule for "in-store" feel. */
-html.aw-brand-retail .shopify-section--multiple-media-with-text .prose strong {
-  color: var(--aw-gold);
-}
-html.aw-brand-retail .shopify-section--multiple-media-with-text .button--solid {
-  background-color: var(--aw-gold) !important;
-  border-color: var(--aw-gold) !important;
+/* Announcement bar above header — black band */
+html.aw-brand-retail .shopify-section--announcement-bar,
+html.aw-brand-retail .announcement-bar {
+  background-color: #0a0a0a !important;
   color: #ffffff !important;
-}
-
-/* Optional: tag the retail page body so the brand switcher / nav can
-   pick a slightly different colour scheme later via this hook. */
-html.aw-brand-retail body {
-  --aw-skin-bronze: #9c7a3e;
+  --background: 10 10 10 !important;
+  --text-color: 255 255 255 !important;
 }
 
 /* Hide nav/footer regions tagged for non-active brands. The
