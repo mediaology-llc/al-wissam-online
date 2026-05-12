@@ -254,6 +254,7 @@
         "autoplay": true,
         "show_controls": false,
         "video_size": "fill",
+        "video": "shopify://files/videos/Dearborn Store Shopping.mov",
         "external_video_url": "",
         "text_color": "#ffffff"
       }
