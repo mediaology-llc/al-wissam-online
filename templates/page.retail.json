@@ -99,7 +99,8 @@
         "brand-6": {
           "type": "brand",
           "settings": {
-            "fallback_text": "Essentials",
+            "image": "shopify://shop_images/Brands_Home_Page_Slider_Logos-07.png",
+            "fallback_text": "Jordan Craig",
             "link": "shopify://collections/all"
           }
         },
